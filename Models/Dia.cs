@@ -8,5 +8,11 @@ namespace Models
 {
     public class Dia
     {
+        public Dia() { }
+        public int Id { get; set; }
+        public int RutinaId { get; set; }
+        public string NombreDia { get; set; } 
+        public bool Completado { get; set; }
+        public List<EjercicioAsignado> EjercicioAsignado { get; set; }
     }
 }
