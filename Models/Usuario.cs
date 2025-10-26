@@ -10,7 +10,7 @@ namespace Models
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Email { get; set; }
-        public string Contraseña { get; set; }
+        public string Contrasenia { get; set; }
         public string Telefono { get; set; }
         public int Edad { get; set; }
         public string Objetivos { get; set; }

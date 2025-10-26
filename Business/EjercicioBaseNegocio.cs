@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    internal class EjercicioBaseNegocio
+    public class EjercicioBaseNegocio
     {
         public List<EjercicioBase> listar()
         {
