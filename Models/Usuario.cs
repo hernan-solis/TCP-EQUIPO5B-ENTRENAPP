@@ -13,9 +13,10 @@ namespace Models
         public string Contraseña { get; set; }
         public string Telefono { get; set; }
         public int Edad { get; set; }
-        public string Genero { get; set; }
         public string Objetivos { get; set; }
         public string Rol { get; set; }
+
+        public string Genero { get; set; }
         public DateTime FechaFinSuscripcion { get; set; }
         public string DiasDisponibles { get; set; }
         public string Lesiones { get; set; }
