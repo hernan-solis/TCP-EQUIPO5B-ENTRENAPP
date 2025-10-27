@@ -4,40 +4,43 @@
 
     <main>
         <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">ASP.NET</h1>
-            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-            <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+
+            <figure class="text-center">
+                <blockquote class="blockquote">
+                    <h1>ENTRENAPP</h1>
+                </blockquote>
+                <figcaption class="blockquote-footer">Entrenamiento Personal. Resultados Reales. Creado Solo Para Vos.
+                </figcaption>
+            </figure>
         </section>
 
         <div class="row">
             <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-                <h2 id="gettingStartedTitle">Getting started</h2>
+                <h2 id="gettingStartedTitle">Diseñado 100% para vos</h2>
                 <p>
-                    ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-                A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
+                    Olvídate de rutinas genéricas. Evaluamos tu nivel, los elementos con los que contas (en casa o gimnasio) y tus lesiones, para crear un plan que se adapte perfectamente a tu vida.
                 </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-                </p>
+               
             </section>
             <section class="col-md-4" aria-labelledby="librariesTitle">
-                <h2 id="librariesTitle">Get more libraries</h2>
+                <h2 id="librariesTitle">Rutinas Claras, Sin Errores</h2>
                 <p>
-                    NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
+                    Visualiza tus días de entrenamiento en tarjetas sencillas. Mira las series, repeticiones y observaciones que tu profesor ha diseñado solo para vos. ¡Solo sigue el plan!
                 </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-                </p>
+                
             </section>
             <section class="col-md-4" aria-labelledby="hostingTitle">
-                <h2 id="hostingTitle">Web Hosting</h2>
+                <h2 id="hostingTitle">Registra tu Progreso Real</h2>
                 <p>
-                    You can easily find a web hosting company that offers the right mix of features and price for your applications.
+                    Medi tu fuerza en cada entrenamiento. Registra los kilos utilizados en cada ejercicio directamente en la app. Al final del día, marca el entrenamiento como "Cumplido" con un simple check.
                 </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-                </p>
+               
+                
             </section>
+            <section class="text-center">
+                <a href="/Login" class="btn btn-secondary btn-lg text-uppercase" role="button">¡QUIERO SUMARME! </a>
+            </section>
+
         </div>
     </main>
 
