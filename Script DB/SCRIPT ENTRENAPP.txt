@@ -1,0 +1,136 @@
+-- =======================================
+-- CREAR BASE DE DATOS
+-- =======================================
+CREATE DATABASE ENTRENAPP;
+GO
+
+USE ENTRENAPP;
+GO
+
+-- =======================================
+-- CREACIÓN DE TABLAS
+-- =======================================
+
+CREATE TABLE Usuarios (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    Apellido VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Contraseña VARCHAR(255) NOT NULL,
+    Teléfono VARCHAR(50),
+    Edad INT,
+    Objetivos VARCHAR(500),
+    Rol VARCHAR(20) CHECK (Rol IN ('Gestor', 'Profesor', 'Alumno')),
+    Género VARCHAR(20),
+    FechaFinSuscripción DATE,
+    DíasDisponibles VARCHAR(50),
+    Lesiones VARCHAR(500),
+    CondiciónMédica VARCHAR(500),
+    Comentarios VARCHAR(500),
+    ProfesorID INT NULL,
+    FOREIGN KEY (ProfesorID) REFERENCES Usuarios(ID)
+);
+
+CREATE TABLE Rutinas (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    UsuarioID INT NOT NULL,
+    ProfesorID INT NOT NULL,
+    Título VARCHAR(100),
+    Descripción VARCHAR(500),
+    FOREIGN KEY (UsuarioID) REFERENCES Usuarios(ID),
+    FOREIGN KEY (ProfesorID) REFERENCES Usuarios(ID)
+);
+
+CREATE TABLE Día (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    RutinaID INT NOT NULL,
+    NombreDía VARCHAR(50),
+    Completado BIT DEFAULT 0,
+    FOREIGN KEY (RutinaID) REFERENCES Rutinas(ID)
+);
+
+CREATE TABLE EjercicioBase (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    Descripción VARCHAR(300),
+    Url VARCHAR(500)
+);
+
+CREATE TABLE EjercicioAsignado (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    DíaID INT NOT NULL,
+    EjercicioBaseID INT NOT NULL,
+    Series INT,
+    Repeticiones INT,
+    TiempoEstimado INT,
+    Peso DECIMAL(6,2),
+    Observaciones VARCHAR(300),
+    Url VARCHAR(500),
+    FOREIGN KEY (DíaID) REFERENCES Día(ID),
+    FOREIGN KEY (EjercicioBaseID) REFERENCES EjercicioBase(ID)
+);
+
+-- =======================================
+-- INSERCIÓN DE DATOS FICTICIOS
+-- =======================================
+
+-- Profesores
+INSERT INTO Usuarios (Nombre, Apellido, Email, Contraseña, Rol, Género, FechaFinSuscripción)
+VALUES 
+('Juan', 'Pérez', 'juanperez@gym.com', 'hash123', 'Profesor', 'Masculino', '2025-12-31'),
+('María', 'López', 'marialopez@gym.com', 'hash456', 'Profesor', 'Femenino', '2025-12-31');
+
+-- Alumnos
+INSERT INTO Usuarios (Nombre, Apellido, Email, Contraseña, Rol, Género, FechaFinSuscripción, ProfesorID)
+VALUES
+('Carlos', 'Gómez', 'carlosgomez@gmail.com', 'hash789', 'Alumno', 'Masculino', '2025-11-15', 1),
+('Lucía', 'Martínez', 'luciamartinez@gmail.com', 'hashabc', 'Alumno', 'Femenino', '2025-11-15', 2);
+
+-- Rutinas
+INSERT INTO Rutinas (UsuarioID, ProfesorID, Título, Descripción)
+VALUES
+(3, 1, 'Rutina Fuerza Inicial', 'Rutina enfocada en fuerza general y técnica.'),
+(4, 2, 'Rutina Tonificación', 'Rutina enfocada en tonificar brazos y piernas.');
+
+-- Días
+INSERT INTO Día (RutinaID, NombreDía, Completado)
+VALUES
+(1, 'Lunes', 0),
+(1, 'Miércoles', 0),
+(2, 'Martes', 0),
+(2, 'Jueves', 0);
+
+-- Ejercicios base
+INSERT INTO EjercicioBase (Nombre, Descripción, Url)
+VALUES
+('Sentadillas', 'Ejercicio de piernas para fuerza y estabilidad.', 'https://www.youtube.com/watch?v=aclHkVaku9U'),
+('Press de banca', 'Ejercicio para pecho y tríceps.', 'https://www.youtube.com/watch?v=rT7DgCr-3pg'),
+('Plancha', 'Ejercicio isométrico para core.', 'https://www.youtube.com/watch?v=pSHjTRCQxIw'),
+('Curl de bíceps', 'Ejercicio para fortalecer los brazos.', 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo');
+
+-- Ejercicios asignados con campo Peso
+INSERT INTO EjercicioAsignado (DíaID, EjercicioBaseID, Series, Repeticiones, TiempoEstimado, Peso, Observaciones, Url)
+VALUES
+(1, 1, 4, 12, NULL, 50.0, 'Mantener la espalda recta.', 'https://www.youtube.com/watch?v=aclHkVaku9U'),
+(1, 2, 4, 10, NULL, 40.0, 'Controlar el movimiento.', 'https://www.youtube.com/watch?v=rT7DgCr-3pg'),
+(2, 3, 3, NULL, 60, NULL, 'Mantener el abdomen firme.', 'https://www.youtube.com/watch?v=pSHjTRCQxIw'),
+(3, 4, 3, 15, NULL, 10.0, 'Usar poco peso al inicio.', 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo');
+
+-- =======================================
+-- CONSULTA DE VERIFICACIÓN (PRUEBA)
+-- =======================================
+SELECT 
+    u.Nombre + ' ' + u.Apellido AS Alumno,
+    r.Título AS Rutina,
+    d.NombreDía,
+    eb.Nombre AS Ejercicio,
+    ea.Series,
+    ea.Repeticiones,
+    ea.Peso,
+    ea.Observaciones,
+    ea.Url
+FROM Usuarios u
+JOIN Rutinas r ON u.ID = r.UsuarioID
+JOIN Día d ON r.ID = d.RutinaID
+JOIN EjercicioAsignado ea ON d.ID = ea.DíaID
+JOIN EjercicioBase eb ON ea.EjercicioBaseID = eb.ID;
