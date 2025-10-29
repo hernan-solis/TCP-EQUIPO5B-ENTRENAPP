@@ -24,7 +24,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             if (idUsuario > 0 )
             {
-                Response.Redirect("~/Default.aspx");
+                Response.Redirect("~/PerfilAlumno.aspx");
             }
         }
     }

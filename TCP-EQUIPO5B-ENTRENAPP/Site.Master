@@ -47,13 +47,14 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Usuarios">Gestión de usuarios</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Acerca de</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Usuarios">Alta</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/PerfilAlumno">Mi Perfil</a></li>
+                        
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Cerrar sesión</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contacto</a></li>
                     </ul>
                 </div>
             </div>
@@ -62,7 +63,7 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer>
+            <footer> 
                 <p>&copy; <%: DateTime.Now.Year %> - Entrenapp Application</p>
             </footer>
         </div>

@@ -11,7 +11,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 {
 
 
-    public partial class About
+    public partial class PerfilAlumno
     {
     }
 }
