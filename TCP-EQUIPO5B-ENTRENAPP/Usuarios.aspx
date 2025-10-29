@@ -27,24 +27,13 @@
         <asp:TextBox ID="txtContrasena" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
     </div>
     <div class="mb-3">
-        <label class="form-label">Repetir Contraseña</label>
-        <asp:TextBox ID="txtRepetirContraseña" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
-    </div>
+    <label class="form-label">Repetir Contraseña</label>
+    <asp:TextBox ID="txtRepetirContraseña" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+</div>
     <div class="mb-3">
-        <label class="form-label">Telefono</label>
-        <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server"></asp:TextBox>
-    </div>
-
-    <div class="mb-3">
-        <asp:Label ID="Label1" runat="server" Text="Acepto terminos y condiciones"></asp:Label>
-        <asp:CheckBox ID="CheckBox1" runat="server" />
-    </div>
-
-
-    <div>
-        <a href="/PerfilAlumno" class="btn btn-secondary btn-lg text-uppercase" role="button">Registrarme </a>
-    </div>
-
+    <label class="form-label">Telefono</label>
+    <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server"></asp:TextBox>
+</div>
 
 
 
