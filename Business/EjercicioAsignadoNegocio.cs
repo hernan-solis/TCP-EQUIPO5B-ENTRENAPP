@@ -22,6 +22,7 @@ namespace Business
 
                 while (datos.Lector.Read())
                 {
+                    /*
                     EjercicioAsignado aux = new EjercicioAsignado();
                     aux.Id = (int)datos.Lector["ID"];
                     aux.DiaId = (int)datos.Lector["DíaID"];
@@ -34,6 +35,7 @@ namespace Business
                     aux.Url = (string)datos.Lector["Url"];
 
                     lista.Add(aux);
+                    */
                 }
 
                 return lista;

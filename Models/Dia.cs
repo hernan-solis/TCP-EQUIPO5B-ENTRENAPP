@@ -13,6 +13,7 @@ namespace Models
         public int RutinaId { get; set; }
         public string NombreDia { get; set; } 
         public bool Completado { get; set; }
-        public List<EjercicioAsignado> EjercicioAsignado { get; set; }
+        public List<EjercicioAsignado> EjerciciosAsignados { get; set; }
+
     }
 }

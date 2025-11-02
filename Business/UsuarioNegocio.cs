@@ -23,6 +23,7 @@ namespace Business
 
                 while (datos.Lector.Read())
                 {
+                    /*
                     Usuario aux = new Usuario();
                     aux.Id = (int)datos.Lector["ID"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
@@ -40,8 +41,10 @@ namespace Business
                     aux.CondicionMedica = (string)datos.Lector["CondiciónMédica"];
                     aux.Comentarios = (string)datos.Lector["Comentarios"];
                     aux.ProfesorId = (int)datos.Lector["ProfesorID"];
+                  
 
                     lista.Add(aux);
+                      */
                 }
 
                 return lista;
@@ -70,6 +73,7 @@ namespace Business
 
                 if (datos.Lector.Read())
                 {
+                    /*
                     usuario = new Usuario();
                     usuario.Id = (int)datos.Lector["ID"];
                     usuario.Nombre = (string)datos.Lector["Nombre"];
@@ -87,6 +91,7 @@ namespace Business
                     usuario.CondicionMedica = (string)datos.Lector["CondiciónMédica"];
                     usuario.Comentarios = (string)datos.Lector["Comentarios"];
                     usuario.ProfesorId = (int)datos.Lector["ProfesorID"];
+                    */
                 }
 
                 return usuario;

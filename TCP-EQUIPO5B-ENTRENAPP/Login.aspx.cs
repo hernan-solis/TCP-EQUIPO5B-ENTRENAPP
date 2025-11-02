@@ -25,6 +25,9 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             if (idUsuario > 0 )
             {
                 Response.Redirect("~/PerfilAlumno.aspx");
+
+                Profesor profesor = new Profesor();
+            
             }
         }
     }

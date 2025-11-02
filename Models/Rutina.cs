@@ -10,8 +10,8 @@ namespace Models
     {
         public Rutina() { }
         public int Id { get; set; }
-        public int UsuarioId { get; set; }
-        public int ProfesorId { get; set; }
+        public Profesor Profesor { get; set; }
+        public Alumno Alumno { get; set; }
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
 

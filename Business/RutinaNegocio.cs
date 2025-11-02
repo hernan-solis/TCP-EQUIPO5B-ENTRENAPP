@@ -23,6 +23,7 @@ namespace Business
 
                     while (datos.Lector.Read())
                     {
+                    /*
                         Rutina aux = new Rutina();
                         aux.Id = (int)datos.Lector["ID"];
                         aux.UsuarioId = (int)datos.Lector["UsuarioID"];
@@ -31,6 +32,8 @@ namespace Business
                         aux.Descripcion = (string)datos.Lector["Descripción"];
 
                         lista.Add(aux);
+
+                    */
                     }
 
                     return lista;
