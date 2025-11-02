@@ -71,6 +71,22 @@ CREATE TABLE EjercicioAsignado (
 );
 
 -- =======================================
+-- NUEVA TABLA HISTORIAL
+-- =======================================
+CREATE TABLE Historial (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    RutinaID INT NOT NULL,
+    FechaRegistro DATETIME NOT NULL DEFAULT GETDATE(),
+    EjercicioBaseID INT NOT NULL,
+    Series INT NOT NULL,
+    Repeticiones INT NOT NULL,
+    Peso DECIMAL(6,2) NULL,
+    Observaciones VARCHAR(500) NULL,
+    CONSTRAINT FK_Historial_Rutina FOREIGN KEY (RutinaID) REFERENCES Rutinas(ID),
+    CONSTRAINT FK_Historial_EjercicioBase FOREIGN KEY (EjercicioBaseID) REFERENCES EjercicioBase(ID)
+);
+
+-- =======================================
 -- INSERCIÓN DE DATOS FICTICIOS
 -- =======================================
 
@@ -108,13 +124,23 @@ VALUES
 ('Plancha', 'Ejercicio isométrico para core.', 'https://www.youtube.com/watch?v=pSHjTRCQxIw'),
 ('Curl de bíceps', 'Ejercicio para fortalecer los brazos.', 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo');
 
--- Ejercicios asignados con campo Peso
+-- Ejercicios asignados
 INSERT INTO EjercicioAsignado (DíaID, EjercicioBaseID, Series, Repeticiones, TiempoEstimado, Peso, Observaciones, Url)
 VALUES
 (1, 1, 4, 12, NULL, 50.0, 'Mantener la espalda recta.', 'https://www.youtube.com/watch?v=aclHkVaku9U'),
 (1, 2, 4, 10, NULL, 40.0, 'Controlar el movimiento.', 'https://www.youtube.com/watch?v=rT7DgCr-3pg'),
 (2, 3, 3, NULL, 60, NULL, 'Mantener el abdomen firme.', 'https://www.youtube.com/watch?v=pSHjTRCQxIw'),
 (3, 4, 3, 15, NULL, 10.0, 'Usar poco peso al inicio.', 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo');
+
+-- =======================================
+-- DATOS DE PRUEBA PARA TABLA HISTORIAL
+-- =======================================
+INSERT INTO Historial (RutinaID, EjercicioBaseID, Series, Repeticiones, Peso, Observaciones)
+VALUES
+(1, 1, 4, 12, 52.5, 'Mejoró la técnica, subir peso la próxima.'),
+(1, 2, 4, 10, 42.0, 'Buen control del movimiento.'),
+(2, 4, 3, 15, 9.0, 'Excelente forma, mantener ritmo.'),
+(2, 3, 3, 0, NULL, 'Tiempo en plancha: 65 segundos.');
 
 -- =======================================
 -- CONSULTA DE VERIFICACIÓN (PRUEBA)
@@ -134,3 +160,16 @@ JOIN Rutinas r ON u.ID = r.UsuarioID
 JOIN Día d ON r.ID = d.RutinaID
 JOIN EjercicioAsignado ea ON d.ID = ea.DíaID
 JOIN EjercicioBase eb ON ea.EjercicioBaseID = eb.ID;
+
+-- Ver historial registrado
+SELECT 
+    h.FechaRegistro,
+    r.Título AS Rutina,
+    eb.Nombre AS Ejercicio,
+    h.Series,
+    h.Repeticiones,
+    h.Peso,
+    h.Observaciones
+FROM Historial h
+JOIN Rutinas r ON h.RutinaID = r.ID
+JOIN EjercicioBase eb ON h.EjercicioBaseID = eb.ID;
