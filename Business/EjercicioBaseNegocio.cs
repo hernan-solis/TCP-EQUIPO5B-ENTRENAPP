@@ -27,7 +27,7 @@ namespace Business
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripción"];
                     aux.Url = (string)datos.Lector["Url"];
-                    
+
                     lista.Add(aux);
                 }
 
@@ -43,6 +43,37 @@ namespace Business
                 datos.cerrarConexion();
             }
         }
+
+        public void agregar(EjercicioBase nuevoEjercioBase)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                string consulta = @"INSERT INTO EjercicioBase (Nombre,Descripción,Url) VALUES (@nombre,@descripcion,@url)";
+                
+                datos.setearConsulta(consulta);
+
+                datos.setearParametro("@nombre", nuevoEjercioBase.Nombre);
+                datos.setearParametro("@descripcion", nuevoEjercioBase.Descripcion);
+                datos.setearParametro("@url", nuevoEjercioBase.Url);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+
+        }
     }
+
 }
 
