@@ -53,6 +53,35 @@ namespace Business
                 datos.cerrarConexion();
             }
         }
+
+        public void agregar (EjercicioAsignado nuevoEjercicioAsignado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                
+                datos.setearConsulta("insert into EjercicioAsignado (EjercicioBaseID, Series, Repeticiones, TiempoEstimado, Peso, Observaciones, Url) VALUES (@ejercicioBaseID,@series,@repeticiones,@tiempoEstimado,@peso,@observaciones,@url)");
+                datos.setearParametro("@ejercicioBaseId", nuevoEjercicioAsignado.EjercicioBase);
+                datos.setearParametro("@series", nuevoEjercicioAsignado.Series);
+                datos.setearParametro("@repeticiones", nuevoEjercicioAsignado.Repeticiones);
+                datos.setearParametro("@tiempoEstimado", nuevoEjercicioAsignado.TiempoEstimado);
+                datos.setearParametro("@peso", nuevoEjercicioAsignado.Peso);
+                datos.setearParametro("@observaciones", nuevoEjercicioAsignado.Observaciones);
+                datos.setearParametro("@url", nuevoEjercicioAsignado.Url);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
     }
 }
 
