@@ -22,7 +22,7 @@ namespace Business
         public AccesoDatos() //constructor 
         {
             //ruta para conectarse a la BD de Vale
-          // conexion = new SqlConnection ("server=(localdb)\\MSSQLLocalDB; database=ENTRENAPP; integrated security=true");
+          //conexion = new SqlConnection ("server=(localdb)\\MSSQLLocalDB; database=ENTRENAPP; integrated security=true");
 
            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=ENTRENAPP; integrated security=true");
             comando = new SqlCommand();

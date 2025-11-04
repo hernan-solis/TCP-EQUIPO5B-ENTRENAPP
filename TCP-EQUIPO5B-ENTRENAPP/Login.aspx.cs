@@ -13,12 +13,16 @@ namespace TCP_EQUIPO5B_ENTRENAPP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            EjercicioAsignadoNegocio ejercicioAsignadoNegocio = new EjercicioAsignadoNegocio();
+
+            ejercicioAsignadoNegocio.Listar();
 
         }
 
         protected void BtnLogin_Click(object sender, EventArgs e)
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
+           
 
             int idUsuario = negocio.Loguear(EmailLogin.Text, ConstraseniaLogin.Text);
 
