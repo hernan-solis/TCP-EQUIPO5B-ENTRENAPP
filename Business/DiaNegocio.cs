@@ -17,7 +17,7 @@ namespace Business
 
             try
             {
-                datos.setearConsulta("select ID, RutinaID, NombreDía,  from Día");
+                datos.setearConsulta("select ID, RutinaID, NombreDía, Completado  from Día");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -37,6 +37,31 @@ namespace Business
             {
 
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void agregar(Dia dia)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("INSERT INTO Día (RutinaID, NombreDía, Completado) VALUES (@RutinaId, @NombreDia, @Completado)");
+                datos.setearParametro("@RutinaId", dia.RutinaId);
+                datos.setearParametro("@NombreDia", dia.NombreDia);
+                datos.setearParametro("@Completado", dia.Completado);
+                
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex ;
             }
             finally
             {
