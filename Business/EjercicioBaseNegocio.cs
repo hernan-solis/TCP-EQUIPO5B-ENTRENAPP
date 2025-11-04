@@ -110,7 +110,7 @@ namespace Business
 
         }
 
-        public void modificar(EjercicioBase ejercicioBaseModificado)
+        public void Modificar(EjercicioBase ejercicioBaseModificado)
         {
             AccesoDatos datos = new AccesoDatos();
             try
@@ -136,7 +136,7 @@ namespace Business
             }
         }
 
-        public void eliminar(int id)
+        public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
             try

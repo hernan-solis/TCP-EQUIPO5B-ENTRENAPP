@@ -9,7 +9,7 @@ namespace Business
 {
     public class DiaNegocio
     {
-        public List<Dia> listar()
+        public List<Dia> Listar()
         {
 
             List<Dia> lista = new List<Dia>();
@@ -44,7 +44,7 @@ namespace Business
             }
         }
 
-        public void agregar(Dia dia)
+        public void Agregar(Dia dia)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -69,7 +69,7 @@ namespace Business
             }
         }
 
-        public void modificar(Dia dia)
+        public void Modificar(Dia dia)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -95,7 +95,7 @@ namespace Business
 
         }
 
-        public void eliminar(int id)
+        public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
             try

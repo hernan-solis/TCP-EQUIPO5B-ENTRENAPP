@@ -15,5 +15,7 @@ namespace Models
         public bool Completado { get; set; }
         public List<EjercicioAsignado> EjerciciosAsignados { get; set; }
 
+
+
     }
 }

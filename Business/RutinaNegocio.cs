@@ -10,7 +10,7 @@ namespace Business
     public class RutinaNegocio
     {
        
-            public List<Rutina> listar()
+            public List<Rutina> Listar()
             {
 
                 List<Rutina> lista = new List<Rutina>();

@@ -15,7 +15,13 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         {
             EjercicioAsignadoNegocio ejercicioAsignadoNegocio = new EjercicioAsignadoNegocio();
 
-            ejercicioAsignadoNegocio.Listar();
+            List<EjercicioAsignado> lista = ejercicioAsignadoNegocio.Listar();
+
+
+
+            //cuando guardeemos datos nuevos siempre tienen que tener algun valor, no vale nulos. 
+           // Desde el lado del front;
+
 
         }
 
