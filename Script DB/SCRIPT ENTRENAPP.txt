@@ -127,10 +127,10 @@ VALUES
 -- Ejercicios asignados
 INSERT INTO EjercicioAsignado (DíaID, EjercicioBaseID, Series, Repeticiones, TiempoEstimado, Peso, Observaciones, Url)
 VALUES
-(1, 1, 4, 12, NULL, 50.0, 'Mantener la espalda recta.', 'https://www.youtube.com/watch?v=aclHkVaku9U'),
-(1, 2, 4, 10, NULL, 40.0, 'Controlar el movimiento.', 'https://www.youtube.com/watch?v=rT7DgCr-3pg'),
-(2, 3, 3, NULL, 60, NULL, 'Mantener el abdomen firme.', 'https://www.youtube.com/watch?v=pSHjTRCQxIw'),
-(3, 4, 3, 15, NULL, 10.0, 'Usar poco peso al inicio.', 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo');
+(1, 1, 4, 12, 45, 50.0, 'Mantener la espalda recta.', 'https://www.youtube.com/watch?v=aclHkVaku9U'),
+(1, 2, 4, 10, 45, 40.0, 'Controlar el movimiento.', 'https://www.youtube.com/watch?v=rT7DgCr-3pg'),
+(2, 3, 3, 12, 60, 30, 'Mantener el abdomen firme.', 'https://www.youtube.com/watch?v=pSHjTRCQxIw'),
+(3, 4, 3, 15, 45, 10.0, 'Usar poco peso al inicio.', 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo');
 
 -- =======================================
 -- DATOS DE PRUEBA PARA TABLA HISTORIAL
