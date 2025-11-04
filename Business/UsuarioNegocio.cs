@@ -10,7 +10,7 @@ namespace Business
 {
     public class UsuarioNegocio
     {
-        public List<Usuario> listar()
+        public List<Usuario> Listar()
         {
 
             List<Usuario> lista = new List<Usuario>();
@@ -23,28 +23,16 @@ namespace Business
 
                 while (datos.Lector.Read())
                 {
-                    /*
+                
                     Usuario aux = new Usuario();
                     aux.Id = (int)datos.Lector["ID"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Apellido = (string)datos.Lector["Apellido"];
                     aux.Email = (string)datos.Lector["Email"];
                     aux.Contrasenia = (string)datos.Lector["Contraseña"];
-                    aux.Telefono = (string)datos.Lector["Teléfono"];
-                    aux.Edad = (int)datos.Lector["Edad"];
-                    aux.Objetivos = (string)datos.Lector["Objetivos"];
                     aux.Rol = (string)datos.Lector["Rol"];
-                    aux.Genero = (string)datos.Lector["Género"];
-                    aux.FechaFinSuscripcion = (DateTime)datos.Lector["FechaFinSuscripción"];
-                    aux.DiasDisponibles = (string)datos.Lector["DíaDisponibles"];
-                    aux.Lesiones = (string)datos.Lector["Lesiones"];
-                    aux.CondicionMedica = (string)datos.Lector["CondiciónMédica"];
-                    aux.Comentarios = (string)datos.Lector["Comentarios"];
-                    aux.ProfesorId = (int)datos.Lector["ProfesorID"];
-                  
-
                     lista.Add(aux);
-                      */
+               
                 }
 
                 return lista;
@@ -73,28 +61,84 @@ namespace Business
 
                 if (datos.Lector.Read())
                 {
-                    /*
+                    
                     usuario = new Usuario();
                     usuario.Id = (int)datos.Lector["ID"];
                     usuario.Nombre = (string)datos.Lector["Nombre"];
                     usuario.Apellido = (string)datos.Lector["Apellido"];
                     usuario.Email = (string)datos.Lector["Email"];
                     usuario.Contrasenia = (string)datos.Lector["Contraseña"];
-                    usuario.Telefono = (string)datos.Lector["Teléfono"];
-                    usuario.Edad = (int)datos.Lector["Edad"];
-                    usuario.Objetivos = (string)datos.Lector["Objetivos"];
                     usuario.Rol = (string)datos.Lector["Rol"];
-                    usuario.Genero = (string)datos.Lector["Género"];
-                    usuario.FechaFinSuscripcion = (DateTime)datos.Lector["FechaFinSuscripción"];
-                    usuario.DiasDisponibles = (string)datos.Lector["DíasDisponibles"];
-                    usuario.Lesiones = (string)datos.Lector["Lesiones"];
-                    usuario.CondicionMedica = (string)datos.Lector["CondiciónMédica"];
-                    usuario.Comentarios = (string)datos.Lector["Comentarios"];
-                    usuario.ProfesorId = (int)datos.Lector["ProfesorID"];
-                    */
+  
                 }
 
                 return usuario;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void Agregar(Usuario nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("INSERT INTO Usuarios (Nombre, Apellido, Email, Contraseña, Rol) VALUES (@Nombre, @Apellido, @Email, @Contraseña, @Rol)");
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+                datos.setearParametro("@Apellido", nuevo.Apellido);
+                datos.setearParametro("@Email", nuevo.Email);
+                datos.setearParametro("@Contraseña", nuevo.Contrasenia);
+                datos.setearParametro("@Rol", nuevo.Rol);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void Modificar(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Usuarios SET Nombre = @Nombre, Apellido = @Apellido, Email = @Email, Contraseña = @Contraseña, Rol = @Rol WHERE ID = @ID");
+                datos.setearParametro("@Nombre", usuario.Nombre);
+                datos.setearParametro("@Apellido", usuario.Apellido);
+                datos.setearParametro("@Email", usuario.Email);
+                datos.setearParametro("@Contraseña", usuario.Contrasenia);
+                datos.setearParametro("@Rol", usuario.Rol);
+                datos.setearParametro("@ID", usuario.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void Eliminar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("DELETE FROM Usuarios WHERE ID = @ID");
+                datos.setearParametro("@ID", id);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
