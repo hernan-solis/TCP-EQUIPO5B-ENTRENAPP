@@ -20,10 +20,13 @@ namespace Business
                 datos.setearConsulta("select ID, RutinaID, NombreDía, Completado  from Día");
                 datos.ejecutarLectura();
 
+                EjercicioAsignadoNegocio ejercicioAsignadoNegocio = new EjercicioAsignadoNegocio();
+
                 while (datos.Lector.Read())
                 {
                     Dia aux = new Dia();
                     aux.Id = (int)datos.Lector["ID"];
+                    List<EjercicioAsignado> listaEjercicioAsignado = ejercicioAsignadoNegocio.ListarPorId((int)datos.Lector["ID"]);
                     aux.RutinaId = (int)datos.Lector["RutinaID"];
                     aux.NombreDia = (string)datos.Lector["NombreDía"];
                     aux.Completado = (bool)datos.Lector["Completado"];

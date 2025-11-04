@@ -13,7 +13,7 @@ namespace Business
         {
 
             List<EjercicioAsignado> lista = new List<EjercicioAsignado>();
-            
+
             AccesoDatos datos = new AccesoDatos();
 
             try
@@ -52,7 +52,51 @@ namespace Business
             }
         }
 
-       
+        public List<EjercicioAsignado> ListarPorId(int id)
+        {
+
+            List<EjercicioAsignado> lista = new List<EjercicioAsignado>();
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+                datos.setearConsulta("select ID, EjercicioBaseID, Series, Repeticiones, TiempoEstimado, Peso, Observaciones, Url from EjercicioAsignado where DíaID = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+                EjercicioBaseNegocio ejercicioBaseNegocio = new EjercicioBaseNegocio();
+
+
+                while (datos.Lector.Read())
+                {
+                    EjercicioAsignado aux = new EjercicioAsignado();
+                    aux.Id = (int)datos.Lector["ID"];
+                    aux.EjercicioBase = ejercicioBaseNegocio.ObtenerPorId((int)datos.Lector["EjercicioBaseID"]);
+                    aux.Series = (int)datos.Lector["Series"];
+                    aux.Repeticiones = (int)datos.Lector["Repeticiones"];
+                    aux.TiempoEstimado = (int)datos.Lector["TiempoEstimado"];
+                    aux.Peso = (decimal)datos.Lector["Peso"];
+                    aux.Observaciones = (string)datos.Lector["Observaciones"];
+                    aux.Url = (string)datos.Lector["Url"];
+
+                    lista.Add(aux);
+
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
         public void agregar(EjercicioAsignado nuevoEjercicioAsignado)
         {
