@@ -54,14 +54,59 @@ namespace Business
                 datos.setearParametro("@RutinaId", dia.RutinaId);
                 datos.setearParametro("@NombreDia", dia.NombreDia);
                 datos.setearParametro("@Completado", dia.Completado);
-                
+
                 datos.ejecutarAccion();
 
             }
             catch (Exception ex)
             {
 
-                throw ex ;
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void modificar(Dia dia)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Día SET RutinaID = @RutinaId, NombreDía = @NombreDia, Completado = @Completado WHERE ID = @ID");
+                datos.setearParametro("@RutinaId", dia.RutinaId);
+                datos.setearParametro("@NombreDia", dia.NombreDia);
+                datos.setearParametro("@Completado", dia.Completado);
+                datos.setearParametro("@ID", dia.Id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+        public void eliminar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("DELETE FROM Día WHERE ID = @ID");
+                datos.setearParametro("@ID", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             finally
             {
