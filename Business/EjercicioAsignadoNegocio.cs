@@ -82,6 +82,56 @@ namespace Business
             }
 
         }
+
+        public void modificar (EjercicioAsignado ejercicioAsignadoModificado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update EjercicioAsignado set EjercicioBaseID = @ejercicioBaseID, Series = @series, Repeticiones = @repeticiones, TiempoEstimado = @tiempoEstimado, Peso = @peso, Observaciones = @observaciones, Url = @url WHERE ID = @id;");
+                datos.setearParametro("@ejercicioBaseId", ejercicioAsignadoModificado.EjercicioBase);
+                datos.setearParametro("@series", ejercicioAsignadoModificado.Series);
+                datos.setearParametro("@repeticiones", ejercicioAsignadoModificado.Repeticiones);
+                datos.setearParametro("@tiempoEstimado", ejercicioAsignadoModificado.TiempoEstimado);
+                datos.setearParametro("@peso", ejercicioAsignadoModificado.Peso);
+                datos.setearParametro("@observaciones", ejercicioAsignadoModificado.Observaciones);
+                datos.setearParametro("@url", ejercicioAsignadoModificado.Url);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void eliminar (int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("DELETE FROM EjercicioAsignado WHERE id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+
     }
 }
 
