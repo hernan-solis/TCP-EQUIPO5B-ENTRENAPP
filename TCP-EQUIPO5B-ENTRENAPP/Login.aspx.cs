@@ -20,9 +20,14 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             */
 
+            /*
             DiaNegocio diaNegocio = new DiaNegocio();
             List<Dia> listaDias = diaNegocio.Listar();
+            */
 
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+
+            List<Usuario> listaUsuarios = usuarioNegocio.Listar();
 
 
 

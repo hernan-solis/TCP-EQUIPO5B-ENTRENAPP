@@ -18,7 +18,7 @@ namespace Business
 
             try
             {
-                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Teléfono, Edad, Objetivos, Rol, Género, FechaFinSuscripción, DíasDisponibles, Lesiones, CondiciónMédica, Comentarios, ProfesorID from Usuarios");
+                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción from Usuarios");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -31,6 +31,7 @@ namespace Business
                     aux.Email = (string)datos.Lector["Email"];
                     aux.Contrasenia = (string)datos.Lector["Contraseña"];
                     aux.Rol = (string)datos.Lector["Rol"];
+                    aux.FechaFinSuscripcion = (DateTime)datos.Lector["FechaFinSuscripción"];
                     lista.Add(aux);
                
                 }
@@ -55,7 +56,7 @@ namespace Business
 
             try
             {
-                datos.setearConsulta("SELECT ID, Nombre, Apellido, Email, Contraseña, Teléfono, Edad, Objetivos, Rol, Género, FechaFinSuscripción, DíasDisponibles, Lesiones, CondiciónMédica, Comentarios, ProfesorID FROM Usuarios WHERE ID = @id");
+                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción from Usuarios WHERE ID = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarLectura();
 
@@ -69,7 +70,8 @@ namespace Business
                     usuario.Email = (string)datos.Lector["Email"];
                     usuario.Contrasenia = (string)datos.Lector["Contraseña"];
                     usuario.Rol = (string)datos.Lector["Rol"];
-  
+                    usuario.FechaFinSuscripcion = (DateTime)datos.Lector["FechaFinSuscripción"];
+
                 }
 
                 return usuario;
@@ -89,12 +91,13 @@ namespace Business
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("INSERT INTO Usuarios (Nombre, Apellido, Email, Contraseña, Rol) VALUES (@Nombre, @Apellido, @Email, @Contraseña, @Rol)");
+                datos.setearConsulta("INSERT INTO Usuarios (Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción) VALUES (@Nombre, @Apellido, @Email, @Contraseña, @Rol, @FechaFinSuscripción)");
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Apellido", nuevo.Apellido);
                 datos.setearParametro("@Email", nuevo.Email);
                 datos.setearParametro("@Contraseña", nuevo.Contrasenia);
                 datos.setearParametro("@Rol", nuevo.Rol);
+                datos.setearParametro("@FechaFinSuscripción", nuevo.FechaFinSuscripcion);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -112,13 +115,14 @@ namespace Business
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("UPDATE Usuarios SET Nombre = @Nombre, Apellido = @Apellido, Email = @Email, Contraseña = @Contraseña, Rol = @Rol WHERE ID = @ID");
+                datos.setearConsulta("UPDATE Usuarios SET Nombre = @Nombre, Apellido = @Apellido, Email = @Email, Contraseña = @Contraseña, Rol = @Rol, FechaFinSuscripción = @FechaFinSuscripción WHERE ID = @ID");
                 datos.setearParametro("@Nombre", usuario.Nombre);
                 datos.setearParametro("@Apellido", usuario.Apellido);
                 datos.setearParametro("@Email", usuario.Email);
                 datos.setearParametro("@Contraseña", usuario.Contrasenia);
                 datos.setearParametro("@Rol", usuario.Rol);
                 datos.setearParametro("@ID", usuario.Id);
+                datos.setearParametro("@FechaFinSuscripción", usuario.FechaFinSuscripcion);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -131,6 +135,7 @@ namespace Business
             }
         }
 
+        //ELIMINACION FISICA
         public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -150,7 +155,8 @@ namespace Business
             }
         }
 
-
+        // CHEAR EL TEMA DEL LOGIN, CAPAZ PODRIA HABER UN METODO QUE DEVUELVA USUARIO AL PONER CREDENCIALES PRIMERO
+        // Y LUEGO FIJARSE LA FECHA DEL SUJETO
         public int Loguear(string email, string contrasenia)
         {
             AccesoDatos datos = new AccesoDatos();
