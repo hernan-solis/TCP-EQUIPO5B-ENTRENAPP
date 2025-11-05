@@ -13,14 +13,22 @@ namespace TCP_EQUIPO5B_ENTRENAPP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            /*
             EjercicioAsignadoNegocio ejercicioAsignadoNegocio = new EjercicioAsignadoNegocio();
 
             List<EjercicioAsignado> lista = ejercicioAsignadoNegocio.Listar();
 
+            */
+
+            DiaNegocio diaNegocio = new DiaNegocio();
+            List<Dia> listaDias = diaNegocio.Listar();
+
+
+
 
 
             //cuando guardeemos datos nuevos siempre tienen que tener algun valor, no vale nulos. 
-           // Desde el lado del front;
+            // Desde el lado del front;
 
 
         }
