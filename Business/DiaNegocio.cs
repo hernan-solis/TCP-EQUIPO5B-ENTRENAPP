@@ -48,6 +48,46 @@ namespace Business
                 datos.cerrarConexion();
             }
         }
+        public List<Dia> ListarPorId(int id)
+        {
+
+            List<Dia> lista = new List<Dia>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("select ID, RutinaID, NombreDía, Completado  from Día WHERE RutinaID = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                EjercicioAsignadoNegocio ejercicioAsignadoNegocio = new EjercicioAsignadoNegocio();
+
+                while (datos.Lector.Read())
+                {
+                    Dia aux = new Dia();
+                    aux.Id = (int)datos.Lector["ID"];
+                    aux.EjerciciosAsignados = ejercicioAsignadoNegocio.ListarPorId((int)datos.Lector["ID"]);
+
+
+                    aux.RutinaId = (int)datos.Lector["RutinaID"];
+                    aux.NombreDia = (string)datos.Lector["NombreDía"];
+                    aux.Completado = (bool)datos.Lector["Completado"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
         public void Agregar(Dia dia)
         {
@@ -118,6 +158,7 @@ namespace Business
                 datos.cerrarConexion();
             }
         }
+
     }
 }
 
