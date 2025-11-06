@@ -12,7 +12,6 @@ namespace Models
         public int Edad { get; set; }
         public string Objetivo { get; set; }
         public string Genero { get; set; }
-        public DateTime FechaFinSuscripcion { get; set; }
         public string DiasDisponibles { get; set; }
         public string Lesiones { get; set; }
         public string CondicionMedica { get; set; }
