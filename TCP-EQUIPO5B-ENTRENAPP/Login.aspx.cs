@@ -13,9 +13,9 @@ namespace TCP_EQUIPO5B_ENTRENAPP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           AlumnoNegocio negocio= new AlumnoNegocio();
-
-            List<Alumno> lista = negocio.ListarPorProfesor(2);
+           ProfesorNegocio profesorNegocio = new ProfesorNegocio();
+            
+           Profesor profesor = profesorNegocio.ObtenerProfesorPorId(2);
 
 
         }
@@ -24,6 +24,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
            
+            // CHEQUEAR EL TEMA DEL LOGIN
 
             int idUsuario = negocio.Loguear(EmailLogin.Text, ConstraseniaLogin.Text);
 
