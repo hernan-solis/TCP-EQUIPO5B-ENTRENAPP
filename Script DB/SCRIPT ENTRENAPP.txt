@@ -91,16 +91,20 @@ CREATE TABLE Historial (
 -- =======================================
 
 -- Profesores
-INSERT INTO Usuarios (Nombre, Apellido, Email, Contraseña, Rol, Género, FechaFinSuscripción)
+INSERT INTO Usuarios 
+(Nombre, Apellido, Email, Contraseña, Teléfono, Edad, Objetivos, Rol, Género, FechaFinSuscripción, DíasDisponibles, Lesiones, CondiciónMédica, Comentarios, ProfesorID)
 VALUES 
-('Juan', 'Pérez', 'juanperez@gym.com', 'hash123', 'Profesor', 'Masculino', '2025-12-31'),
-('María', 'López', 'marialopez@gym.com', 'hash456', 'Profesor', 'Femenino', '2025-12-31');
+('Juan', 'Pérez', 'juanperez@gym.com', 'hash123', '', 35, NULL, 'Profesor', 'Masculino', '2025-12-31', NULL, NULL, NULL, NULL, NULL),
+('María', 'López', 'marialopez@gym.com', 'hash456', '', 29, NULL, 'Profesor', 'Femenino', '2025-12-31', NULL, NULL, NULL, NULL, NULL);
 
 -- Alumnos
-INSERT INTO Usuarios (Nombre, Apellido, Email, Contraseña, Rol, Género, FechaFinSuscripción, ProfesorID)
+INSERT INTO Usuarios 
+(Nombre, Apellido, Email, Contraseña, Teléfono, Edad, Objetivos, Rol, Género, FechaFinSuscripción, DíasDisponibles, Lesiones, CondiciónMédica, Comentarios, ProfesorID)
 VALUES
-('Carlos', 'Gómez', 'carlosgomez@gmail.com', 'hash789', 'Alumno', 'Masculino', '2025-11-15', 1),
-('Lucía', 'Martínez', 'luciamartinez@gmail.com', 'hashabc', 'Alumno', 'Femenino', '2025-11-15', 2);
+('Carlos', 'Gómez', 'carlosgomez@gmail.com', 'hash789', '', 22, '', 'Alumno', 'Masculino', '2025-11-15', '', '', '', '', 1),
+('Lucía', 'Martínez', 'luciamartinez@gmail.com', 'hashabc', '', 25, '', 'Alumno', 'Femenino', '2025-11-15', '', '', '', '', 2);
+
+
 
 -- Rutinas
 INSERT INTO Rutinas (UsuarioID, ProfesorID, Título, Descripción)
