@@ -54,5 +54,33 @@ namespace Business
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             usuarioNegocio.Eliminar(id);
         }
+
+        public string ObtenerNombreCompletoPorId(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string nombreCompleto = string.Empty;
+            try
+            {
+                datos.setearConsulta("SELECT Nombre, Apellido FROM Usuarios WHERE ID = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    string nombre = (string)datos.Lector["Nombre"];
+                    string apellido = (string)datos.Lector["Apellido"];
+                    nombreCompleto = $"{nombre} {apellido}";
+                }
+                return nombreCompleto;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

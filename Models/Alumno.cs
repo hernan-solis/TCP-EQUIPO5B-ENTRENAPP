@@ -16,7 +16,7 @@ namespace Models
         public string Lesiones { get; set; }
         public string CondicionMedica { get; set; }
         public string Comentarios { get; set; }
-        public Profesor Profesor { get; set; }
+        public string Profesor { get; set; }
 
     }
 }
