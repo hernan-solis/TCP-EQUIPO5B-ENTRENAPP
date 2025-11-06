@@ -135,7 +135,7 @@ namespace Business
             }
         }
 
-        //ELIMINACION FISICA
+        //ELIMINACION FISICA, CUIDADO
         public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();

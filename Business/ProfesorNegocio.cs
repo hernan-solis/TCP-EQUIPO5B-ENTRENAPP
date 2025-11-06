@@ -9,13 +9,15 @@ namespace Business
 {
     public class ProfesorNegocio
     {
-        public List<Profesor> Listar() {
+        public List<Profesor> Listar()
+        {
+
             List<Profesor> lista = new List<Profesor>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Teléfono, Edad, Objetivos, Rol, Género, FechaFinSuscripción, DíasDisponibles, Lesiones, CondiciónMédica, Comentarios, ProfesorID from Usuarios");
+                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción, Teléfono, Edad from Usuarios");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -28,6 +30,7 @@ namespace Business
                     aux.Email = (string)datos.Lector["Email"];
                     aux.Contrasenia = (string)datos.Lector["Contraseña"];
                     aux.Rol = (string)datos.Lector["Rol"];
+                    aux.FechaFinSuscripcion = (DateTime)datos.Lector["FechaFinSuscripción"];
                     lista.Add(aux);
 
                 }
@@ -43,6 +46,13 @@ namespace Business
             {
                 datos.cerrarConexion();
             }
+        }
+
+        //ELIMINACION FISICA, CUIDADO
+        public void Eliminar(int id)
+        {
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            usuarioNegocio.Eliminar(id);
         }
     }
 }
