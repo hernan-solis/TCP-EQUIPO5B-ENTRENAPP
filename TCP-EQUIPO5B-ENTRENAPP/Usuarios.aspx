@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-   <section class="text-center" aria-labelledby="gettingStartedTitle">
+    <section class="text-center" aria-labelledby="gettingStartedTitle">
         <h2 id="gettingStartedTitle">REGISTRATE</h2>
         <p>
             Completa tus datos para ser parte de Entrenapp
@@ -28,11 +28,14 @@
         <asp:TextBox ID="txtContrasena" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
     </div>
     <div class="mb-3">
-    <label class="form-label">Repetir Contraseña</label>
-    <asp:TextBox ID="txtRepetirContraseña" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
-</div>
+        <label class="form-label">Repetir Contraseña</label>
+        <asp:TextBox ID="txtRepetirContraseña" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+    </div>
     <div class="mb-3">
-    <label class="form-label">Telefono</label>
-    <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server"></asp:TextBox>
-</div>
+        <label class="form-label">Telefono</label>
+        <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server"></asp:TextBox>
+    </div>
+    <section class="text-left">
+        <a href="/Login" class="btn btn-primary btn-lg text-uppercase" role="button">Registrarme </a>
+    </section>
 </asp:Content>
