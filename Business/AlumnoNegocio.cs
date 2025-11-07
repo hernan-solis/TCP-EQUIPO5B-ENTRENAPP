@@ -1,5 +1,6 @@
 ﻿using Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -60,6 +61,57 @@ namespace Business
             finally
             {
                 datos.cerrarConexion();
+            }
+        }
+        public Alumno ObtenerPorId (int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción, Teléfono, Edad, Objetivos, Género, DíasDisponibles, Lesiones, CondiciónMédica, Comentarios, ProfesorId from Usuarios where ID = @id");
+                datos.setearParametro("@id",id);
+                datos.ejecutarLectura();
+
+                Alumno aux = new Alumno();
+
+
+                if (datos.Lector.Read())
+                {
+
+                    aux.Id = (int)datos.Lector["ID"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Email = (string)datos.Lector["Email"];
+                    aux.Contrasenia = (string)datos.Lector["Contraseña"];
+                    aux.Rol = (string)datos.Lector["Rol"];
+                    aux.FechaFinSuscripcion = (DateTime)datos.Lector["FechaFinSuscripción"];
+                    aux.Telefono = (string)datos.Lector["Teléfono"];
+                    aux.Edad = (int)datos.Lector["Edad"];
+                    aux.Objetivo = (string)datos.Lector["Objetivos"];
+                    aux.Genero = (string)datos.Lector["Género"];
+                    aux.DiasDisponibles = (string)datos.Lector["DíasDisponibles"];
+                    aux.Lesiones = (string)datos.Lector["Lesiones"];
+                    aux.CondicionMedica = (string)datos.Lector["CondiciónMédica"];
+                    aux.Comentarios = (string)datos.Lector["Comentarios"];
+
+                    ProfesorNegocio profesorNegocio = new ProfesorNegocio();
+
+                    aux.Profesor = profesorNegocio.ObtenerNombreCompletoPorId((int)datos.Lector["ProfesorId"]);
+
+
+
+                   
+
+                }
+
+                return aux;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
 

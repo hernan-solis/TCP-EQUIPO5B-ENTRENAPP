@@ -20,20 +20,24 @@ namespace Business
                 {
                     datos.setearConsulta("select ID, UsuarioID, ProfesorID, Título, Descripción from Rutinas");
                     datos.ejecutarLectura();
+                    AlumnoNegocio alumnoNegocio = new AlumnoNegocio();
+                    ProfesorNegocio profesorNegocio = new ProfesorNegocio();
+                    DiaNegocio diaNegocio = new DiaNegocio();
 
                     while (datos.Lector.Read())
                     {
-                    /*
+                    
                         Rutina aux = new Rutina();
                         aux.Id = (int)datos.Lector["ID"];
-                        aux.UsuarioId = (int)datos.Lector["UsuarioID"];
-                        aux.ProfesorId = (int)datos.Lector["ProfesorID"];
+                        aux.Alumno = alumnoNegocio.ObtenerPorId((int)datos.Lector["UsuarioID"]);
+                        aux.Profesor = profesorNegocio.ObtenerProfesorPorId((int)datos.Lector["ProfesorID"]);
                         aux.Titulo = (string)datos.Lector["Título"];
                         aux.Descripcion = (string)datos.Lector["Descripción"];
+                        aux.Dia = diaNegocio.ListarPorId((int)datos.Lector["ID"]);    
 
                         lista.Add(aux);
 
-                    */
+                    
                     }
 
                     return lista;
