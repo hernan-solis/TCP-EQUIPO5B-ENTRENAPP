@@ -38,7 +38,7 @@
                 
             </section>
             <section class="text-center">
-                <a href="/Usuarios" class="btn btn-secondary btn-lg text-uppercase" role="button">¡QUIERO SUMARME! </a>
+                <a href="/Usuarios" class="btn btn-primary btn-lg text-uppercase" role="button">¡QUIERO SUMARME! </a>
             </section>
 
         </div>

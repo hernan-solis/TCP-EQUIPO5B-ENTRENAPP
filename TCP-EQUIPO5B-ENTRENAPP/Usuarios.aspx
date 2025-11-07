@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Usuarios.aspx.cs" Inherits="TCP_EQUIPO5B_ENTRENAPP.Usuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <section class="text-center" aria-labelledby="gettingStartedTitle">
+
+   <section class="text-center" aria-labelledby="gettingStartedTitle">
         <h2 id="gettingStartedTitle">REGISTRATE</h2>
         <p>
             Completa tus datos para ser parte de Entrenapp
@@ -34,7 +35,4 @@
     <label class="form-label">Telefono</label>
     <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server"></asp:TextBox>
 </div>
-
-
-
 </asp:Content>
