@@ -127,6 +127,8 @@ namespace Business
                 datos.setearParametro("@ID", dia.Id);
                 datos.ejecutarAccion();
 
+                //funcion para modificar la lista de ejercicios asignados
+
             }
             catch (Exception ex)
             {
@@ -144,7 +146,12 @@ namespace Business
         {
             AccesoDatos datos = new AccesoDatos();
             try
+
             {
+                datos.setearConsulta("DELETE FROM EjercicioAsignado WHERE DíaID = @ID");
+                datos.setearParametro("@ID", id);
+                datos.ejecutarAccion();
+
                 datos.setearConsulta("DELETE FROM Día WHERE ID = @ID");
                 datos.setearParametro("@ID", id);
                 datos.ejecutarAccion();

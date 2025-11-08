@@ -80,7 +80,7 @@ namespace Business
             }
         }
 
-        public void agregar(EjercicioBase nuevoEjercioBase)
+        public void Agregar(EjercicioBase nuevoEjercioBase)
         {
             AccesoDatos datos = new AccesoDatos();
 

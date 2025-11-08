@@ -98,14 +98,14 @@ namespace Business
         }
 
 
-        public void agregar(EjercicioAsignado nuevoEjercicioAsignado)
+        public void Agregar(EjercicioAsignado nuevoEjercicioAsignado)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
 
                 datos.setearConsulta("insert into EjercicioAsignado (EjercicioBaseID, Series, Repeticiones, TiempoEstimado, Peso, Observaciones, Url) VALUES (@ejercicioBaseID,@series,@repeticiones,@tiempoEstimado,@peso,@observaciones,@url)");
-                datos.setearParametro("@ejercicioBaseId", nuevoEjercicioAsignado.EjercicioBase);
+                datos.setearParametro("@ejercicioBaseID", nuevoEjercicioAsignado.EjercicioBase);
                 datos.setearParametro("@series", nuevoEjercicioAsignado.Series);
                 datos.setearParametro("@repeticiones", nuevoEjercicioAsignado.Repeticiones);
                 datos.setearParametro("@tiempoEstimado", nuevoEjercicioAsignado.TiempoEstimado);
@@ -127,19 +127,20 @@ namespace Business
 
         }
 
-        public void modificar(EjercicioAsignado ejercicioAsignadoModificado)
+        public void Modificar(EjercicioAsignado ejercicioAsignadoModificado)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("update EjercicioAsignado set EjercicioBaseID = @ejercicioBaseID, Series = @series, Repeticiones = @repeticiones, TiempoEstimado = @tiempoEstimado, Peso = @peso, Observaciones = @observaciones, Url = @url WHERE ID = @id;");
-                datos.setearParametro("@ejercicioBaseId", ejercicioAsignadoModificado.EjercicioBase);
+                datos.setearParametro("@ejercicioBaseID", ejercicioAsignadoModificado.EjercicioBase);
                 datos.setearParametro("@series", ejercicioAsignadoModificado.Series);
                 datos.setearParametro("@repeticiones", ejercicioAsignadoModificado.Repeticiones);
                 datos.setearParametro("@tiempoEstimado", ejercicioAsignadoModificado.TiempoEstimado);
                 datos.setearParametro("@peso", ejercicioAsignadoModificado.Peso);
                 datos.setearParametro("@observaciones", ejercicioAsignadoModificado.Observaciones);
                 datos.setearParametro("@url", ejercicioAsignadoModificado.Url);
+                datos.setearParametro("@id", ejercicioAsignadoModificado.Id);
 
                 datos.ejecutarAccion();
             }
@@ -154,7 +155,7 @@ namespace Business
             }
         }
 
-        public void eliminar(int id)
+        public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
             try
