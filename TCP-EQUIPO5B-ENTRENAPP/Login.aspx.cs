@@ -17,9 +17,17 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             // Profesor profesor = profesorNegocio.ObtenerProfesorPorId(2);
 
-            RutinaNegocio rutinaNegocio = new RutinaNegocio();
+           // RutinaNegocio rutinaNegocio = new RutinaNegocio();
 
-            Rutina rutina = rutinaNegocio.ObtenerRutinaPorId(1);
+           // Rutina rutina = rutinaNegocio.ObtenerRutinaPorId(1);
+
+            GestorNegocio gestorNegocio = new GestorNegocio();
+
+            var gestores = gestorNegocio.Listar();
+
+
+
+
 
         }
 
@@ -28,6 +36,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             UsuarioNegocio negocio = new UsuarioNegocio();
 
             // CHEQUEAR EL TEMA DEL LOGIN
+
+            /*
 
             int idUsuario = negocio.Loguear(EmailLogin.Text, ConstraseniaLogin.Text);
 
@@ -38,6 +48,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 Profesor profesor = new Profesor();
 
             }
+
+            */
         }
     }
 }

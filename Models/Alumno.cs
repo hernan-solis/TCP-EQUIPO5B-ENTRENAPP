@@ -18,5 +18,7 @@ namespace Models
         public string Comentarios { get; set; }
         public string Profesor { get; set; }
 
+        public DateTime FechaFinSuscripcion { get; set; }
+
     }
 }

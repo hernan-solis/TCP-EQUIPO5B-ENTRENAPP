@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Admin : Usuario
+    public class Gestor : Usuario
     {
 
     }

@@ -18,7 +18,7 @@ namespace Business
 
             try
             {
-                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción, Teléfono, Edad, Objetivos, Género, DíasDisponibles, Lesiones, CondiciónMédica, Comentarios, ProfesorId from Usuarios where Rol = 'Alumno'");
+                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción, Status, Teléfono, Edad, Objetivos, Género, DíasDisponibles, Lesiones, CondiciónMédica, Comentarios, ProfesorId from Usuarios where Rol = 'Alumno'");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -32,6 +32,7 @@ namespace Business
                     aux.Contrasenia = (string)datos.Lector["Contraseña"];
                     aux.Rol = (string)datos.Lector["Rol"];
                     aux.FechaFinSuscripcion = (DateTime)datos.Lector["FechaFinSuscripción"];
+                    aux.Status = (bool)datos.Lector["Status"];
                     aux.Telefono = (string)datos.Lector["Teléfono"];
                     aux.Edad = (int)datos.Lector["Edad"];
                     aux.Objetivo = (string)datos.Lector["Objetivos"];
@@ -69,7 +70,7 @@ namespace Business
 
             try
             {
-                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción, Teléfono, Edad, Objetivos, Género, DíasDisponibles, Lesiones, CondiciónMédica, Comentarios, ProfesorId from Usuarios where ID = @id");
+                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción, Status, Teléfono, Edad, Objetivos, Género, DíasDisponibles, Lesiones, CondiciónMédica, Comentarios, ProfesorId from Usuarios where ID = @id");
                 datos.setearParametro("@id",id);
                 datos.ejecutarLectura();
 
@@ -86,6 +87,7 @@ namespace Business
                     aux.Contrasenia = (string)datos.Lector["Contraseña"];
                     aux.Rol = (string)datos.Lector["Rol"];
                     aux.FechaFinSuscripcion = (DateTime)datos.Lector["FechaFinSuscripción"];
+                    aux.Status = (bool)datos.Lector["Status"];
                     aux.Telefono = (string)datos.Lector["Teléfono"];
                     aux.Edad = (int)datos.Lector["Edad"];
                     aux.Objetivo = (string)datos.Lector["Objetivos"];
@@ -124,7 +126,7 @@ namespace Business
 
             try
             {
-                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción, Teléfono, Edad, Objetivos, Género, DíasDisponibles, Lesiones, CondiciónMédica, Comentarios, ProfesorId from Usuarios where Rol = 'Alumno' and ProfesorID = @idBuscado");
+                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción, Status, Teléfono, Edad, Objetivos, Género, DíasDisponibles, Lesiones, CondiciónMédica, Comentarios, ProfesorId from Usuarios where Rol = 'Alumno' and ProfesorID = @idBuscado");
                 datos.setearParametro("@idBuscado", profesorId);
                 datos.ejecutarLectura();
 
@@ -139,6 +141,7 @@ namespace Business
                     aux.Contrasenia = (string)datos.Lector["Contraseña"];
                     aux.Rol = (string)datos.Lector["Rol"];
                     aux.FechaFinSuscripcion = (DateTime)datos.Lector["FechaFinSuscripción"];
+                    aux.Status = (bool)datos.Lector["Status"];
                     aux.Telefono = (string)datos.Lector["Teléfono"];
                     aux.Edad = (int)datos.Lector["Edad"];
                     aux.Objetivo = (string)datos.Lector["Objetivos"];
@@ -227,6 +230,7 @@ namespace Business
                 Email = @Email,
                 Contraseña = @Contraseña,
                 FechaFinSuscripción = @FechaFinSuscripción,
+                Status = @Status,
                 Teléfono = @Teléfono,
                 Edad = @Edad,
                 Objetivos = @Objetivos,
@@ -244,6 +248,7 @@ namespace Business
                 datos.setearParametro("@Email", alumno.Email);
                 datos.setearParametro("@Contraseña", alumno.Contrasenia);
                 datos.setearParametro("@FechaFinSuscripción", alumno.FechaFinSuscripcion);
+                datos.setearParametro("@Status", alumno.Status);
                 datos.setearParametro("@Teléfono", alumno.Telefono);
                 datos.setearParametro("@Edad", alumno.Edad);
                 datos.setearParametro("@Objetivos", alumno.Objetivo);
@@ -299,6 +304,14 @@ namespace Business
         {
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             usuarioNegocio.Eliminar(id);
+        }
+
+        //Eliminacion Logia
+
+        public void EliminarLogico(int id)
+        {
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            usuarioNegocio.EliminarLogico(id);
         }
     }
 }

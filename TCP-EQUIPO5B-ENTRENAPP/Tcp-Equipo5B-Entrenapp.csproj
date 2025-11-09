@@ -122,7 +122,8 @@
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="PerfilAlumno.aspx" />
-    <Content Include="Rutina.aspx" />
+    <Content Include="PerfilProfesor.aspx" />
+    <Content Include="RutinaAlumno.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -219,13 +220,20 @@
     <Compile Include="PerfilAlumno.aspx.designer.cs">
       <DependentUpon>PerfilAlumno.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rutina.aspx.cs">
-      <DependentUpon>Rutina.aspx</DependentUpon>
+    <Compile Include="PerfilProfesor.aspx.cs">
+      <DependentUpon>PerfilProfesor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Rutina.aspx.designer.cs">
-      <DependentUpon>Rutina.aspx</DependentUpon>
+    <Compile Include="PerfilProfesor.aspx.designer.cs">
+      <DependentUpon>PerfilProfesor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RutinaAlumno.aspx.cs">
+      <DependentUpon>RutinaAlumno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RutinaAlumno.aspx.designer.cs">
+      <DependentUpon>RutinaAlumno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

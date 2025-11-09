@@ -1,39 +1,38 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Models;
 
 namespace Business
 {
-    public class UsuarioNegocio
+    public class GestorNegocio
     {
-        public List<Usuario> Listar()
+        public List<Gestor> Listar()
         {
 
-            List<Usuario> lista = new List<Usuario>();
+            List<Gestor> lista = new List<Gestor>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Rol, Status from Usuarios");
+                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Rol, Status from Usuarios Where Rol = 'Gestor'");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                
-                    Usuario aux = new Usuario();
+
+                    Gestor aux = new Gestor();
                     aux.Id = (int)datos.Lector["ID"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Apellido = (string)datos.Lector["Apellido"];
                     aux.Email = (string)datos.Lector["Email"];
                     aux.Contrasenia = (string)datos.Lector["Contraseña"];
-                    aux.Rol = (string)datos.Lector["Rol"];           
+                    aux.Rol = (string)datos.Lector["Rol"];
                     aux.Status = (bool)datos.Lector["Status"];
                     lista.Add(aux);
-               
+
                 }
 
                 return lista;
@@ -49,7 +48,7 @@ namespace Business
             }
         }
 
-        public Usuario ObtenerUsuarioPorId(int id)
+        public Usuario ObtenerGestorPorId(int id)
         {
             AccesoDatos datos = new AccesoDatos();
             Usuario usuario = null;
@@ -62,7 +61,7 @@ namespace Business
 
                 if (datos.Lector.Read())
                 {
-                    
+
                     usuario = new Usuario();
                     usuario.Id = (int)datos.Lector["ID"];
                     usuario.Nombre = (string)datos.Lector["Nombre"];
@@ -86,12 +85,12 @@ namespace Business
             }
         }
 
-        public void Agregar(Usuario nuevo)
+        public void Agregar(Gestor nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("INSERT INTO Usuarios (Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción, Status) VALUES (@Nombre, @Apellido, @Email, @Contraseña, @Rol,@Status)");
+                datos.setearConsulta("INSERT INTO Usuarios (Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción, Status) VALUES (@Nombre, @Apellido, @Email, @Contraseña, @Rol, @Status)");
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Apellido", nuevo.Apellido);
                 datos.setearParametro("@Email", nuevo.Email);
@@ -110,7 +109,7 @@ namespace Business
             }
         }
 
-        public void Modificar(Usuario usuario)
+        public void Modificar(Gestor usuario)
         {
             AccesoDatos datos = new AccesoDatos();
             try
@@ -135,13 +134,14 @@ namespace Business
             }
         }
 
+
         //ELIMINACION FISICA, CUIDADO
         public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                
+
                 datos.setearConsulta("Delete FROM Usuarios WHERE ID = @ID");
                 datos.setearParametro("@ID", id);
                 datos.ejecutarAccion();
@@ -155,7 +155,6 @@ namespace Business
                 datos.cerrarConexion();
             }
         }
-
 
 
         //ELIMINACION LOGICA
@@ -179,43 +178,5 @@ namespace Business
                 datos.cerrarConexion();
             }
         }
-
-        // CHEAR EL TEMA DEL LOGIN, CAPAZ PODRIA HABER UN METODO QUE DEVUELVA USUARIO AL PONER CREDENCIALES PRIMERO
-        // Y LUEGO FIJARSE LA FECHA DEL SUJETO
-        public int Loguear(string email, string contrasenia)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setearConsulta("SELECT ID FROM Usuarios WHERE Email = @email AND Contraseña = @contrasenia AND FechaFinSuscripción >= @fechaActual");
-                datos.setearParametro("@email", email);
-                datos.setearParametro("@contrasenia", contrasenia);
-                datos.setearParametro("@fechaActual", DateTime.Now);
-
-                datos.ejecutarLectura();
-
-                if (datos.Lector.Read())
-                {
-                    // Devuelve el ID del usuario
-                    return (int)datos.Lector["ID"];
-                }
-
-                // Si no se encontró el usuario, devuelve 0
-                return 0;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-
-
-
-
-
     }
 }
