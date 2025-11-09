@@ -100,6 +100,9 @@ VALUES
 ('Carlos', 'Gómez', 'carlosgomez@gmail.com', 'hash789', '', 22, '', 'Alumno', 'Masculino', '2025-11-15', '', '', '', '', 1),
 ('Lucía', 'Martínez', 'luciamartinez@gmail.com', 'hashabc', '', 25, '', 'Alumno', 'Femenino', '2025-11-15', '', '', '', '', 2);
 
+INSERT INTO Usuarios (Nombre, Apellido, Email, Contraseña, Rol, Status)
+VALUES ('Admin', 'Principal', 'admin@gym.com', 'admin123', 'Admin', 1);
+
 INSERT INTO Rutinas (UsuarioID, ProfesorID, Título, Descripción)
 VALUES
 (3, 1, 'Rutina Fuerza Inicial', 'Rutina enfocada en fuerza general y técnica.'),
