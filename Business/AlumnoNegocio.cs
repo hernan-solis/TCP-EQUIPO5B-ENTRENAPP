@@ -238,7 +238,7 @@ namespace Business
                 DíasDisponibles = @DíasDisponibles,
                 Lesiones = @Lesiones,
                 CondiciónMédica = @CondiciónMédica,
-                Comentarios = @Comentarios,
+                Comentarios = @Comentarios
             WHERE ID = @ID AND Rol = 'Alumno'
             ");
 

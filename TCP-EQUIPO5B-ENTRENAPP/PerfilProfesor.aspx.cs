@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Business;
+using Models;
 
 namespace TCP_EQUIPO5B_ENTRENAPP
 {
@@ -11,6 +14,12 @@ namespace TCP_EQUIPO5B_ENTRENAPP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            AlumnoNegocio alumnoNegocio = new AlumnoNegocio();
+
+            List<Alumno> listaAlumnos = alumnoNegocio.ListarPorProfesor(1);
+
+            rptAlumnos.DataSource = listaAlumnos;
+            rptAlumnos.DataBind();
 
         }
     }
