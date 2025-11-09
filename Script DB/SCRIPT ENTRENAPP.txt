@@ -99,6 +99,11 @@ INSERT INTO Usuarios
 VALUES
 ('Carlos', 'Gómez', 'carlosgomez@gmail.com', 'hash789', '', 22, '', 'Alumno', 'Masculino', '2025-11-15', '', '', '', '', 1),
 ('Lucía', 'Martínez', 'luciamartinez@gmail.com', 'hashabc', '', 25, '', 'Alumno', 'Femenino', '2025-11-15', '', '', '', '', 2);
+('Federico', 'Ramírez', 'fede.ramirez@gmail.com', 'hash001', '', 28, '', 'Alumno', 'Masculino', '2025-11-20', '', '', '', '', 1),
+('Sofía', 'Benítez', 'sofia.benitez@gmail.com', 'hash002', '', 31, '', 'Alumno', 'Femenino', '2025-11-20', '', '', '', '', 1),
+('Matías', 'Herrera', 'matias.herrera@gmail.com', 'hash003', '', 24, '', 'Alumno', 'Masculino', '2025-11-20', '', '', '', '', 1),
+('Julieta', 'Castro', 'julieta.castro@gmail.com', 'hash004', '', 27, '', 'Alumno', 'Femenino', '2025-11-20', '', '', '', '', 1),
+('Agustín', 'Ferreyra', 'agustin.ferreyra@gmail.com', 'hash005', '', 30, '', 'Alumno', 'Masculino', '2025-11-20', '', '', '', '', 1);
 
 INSERT INTO Usuarios (Nombre, Apellido, Email, Contraseña, Rol, Status)
 VALUES ('Admin', 'Principal', 'admin@gym.com', 'admin123', 'Admin', 1);
