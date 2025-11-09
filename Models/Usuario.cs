@@ -13,5 +13,7 @@ namespace Models
         public string Contrasenia { get; set; }
         public string Rol { get; set; }
         public DateTime FechaFinSuscripcion { get; set; }
+
+        public bool Status { get; set; }
     }
 }

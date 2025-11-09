@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace TCP_EQUIPO5B_ENTRENAPP
 {
-    public partial class Rutina : System.Web.UI.Page
+    public partial class PerfilProfesor : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -17,7 +17,7 @@
              </div>
              <div class="card-footer bg-light border-secondary">
                  <div>
-                     <a href="/Rutina" type="button" class="btn btn-primary" role="button">Ver rutina completa </a>
+                     <a href="/RutinaAlumno" type="button" class="btn btn-primary" role="button">Ver rutina completa </a>
 
                  </div>
              </div>
@@ -38,7 +38,7 @@
              </div>
              <div class="card-footer bg-light border-secondary ">
                  <div>
-                     <a href="/Rutina" type="button" class="btn btn-primary" role="button">Ver rutina completa</a>
+                     <a href="/RutinaAlumno" type="button" class="btn btn-primary" role="button">Ver rutina completa</a>
                  </div>
              </div>
          </div>
@@ -57,7 +57,7 @@
              </div>
              <div class="card-footer bg-light border-secondary ">
                  <div>
-                     <a href="/Rutina" type="button" class="btn btn-primary" role="button">Ver rutina completa </a>
+                     <a href="/RutinaAlumno" type="button" class="btn btn-primary" role="button">Ver rutina completa </a>
                  </div>
              </div>
          </div>

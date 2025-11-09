@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Business;
+using Models;
 
 namespace TCP_EQUIPO5B_ENTRENAPP
 {
@@ -16,9 +17,9 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             // Profesor profesor = profesorNegocio.ObtenerProfesorPorId(2);
 
-            //RutinaNegocio rutinaNegocio = new RutinaNegocio();
+            RutinaNegocio rutinaNegocio = new RutinaNegocio();
 
-            //Rutina rutina = rutinaNegocio.ObtenerRutinaPorId(1);
+            Rutina rutina = rutinaNegocio.ObtenerRutinaPorId(1);
 
         }
 
