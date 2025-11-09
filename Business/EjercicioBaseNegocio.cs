@@ -43,7 +43,7 @@ namespace Business
                 datos.cerrarConexion();
             }
         }
-
+        //Por parametro pide Id de ejercicio base, es un buscador de Ejercicio Base
         public EjercicioBase ObtenerPorId(int id)
         {
 
@@ -80,7 +80,7 @@ namespace Business
             }
         }
 
-        public void Agregar(EjercicioBase nuevoEjercioBase)
+        public void Agregar(EjercicioBase nuevoEjercicioBase)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -90,9 +90,9 @@ namespace Business
 
                 datos.setearConsulta(consulta);
 
-                datos.setearParametro("@nombre", nuevoEjercioBase.Nombre);
-                datos.setearParametro("@descripcion", nuevoEjercioBase.Descripcion);
-                datos.setearParametro("@url", nuevoEjercioBase.Url);
+                datos.setearParametro("@nombre", nuevoEjercicioBase.Nombre);
+                datos.setearParametro("@descripcion", nuevoEjercicioBase.Descripcion);
+                datos.setearParametro("@url", nuevoEjercicioBase.Url);
 
                 datos.ejecutarAccion();
             }
@@ -135,7 +135,7 @@ namespace Business
                 datos.cerrarConexion();
             }
         }
-
+        //eliminacion fisica
         public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();

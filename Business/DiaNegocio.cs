@@ -26,9 +26,7 @@ namespace Business
                 {
                     Dia aux = new Dia();
                     aux.Id = (int)datos.Lector["ID"];
-                    aux.EjerciciosAsignados = ejercicioAsignadoNegocio.ListarPorId((int)datos.Lector["ID"]);
-                    
-
+                    aux.EjerciciosAsignados = ejercicioAsignadoNegocio.ListarPorDiaId((int)datos.Lector["ID"]);
                     aux.RutinaId = (int)datos.Lector["RutinaID"];
                     aux.NombreDia = (string)datos.Lector["NombreDía"];
                     aux.Completado = (bool)datos.Lector["Completado"];
@@ -48,7 +46,7 @@ namespace Business
                 datos.cerrarConexion();
             }
         }
-        public List<Dia> ListarPorId(int id)
+        public List<Dia> ListarPorRutinaId(int rutinaId)
         {
 
             List<Dia> lista = new List<Dia>();
@@ -57,7 +55,7 @@ namespace Business
             try
             {
                 datos.setearConsulta("select ID, RutinaID, NombreDía, Completado  from Día WHERE RutinaID = @id");
-                datos.setearParametro("@id", id);
+                datos.setearParametro("@id", rutinaId);
                 datos.ejecutarLectura();
 
                 EjercicioAsignadoNegocio ejercicioAsignadoNegocio = new EjercicioAsignadoNegocio();
@@ -66,9 +64,7 @@ namespace Business
                 {
                     Dia aux = new Dia();
                     aux.Id = (int)datos.Lector["ID"];
-                    aux.EjerciciosAsignados = ejercicioAsignadoNegocio.ListarPorId((int)datos.Lector["ID"]);
-
-
+                    aux.EjerciciosAsignados = ejercicioAsignadoNegocio.ListarPorDiaId((int)datos.Lector["ID"]);
                     aux.RutinaId = (int)datos.Lector["RutinaID"];
                     aux.NombreDia = (string)datos.Lector["NombreDía"];
                     aux.Completado = (bool)datos.Lector["Completado"];
@@ -126,13 +122,9 @@ namespace Business
                 datos.setearParametro("@Completado", dia.Completado);
                 datos.setearParametro("@ID", dia.Id);
                 datos.ejecutarAccion();
-
-                //funcion para modificar la lista de ejercicios asignados
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -146,7 +138,6 @@ namespace Business
         {
             AccesoDatos datos = new AccesoDatos();
             try
-
             {
                 datos.setearConsulta("DELETE FROM EjercicioAsignado WHERE DíaID = @ID");
                 datos.setearParametro("@ID", id);

@@ -52,7 +52,7 @@ namespace Business
             }
         }
 
-        public List<EjercicioAsignado> ListarPorId(int id)
+        public List<EjercicioAsignado> ListarPorDiaId(int diaId)
         {
 
             List<EjercicioAsignado> lista = new List<EjercicioAsignado>();
@@ -63,7 +63,7 @@ namespace Business
             {
 
                 datos.setearConsulta("select ID, EjercicioBaseID, Series, Repeticiones, TiempoEstimado, Peso, Observaciones, Url from EjercicioAsignado where DíaID = @id");
-                datos.setearParametro("@id", id);
+                datos.setearParametro("@id", diaId);
                 datos.ejecutarLectura();
                 EjercicioBaseNegocio ejercicioBaseNegocio = new EjercicioBaseNegocio();
 
@@ -98,14 +98,15 @@ namespace Business
         }
 
 
-        public void Agregar(EjercicioAsignado nuevoEjercicioAsignado)
+        public void Agregar(EjercicioAsignado nuevoEjercicioAsignado, int diaId)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
 
-                datos.setearConsulta("insert into EjercicioAsignado (EjercicioBaseID, Series, Repeticiones, TiempoEstimado, Peso, Observaciones, Url) VALUES (@ejercicioBaseID,@series,@repeticiones,@tiempoEstimado,@peso,@observaciones,@url)");
-                datos.setearParametro("@ejercicioBaseID", nuevoEjercicioAsignado.EjercicioBase);
+                datos.setearConsulta("insert into EjercicioAsignado (EjercicioBaseID, DíaID, Series, Repeticiones, TiempoEstimado, Peso, Observaciones, Url) VALUES (@ejercicioBaseID, @diaID, @series,@repeticiones,@tiempoEstimado,@peso,@observaciones,@url)");
+                datos.setearParametro("@ejercicioBaseID", nuevoEjercicioAsignado.EjercicioBase.Id);
+                datos.setearParametro("@diaID", diaId);
                 datos.setearParametro("@series", nuevoEjercicioAsignado.Series);
                 datos.setearParametro("@repeticiones", nuevoEjercicioAsignado.Repeticiones);
                 datos.setearParametro("@tiempoEstimado", nuevoEjercicioAsignado.TiempoEstimado);
@@ -154,7 +155,7 @@ namespace Business
                 datos.cerrarConexion();
             }
         }
-
+        //eliminacion física
         public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();

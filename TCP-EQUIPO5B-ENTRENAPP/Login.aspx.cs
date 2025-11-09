@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Business;
-using Models;
 
 namespace TCP_EQUIPO5B_ENTRENAPP
 {
@@ -13,27 +12,30 @@ namespace TCP_EQUIPO5B_ENTRENAPP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           ProfesorNegocio profesorNegocio = new ProfesorNegocio();
-            
-           Profesor profesor = profesorNegocio.ObtenerProfesorPorId(2);
+            // ProfesorNegocio profesorNegocio = new ProfesorNegocio();
 
+            // Profesor profesor = profesorNegocio.ObtenerProfesorPorId(2);
+
+            //RutinaNegocio rutinaNegocio = new RutinaNegocio();
+
+            //Rutina rutina = rutinaNegocio.ObtenerRutinaPorId(1);
 
         }
 
         protected void BtnLogin_Click(object sender, EventArgs e)
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
-           
+
             // CHEQUEAR EL TEMA DEL LOGIN
 
             int idUsuario = negocio.Loguear(EmailLogin.Text, ConstraseniaLogin.Text);
 
-            if (idUsuario > 0 )
+            if (idUsuario > 0)
             {
                 Response.Redirect("~/PerfilAlumno.aspx");
 
                 Profesor profesor = new Profesor();
-            
+
             }
         }
     }
