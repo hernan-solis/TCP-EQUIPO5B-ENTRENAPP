@@ -124,6 +124,7 @@
     <Content Include="PerfilAlumno.aspx" />
     <Content Include="PerfilProfesor.aspx" />
     <Content Include="RutinaAlumno.aspx" />
+    <Content Include="RutinaProfesor.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -234,6 +235,13 @@
     </Compile>
     <Compile Include="RutinaAlumno.aspx.designer.cs">
       <DependentUpon>RutinaAlumno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RutinaProfesor.aspx.cs">
+      <DependentUpon>RutinaProfesor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RutinaProfesor.aspx.designer.cs">
+      <DependentUpon>RutinaProfesor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

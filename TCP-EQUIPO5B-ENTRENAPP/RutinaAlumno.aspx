@@ -20,7 +20,7 @@
                                 <th scope="col" class="text-center">DESCANSO (min)</th>
                                 <th scope="col" class="text-center">PESO (kg)</th>
                                 <th scope="col" class="text-center">OBSERVACIONES</th>
-                                <th scope="col" class="text-center">IMAGEN </th>
+                                <th scope="col" class="text-center">VIDEO DEMOSTRATIVO </th>
                             </tr>
                         </thead>
                         <tbody>
