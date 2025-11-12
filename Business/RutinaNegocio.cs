@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Models;
 
 namespace Business
 {
@@ -91,6 +92,88 @@ namespace Business
                 datos.cerrarConexion();
             }
         }
+
+        public void Agregar(Rutina rutina)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("INSERT INTO Rutinas (UsuarioID, ProfesorID, Título, Descripción) VALUES (@usuarioId, @profesorId, @titulo, @descripcion)");
+                datos.setearParametro("@usuarioId", rutina.Alumno.Id);
+                datos.setearParametro("@profesorId", rutina.Profesor.Id);
+                datos.setearParametro("@titulo", rutina.Titulo);
+                datos.setearParametro("@descrpcion", rutina.Descripcion);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void Modificar (Rutina rutina)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Rutinas SET UsuarioID = @usuarioId, ProfesorID = @profesorId, Título = @titulo, Descripción = @descripcion WHERE ID = @id;");
+                datos.setearParametro("@usuarioId", rutina.Alumno.Id);
+                datos.setearParametro("@profesorId", rutina.Profesor.Id);
+                datos.setearParametro("@titulo", rutina.Titulo);
+                datos.setearParametro("@descrpcion", rutina.Descripcion);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void Eliminar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                //falta la eliminacion de ejercicio asignado
+
+                datos.setearConsulta("DELETE FROM Día WHERE RutinaID = @ID");
+                datos.setearParametro("@ID", id);
+                datos.ejecutarAccion();
+
+                datos.setearConsulta("DELETE FROM Rutinas WHERE id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+
+
     }
 
 
