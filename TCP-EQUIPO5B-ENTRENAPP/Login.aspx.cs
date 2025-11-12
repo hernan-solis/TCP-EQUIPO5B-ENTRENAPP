@@ -34,22 +34,34 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         protected void BtnLogin_Click(object sender, EventArgs e)
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario usuario = new Usuario();
 
             // CHEQUEAR EL TEMA DEL LOGIN
 
-            /*
+            
 
             int idUsuario = negocio.Loguear(EmailLogin.Text, ConstraseniaLogin.Text);
 
+            usuario = negocio.ObtenerUsuarioPorId(idUsuario);
+
+            string rol = usuario.Rol;
+
             if (idUsuario > 0)
             {
-                Response.Redirect("~/PerfilAlumno.aspx");
+                if (rol == "Profesor")
+                {
+                    Response.Redirect("~/PerfilProfesor.aspx");
 
-                Profesor profesor = new Profesor();
+                }
+                else if (rol == "Alumno")
+                {
+                    Response.Redirect("~/PerfilAlumno.aspx");
+
+                }
 
             }
 
-            */
+            
         }
     }
 }
