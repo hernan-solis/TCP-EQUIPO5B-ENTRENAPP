@@ -48,11 +48,16 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         // ES UNA MAMUSHCA, REPETEAR DENTRO DE CADA ITEM DEL REPEATER.
         protected void RepeaterDia_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            // Verificar que el item es un item de datos (no header/footer)
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
+                // Obtener el objeto Dia asociado a este item
                 Dia dia = (Dia)e.Item.DataItem;
 
+                // Encontrar el Repeater de ejercicios dentro del item actual
                 var repeaterEj = (Repeater)e.Item.FindControl("RepeaterEjerAsig");
+
+                // Vincular el Repeater de ejercicios con la lista de ejercicios del día actual
                 repeaterEj.DataSource = dia.EjerciciosAsignados;
                 repeaterEj.DataBind();
             }

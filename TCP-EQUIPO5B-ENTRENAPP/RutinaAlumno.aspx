@@ -21,7 +21,7 @@
                                     <th scope="col">EJERCICIOS</th>
                                     <th scope="col" class="text-center">SERIES</th>
                                     <th scope="col" class="text-center">REPES</th>
-                                    <th scope="col" class="text-center">TIEMPO(min)</th>
+                                    <th scope="col" class="text-center">DESCANSO(min)</th>
                                     <th scope="col" class="text-center">PESO(kg)</th>
                                     <th scope="col" class="text-center">OBSERVACIONES</th>
                                     <th scope="col" class="text-center">VIDEO DEMOSTRATIVO </th>

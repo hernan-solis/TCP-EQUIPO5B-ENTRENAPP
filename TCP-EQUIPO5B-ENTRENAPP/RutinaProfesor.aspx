@@ -7,7 +7,7 @@
     </div>
 
 
-    <asp:Repeater ID="RepeaterDiaAlu" runat="server">
+    <asp:Repeater ID="RepeaterDiaAlu" runat="server" OnItemDataBound="RepeaterDiaAlu_ItemDataBound">
         <ItemTemplate>
             <div class="container mt-5">
                 <div class="row justify-content-center">
@@ -33,82 +33,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Sentadillas</td>
-                                            <td class="text-center">4</td>
-                                            <td class="text-center">10</td>
-                                            <td class="text-center">1.30</td>
-                                            <td class="text-center">40</td>
-                                            <td class="text-center">Espalda erguida</td>
-                                            <td class="text-center">https://youtu.be/BjixzWEw4EY?si=ptFCLhGmoTTjWuf9td></td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <button type="button" class="btn btn-primary">Editar</button>
-                                                    <button type="button" class="btn btn-primary">Eliminar</button>
-                                                </div>
-                                            </td>
 
-                                        </tr>
-                                        <tr>
-                                            <td>Peso muerto</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-center">8</td>
-                                            <td class="text-center">1.30</td>
-                                            <td class="text-center">100</td>
-                                            <td class="text-center">Espalda erguida</td>
-                                            <td class="text-center">https://youtu.be/BjixzWEw4EY?si=ptFCLhGmoTTjWuf9td></td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <button type="button" class="btn btn-primary">Editar</button>
-                                                    <button type="button" class="btn btn-primary">Eliminar</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bulgaras</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-center">12</td>
-                                            <td class="text-center">2</td>
-                                            <td class="text-center">15</td>
-                                            <td class="text-center">La rodilla no sobrepasa la punta del pie</td>
-                                            <td class="text-center">https://youtu.be/BjixzWEw4EY?si=ptFCLhGmoTTjWuf9td></td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <button type="button" class="btn btn-primary">Editar</button>
-                                                    <button type="button" class="btn btn-primary">Eliminar</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Remo con polea</td>
-                                            <td class="text-center">4</td>
-                                            <td class="text-center">10</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">35</td>
-                                            <td class="text-center">Sacar pecho</td>
-                                            <td class="text-center">https://youtu.be/BjixzWEw4EY?si=ptFCLhGmoTTjWuf9td></td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <button type="button" class="btn btn-primary">Editar</button>
-                                                    <button type="button" class="btn btn-primary">Eliminar</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bici fija</td>
-                                            <td class="text-center">-</td>
-                                            <td class="text-center">20 min</td>
-                                            <td class="text-center">-</td>
-                                            <td class="text-center">-</td>
-                                            <td class="text-center">Mantener un ritmo constante</td>
-                                            <td class="text-center">https://youtu.be/BjixzWEw4EY?si=ptFCLhGmoTTjWuf9td></td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <button type="button" class="btn btn-primary">Editar</button>
-                                                    <button type="button" class="btn btn-primary">Eliminar</button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        <asp:Repeater ID="RepeaterEjerAsigDiaAlu" runat="server" >
+                                            <ItemTemplate>
+                                                <tr>
+                                                    <td><%# Eval("EjercicioBase.Nombre") %></td>
+                                                    <td class="text-center"><%# Eval("Series") %></td>
+                                                    <td class="text-center"><%# Eval("Repeticiones") %></td>
+                                                    <td class="text-center"><%# Eval("TiempoEstimado") %></td>
+                                                    <td class="text-center"><%# Eval("Peso") %></td>
+                                                    <td class="text-center"><%# Eval("Observaciones") %></td>
+                                                    <td class="text-center"><%# Eval("EjercicioBase.Url") %></td>
+                                                    <td>
+                                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                                            <button type="button" class="btn btn-primary">✍</button>
+                                                            <button type="button" class="btn btn-primary">🗑</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+
                                     </tbody>
                                 </table>
                             </div>

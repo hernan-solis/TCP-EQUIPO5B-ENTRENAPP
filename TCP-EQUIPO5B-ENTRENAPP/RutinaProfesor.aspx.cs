@@ -21,7 +21,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 // Recuperar parámetros
                 string idAluUrl = Request.QueryString["idAlu"];
                 string idProfeUrl = Request.QueryString["idProfe"];
-                
+
 
                 // PEQUEÑO CONTROL DE ERRORES
                 if (idProfeUrl == null || idAluUrl == null)
@@ -60,16 +60,41 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno(alumno.Id);
 
             // SETEO EL REPEATER - OJO CON LOS POSTBACKS
-
-            RepeaterDiaAlu.DataSource = rutina.Dia;
-            RepeaterDiaAlu.DataBind();
+            if (!IsPostBack)
+            {
+                RepeaterDiaAlu.DataSource = rutina.Dia;
+                RepeaterDiaAlu.DataBind();
+            }
+                
 
             //
             // SETEO EL TITULO CON EL NOMBRE DEL ALUMNO
-            HTresNombreAlumno.InnerText = "Gestion de rutina Alumno: " + alumno.Apellido + " " + alumno.Nombre; 
-
+            HTresNombreAlumno.InnerText = "Gestion de rutina Alumno: " + alumno.Apellido + " " + alumno.Nombre;
 
 
         }
+
+        // FUNCION QUE SE EJECUTA CADA VEZ QUE SE VINCULA UN ITEM EN EL REPEATER DE DIAS
+        // EN ESTA FUNCION VAMOS A VINCULAR EL REPEATER DE EJERCICIOS ASIGNADOS PARA CADA DIA
+        // ES UNA MAMUSHCA, REPETEAR DENTRO DE CADA ITEM DEL REPEATER.
+        protected void RepeaterDiaAlu_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            // Verificar que el item es un item de datos (no header/footer)
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                // Obtener el objeto Dia asociado a este item
+                Dia diaActual = (Dia)e.Item.DataItem;
+
+                // Encontrar el Repeater de ejercicios dentro del item actual
+                Repeater repeaterEjercicios = (Repeater)e.Item.FindControl("RepeaterEjerAsigDiaAlu");
+
+                // Vincular el Repeater de ejercicios con la lista de ejercicios del día actual
+                repeaterEjercicios.DataSource = diaActual.EjerciciosAsignados;
+                repeaterEjercicios.DataBind();
+            }
+
+        }
+
+
     }
 }
