@@ -93,6 +93,44 @@ namespace Business
             }
         }
 
+        public Rutina ObtenerRutinaPorIdAlumno(int idAlumno)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("select ID, UsuarioID, ProfesorID, Título, Descripción from Rutinas WHERE UsuarioID = @idAlumno");
+                datos.setearParametro("@idAlumno", idAlumno);
+                datos.ejecutarLectura();
+                AlumnoNegocio alumnoNegocio = new AlumnoNegocio();
+                ProfesorNegocio profesorNegocio = new ProfesorNegocio();
+                DiaNegocio diaNegocio = new DiaNegocio();
+                Rutina aux = new Rutina();
+
+                if (datos.Lector.Read())
+                {
+                    aux.Id = (int)datos.Lector["ID"];
+                    aux.Alumno = alumnoNegocio.ObtenerPorId((int)datos.Lector["UsuarioID"]);
+                    aux.Profesor = profesorNegocio.ObtenerProfesorPorId((int)datos.Lector["ProfesorID"]);
+                    aux.Titulo = (string)datos.Lector["Título"];
+                    aux.Descripcion = (string)datos.Lector["Descripción"];
+                    aux.Dia = diaNegocio.ListarPorRutinaId((int)datos.Lector["ID"]);
+                }
+
+                return aux;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void Agregar(Rutina rutina)
         {
             AccesoDatos datos = new AccesoDatos();
