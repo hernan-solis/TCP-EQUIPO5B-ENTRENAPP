@@ -56,13 +56,19 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno((int)ViewState["idAlu"]);
 
             //EXPRESION LAMBDA PARA ENCONTRAR EL DIA SELECCIONADO SEGUN EL ID TRAIDO POR PARAMETRO
-            //LO USA EL PROBE EN UNO DE SUS VIDEOS
+            //LO USA EL PROFE EN UNO DE SUS VIDEOS
             //Una lambda es una función sin nombre, escrita en una línea, usando la flecha
             //FIND ES UNA FUNCION DE LOS OBJETOS LISTA
 
             Dia diaSeleccionado = rutina.Dia.Find(d => d.Id == (int)ViewState["idDia"]);
 
+            // SETEO EL REPEATER CON LOS EJERCICIOS ASIGNADOS AL DIA SELECCIONADO
 
+            RepeaterEjerciciosAsignados.DataSource = diaSeleccionado.EjerciciosAsignados;
+            RepeaterEjerciciosAsignados.DataBind();
+
+            // SETEO PARA MOSTRAR EL NOMBRE DEL DIA
+            DivTituloDia.InnerText = diaSeleccionado.NombreDia;
 
 
 
