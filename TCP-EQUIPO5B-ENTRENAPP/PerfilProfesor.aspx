@@ -7,19 +7,14 @@
         <HeaderTemplate>
             <ul class="list-group">
         </HeaderTemplate>
-
         <ItemTemplate>
             <li class="list-group-item">
-                <%# Eval("Nombre") %> <%# Eval("Apellido") %>
+                <%# Eval("Apellido") %> <%# Eval("Nombre") %> 
                 <br />
                 <small class="text-muted"><%# Eval("Email") %></small>
-                <a href="/RutinaProfesor" class="btn btn-primary btn-sm text-uppercase" role="button">Ver rutina </a>
-
+                <asp:Button ID="BtnVerRutina" runat="server" Text="VER RUTINA" class="btn btn-primary" role="button" CommandName="IdAlumno" CommandArgument=<%#Eval("Id")%> OnCommand="BtnVerRutina_Command" />
             </li>
-
-
         </ItemTemplate>
-
         <FooterTemplate>
             </ul>
         </FooterTemplate>

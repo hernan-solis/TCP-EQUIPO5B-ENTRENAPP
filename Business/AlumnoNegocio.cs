@@ -117,8 +117,8 @@ namespace Business
             }
         }
 
+        // LISTA DE ALUMNOS ACTIVOS DEL PROFESOR 
         public List<Alumno> ListarPorProfesor(int profesorId)
-
     
         {
             List<Alumno> lista = new List<Alumno>();
@@ -126,7 +126,7 @@ namespace Business
 
             try
             {
-                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción, Status, Teléfono, Edad, Objetivos, Género, DíasDisponibles, Lesiones, CondiciónMédica, Comentarios, ProfesorId from Usuarios where Rol = 'Alumno' and ProfesorID = @idBuscado");
+                datos.setearConsulta("select ID, Nombre, Apellido, Email, Contraseña, Rol, FechaFinSuscripción, Status, Teléfono, Edad, Objetivos, Género, DíasDisponibles, Lesiones, CondiciónMédica, Comentarios, ProfesorId from Usuarios where Rol = 'Alumno' and ProfesorID = @idBuscado and Status = 1");
                 datos.setearParametro("@idBuscado", profesorId);
                 datos.ejecutarLectura();
 
