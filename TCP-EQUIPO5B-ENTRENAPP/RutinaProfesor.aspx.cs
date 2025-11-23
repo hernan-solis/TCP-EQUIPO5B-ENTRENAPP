@@ -62,14 +62,22 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             // SETEO EL REPEATER - OJO CON LOS POSTBACKS
             if (!IsPostBack)
             {
-                RepeaterDiaAlu.DataSource = rutina.Dia;
-                RepeaterDiaAlu.DataBind();
-            }
                 
 
-            //
+                RepeaterDiaAlu.DataSource = rutina.Dia;
+                RepeaterDiaAlu.DataBind();
+
+            }
+                
+       
             // SETEO EL TITULO CON EL NOMBRE DEL ALUMNO
             HTresNombreAlumno.InnerText = "Gestion de rutina Alumno: " + alumno.Apellido + " " + alumno.Nombre;
+
+            
+
+           
+
+
 
 
         }
@@ -91,10 +99,40 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 // Vincular el Repeater de ejercicios con la lista de ejercicios del día actual
                 repeaterEjercicios.DataSource = diaActual.EjerciciosAsignados;
                 repeaterEjercicios.DataBind();
+
+                // ENCONTRAR EL DROPDOWNLIST DENTRO DE ESTE ÍTEM ESPECÍFICO
+                DropDownList ddlEjercicios = (DropDownList)e.Item.FindControl("DdlEjercicios");
+
+                // OBTENGO LA LISTA DE EJERCICIOS BASE PARA USARLOS LUEGO
+                EjercicioBaseNegocio ejercicioNegocio = new EjercicioBaseNegocio();
+
+                List<EjercicioBase> listaEjerciciosBase = ejercicioNegocio.Listar();
+
+                // EL OBJETO QUE DEVUELVE FINDCONTROL ES EN MINUSCULA
+                ddlEjercicios.DataSource = listaEjerciciosBase;
+                ddlEjercicios.DataTextField = "Nombre";
+                ddlEjercicios.DataValueField = "Id";
+                ddlEjercicios.DataBind();
+
+
             }
 
         }
 
+        protected void BtnAgregarEjercicioAsignado_Command(object sender, CommandEventArgs e)
+        {
+            // Recuperar el ID del día desde el CommandArgument
+            int idDia = int.Parse(e.CommandArgument.ToString());
 
+            // Recuperar los otros IDs desde el ViewState
+            int idAlu = (int)ViewState["idAlu"];
+            int idProfe = (int)ViewState["idProfe"];
+
+
+
+            // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
+            Response.Redirect($"/RutinaProfesor.aspx?diaId={idDia}&idAlu={idAlu}&idProfe={idProfe}");
+
+        }
     }
 }

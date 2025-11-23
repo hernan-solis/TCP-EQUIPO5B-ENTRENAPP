@@ -34,7 +34,7 @@
                                     </thead>
                                     <tbody>
 
-                                        <asp:Repeater ID="RepeaterEjerAsigDiaAlu" runat="server" >
+                                        <asp:Repeater ID="RepeaterEjerAsigDiaAlu" runat="server">
                                             <ItemTemplate>
                                                 <tr>
                                                     <td><%# Eval("EjercicioBase.Nombre") %></td>
@@ -59,8 +59,80 @@
                             </div>
 
                             <div class="card-footer bg-light border-secondary">
+                                <table class="table table-bordered table-striped table-sm">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="col">EJERCICIOS</th>
+                                            <th scope="col" class="text-center">SERIES</th>
+                                            <th scope="col" class="text-center">REPETICIONES</th>
+                                            <th scope="col" class="text-center">DESCANSO (min)</th>
+                                            <th scope="col" class="text-center">PESO (kg)</th>
+                                            <th scope="col" class="text-center">OBSERVACIONES</th>
+                                            <th scope="col" class="text-center">VIDEO DEMOSTRATIVO </th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <asp:DropDownList 
+                                                    ID="DdlEjercicios" 
+                                                    runat="server">
+                                                    
+
+                                                </asp:DropDownList>
+                                            </td>
+
+                                            <td>
+                                                <asp:TextBox ID="txtSeries"
+                                                    runat="server"
+                                                    Text=""
+                                                    CssClass="form-control form-control-sm text-center"
+                                                    ToolTip="Número de series" />
+                                            </td>
+
+                                            <td>
+                                                <asp:TextBox ID="txtRepeticiones"
+                                                    runat="server"
+                                                    Text=""
+                                                    CssClass="form-control form-control-sm text-center"
+                                                    ToolTip="Número de repeticiones" />
+                                            </td>
+
+                                            <td>
+                                                <asp:TextBox ID="txtDescanso"
+                                                    runat="server"
+                                                    Text=""
+                                                    CssClass="form-control form-control-sm text-center"
+                                                    ToolTip="Descanso en minutos" />
+                                            </td>
+
+                                            <td>
+                                                <asp:TextBox ID="txtPeso"
+                                                    runat="server"
+                                                    Text=""
+                                                    CssClass="form-control form-control-sm text-center"
+                                                    ToolTip="Peso utilizado en kilogramos" />
+                                            </td>
+
+                                            <td>
+                                                <asp:TextBox ID="txtObservaciones"
+                                                    runat="server"
+                                                    Text=""
+                                                    CssClass="form-control form-control-sm"
+                                                    TextMode="MultiLine"
+                                                    Rows="1" />
+                                            </td>
+
+                                            <td>
+                                                <asp:TextBox ID="txtUrl"
+                                                    runat="server"
+                                                    Text=""
+                                                    CssClass="form-control form-control-sm text-center"
+                                                    ToolTip="Url Link de Ejercicio" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                                 <div class="text-left">
-                                    <button type="button" class="btn btn-primary">Agregar Ejercicio</button>
+                                    <asp:Button ID="BtnAgregarEjercicioAsignado" Text="Asignar Nuevo Ejercicio" runat="server" class="btn btn-primary" role="button" CommandName="VerDia" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnAgregarEjercicioAsignado_Command" />
                                 </div>
                             </div>
 
