@@ -19,7 +19,7 @@
                         </div>
                         <div class="card-footer bg-light border-secondary">
                             <div>
-                                <a href="/RutinaAlumno" type="button" class="btn btn-primary" role="button">Ver rutina completa </a>
+                                <asp:Button ID="BtnVerRutina" Text="Ver rutina completa" runat="server" class="btn btn-primary" role="button" CommandName="VerDia" CommandArgument=<%#Eval("Id")%> OnCommand="BtnVerRutina_Command"/>
                             </div>
                         </div>
                     </div>
