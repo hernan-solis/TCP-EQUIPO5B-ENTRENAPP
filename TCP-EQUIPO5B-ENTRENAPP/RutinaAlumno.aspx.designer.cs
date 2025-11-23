@@ -13,5 +13,23 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
     public partial class RutinaAlumno
     {
+
+        /// <summary>
+        /// DivTituloDia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivTituloDia;
+
+        /// <summary>
+        /// RepeaterEjerciciosAsignados control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RepeaterEjerciciosAsignados;
     }
 }
