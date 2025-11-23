@@ -37,7 +37,10 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 RepeaterDia.DataBind(); // vinculo los datos al Repeater
             }
 
-           
+            // SETEO EL TITULO CON EL NOMBRE DEL ALUMNO
+            HTresNombreAlumno.InnerText = "Rutina de: " + alumno.Apellido + " " + alumno.Nombre;
+
+
         }
 
         // FUNCION QUE SE EJECUTA CADA VEZ QUE SE VINCULA UN ITEM EN EL REPEATER DE DIAS

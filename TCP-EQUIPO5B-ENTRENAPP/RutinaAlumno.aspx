@@ -4,7 +4,10 @@
 
     <div class="container mt-5">
         <div class="row justify-content-center">
-
+            <div class="text-center">
+                <h3 id="HTresNombreAlumno" runat="server"></h3>
+                <br>
+            </div>
             <div class="col-auto col-lg-auto">
                 <div class="card border-secondary mb-3">
 
@@ -39,7 +42,7 @@
                                             </td>
                                         </tr>
                                     </ItemTemplate>
-                                    </asp:Repeater>
+                                </asp:Repeater>
                             </tbody>
                         </table>
                     </div>

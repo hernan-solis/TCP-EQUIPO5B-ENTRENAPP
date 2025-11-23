@@ -15,6 +15,15 @@ namespace TCP_EQUIPO5B_ENTRENAPP
     {
 
         /// <summary>
+        /// HTresNombreAlumno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HTresNombreAlumno;
+
+        /// <summary>
         /// RepeaterDia control.
         /// </summary>
         /// <remarks>

@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PerfilAlumno.aspx.cs" Inherits="TCP_EQUIPO5B_ENTRENAPP.PerfilAlumno" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    <div class="text-center">
+        <h3 id="HTresNombreAlumno" runat="server"></h3>
+        <br>
+    </div>
     <div class="row">
 
         <asp:Repeater ID="RepeaterDia" runat="server" OnItemDataBound="RepeaterDia_ItemDataBound">
@@ -19,7 +22,7 @@
                         </div>
                         <div class="card-footer bg-light border-secondary">
                             <div>
-                                <asp:Button ID="BtnVerRutina" Text="Ver rutina completa" runat="server" class="btn btn-primary" role="button" CommandName="VerDia" CommandArgument=<%#Eval("Id")%> OnCommand="BtnVerRutina_Command"/>
+                                <asp:Button ID="BtnVerRutina" Text="Ver rutina completa" runat="server" class="btn btn-primary" role="button" CommandName="VerDia" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnVerRutina_Command" />
                             </div>
                         </div>
                     </div>

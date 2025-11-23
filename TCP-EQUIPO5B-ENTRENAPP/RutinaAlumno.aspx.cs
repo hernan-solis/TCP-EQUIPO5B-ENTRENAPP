@@ -63,13 +63,17 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             Dia diaSeleccionado = rutina.Dia.Find(d => d.Id == (int)ViewState["idDia"]);
 
             // SETEO EL REPEATER CON LOS EJERCICIOS ASIGNADOS AL DIA SELECCIONADO
-
-            RepeaterEjerciciosAsignados.DataSource = diaSeleccionado.EjerciciosAsignados;
-            RepeaterEjerciciosAsignados.DataBind();
+            if (!IsPostBack) {
+                RepeaterEjerciciosAsignados.DataSource = diaSeleccionado.EjerciciosAsignados;
+                RepeaterEjerciciosAsignados.DataBind();
+            }
+                
 
             // SETEO PARA MOSTRAR EL NOMBRE DEL DIA
             DivTituloDia.InnerText = diaSeleccionado.NombreDia;
 
+            // SETEO EL TITULO CON EL NOMBRE DEL ALUMNO
+            HTresNombreAlumno.InnerText = "Rutina de: " + alumno.Apellido + " " + alumno.Nombre;
 
 
 
