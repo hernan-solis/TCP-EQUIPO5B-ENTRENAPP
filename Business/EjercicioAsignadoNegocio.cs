@@ -97,6 +97,47 @@ namespace Business
             }
         }
 
+        public EjercicioAsignado BuscarPorId(int idEjercicioAsignado)
+        {
+
+            EjercicioAsignado aux = new EjercicioAsignado();
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+                datos.setearConsulta("select ID, EjercicioBaseID, Series, Repeticiones, TiempoEstimado, Peso, Observaciones, Url from EjercicioAsignado where ID = @id");
+                datos.setearParametro("@id", idEjercicioAsignado);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read()) {
+                    EjercicioBaseNegocio ejercicioBaseNegocio = new EjercicioBaseNegocio();
+
+                    aux.Id = (int)datos.Lector["ID"];
+                    aux.EjercicioBase = ejercicioBaseNegocio.ObtenerPorId((int)datos.Lector["EjercicioBaseID"]);
+                    aux.Series = (int)datos.Lector["Series"];
+                    aux.Repeticiones = (int)datos.Lector["Repeticiones"];
+                    aux.TiempoEstimado = (int)datos.Lector["TiempoEstimado"];
+                    aux.Peso = (decimal)datos.Lector["Peso"];
+                    aux.Observaciones = (string)datos.Lector["Observaciones"];
+                    aux.Url = (string)datos.Lector["Url"];
+                }
+                
+
+                return aux;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
         public void Agregar(EjercicioAsignado nuevoEjercicioAsignado, int diaId)
         {
@@ -155,6 +196,35 @@ namespace Business
                 datos.cerrarConexion();
             }
         }
+
+        public void ModificarSinEjercicioBase(EjercicioAsignado ejercicioAsignadoModificado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update EjercicioAsignado set Series = @series, Repeticiones = @repeticiones, TiempoEstimado = @tiempoEstimado, Peso = @peso, Observaciones = @observaciones, Url = @url WHERE ID = @id;");
+              
+                datos.setearParametro("@series", ejercicioAsignadoModificado.Series);
+                datos.setearParametro("@repeticiones", ejercicioAsignadoModificado.Repeticiones);
+                datos.setearParametro("@tiempoEstimado", ejercicioAsignadoModificado.TiempoEstimado);
+                datos.setearParametro("@peso", ejercicioAsignadoModificado.Peso);
+                datos.setearParametro("@observaciones", ejercicioAsignadoModificado.Observaciones);
+                datos.setearParametro("@url", ejercicioAsignadoModificado.Url);
+                datos.setearParametro("@id", ejercicioAsignadoModificado.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         //eliminacion física
         public void Eliminar(int id)
         {
