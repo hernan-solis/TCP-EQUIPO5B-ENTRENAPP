@@ -32,11 +32,13 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 int idDia = int.Parse(idDiaUrl);
                 int idAlu = int.Parse(idAluUrl);
 
+                
+
                 //Se rompe si siempre llamas a la misma página con los mismos parámetros
                 //Solucion: guardar en ViewState
                 // Guardar en ViewState para siguientes postbacks //
                 // VIEWSTATE ES UN MECANISMO PARA RECORDAD VALORES ENTRE POSTBACKS
-                
+
                 ViewState["idDia"] = idDia;
                 ViewState["idAlu"] = idAlu;
             }

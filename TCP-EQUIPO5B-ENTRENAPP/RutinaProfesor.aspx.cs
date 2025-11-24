@@ -14,7 +14,17 @@ namespace TCP_EQUIPO5B_ENTRENAPP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //  Restaura scroll si existe
+            if (Session["ScrollY"] != null && !IsPostBack)
+            {
+                string script = $"window.scrollTo(0, {Session["ScrollY"]});";
+                ClientScript.RegisterStartupScript(this.GetType(), "RestoreScroll", script, true);
+                Session["ScrollY"] = null;
+            }
+
+
             // PRIMERO RECUPERO LOS ID PASADOS POR PARAMETRO EN LA URL
+
 
             if (!IsPostBack)
             {
@@ -40,12 +50,18 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
                 ViewState["idProfe"] = idProfe;
                 ViewState["idAlu"] = idAlu;
+
+               
             }
             else
             {
                 // En postbacks, levantar de ViewState
                 int idProfe = (int)ViewState["idProfe"];
                 int idAlu = (int)ViewState["idAlu"];
+
+
+
+
             }
 
             // Mostrar mensajes de éxito
@@ -85,7 +101,11 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             HTresNombreRutina.InnerText = "Rutina: " + rutina.Titulo;
 
 
-
+            // Recuperar Scroll desde cookie
+            if (Request.Cookies["ScrollY"] != null)
+            {
+                Session["ScrollY"] = Request.Cookies["ScrollY"].Value;
+            }
 
 
 
@@ -318,5 +338,20 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
 
         }
+
+        // METODO PARA GUARDAR LA POSICION DEL SCROLL ANTES DE CARGAR LA PAGINA
+        protected override void Render(HtmlTextWriter writer)
+        {
+            string script = @"
+        window.addEventListener('beforeunload', function () {
+            var y = window.scrollY;
+            document.cookie = 'ScrollY=' + y;
+        });
+    ";
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "SaveScroll", script, true);
+            base.Render(writer);
+        }
+
+
     }
 }

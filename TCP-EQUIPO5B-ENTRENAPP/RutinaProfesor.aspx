@@ -1,13 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RutinaProfesor.aspx.cs" Inherits="TCP_EQUIPO5B_ENTRENAPP.RutinaProfesor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    
+    
 
     <div class="text-center">
         <h3 id="HTresNombreRutina" runat="server"></h3>
         <h3 id="HTresNombreAlumno" runat="server"></h3>
     </div>
 
-    <asp:Button ID="BtnAgregarDia" runat="server" Text="➕ Nuego Dia" class="btn btn-primary" OnClick="BtnAgregarDia_Click" OnClientClick="return confirm('¿Está seguro que desea Agregar Dia Nuevo?');"/>
+    <asp:Button ID="BtnAgregarDia" runat="server" Text="➕ Nuego Dia" class="btn btn-primary" OnClick="BtnAgregarDia_Click" OnClientClick="return confirm('¿Está seguro que desea Agregar Dia Nuevo?');" />
 
     <asp:Repeater ID="RepeaterDiaAlu" runat="server" OnItemDataBound="RepeaterDiaAlu_ItemDataBound">
         <ItemTemplate>
@@ -16,7 +18,7 @@
 
                     <div class="col-auto col-lg-auto">
                         <div class="card border-secondary mb-3">
-                            
+
                             <div class="card-header bg-light border-secondary fw-bold text-center">
                                 <%#Eval("NombreDia") %>
                                 <asp:Button ID="BtnEliminarDia" runat="server" Text="🗑" type="button" class="btn btn-primary" CommandName="IdDiaEliminar" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnEliminarDia_Command" OnClientClick="return confirm('¿Está seguro que desea Eliminar el Día seleccionado?');" />
@@ -199,5 +201,18 @@
         </ItemTemplate>
     </asp:Repeater>
 
+
+    <script>
+        window.addEventListener('beforeunload', function () {
+            sessionStorage.setItem('scrollY', window.scrollY);
+        });
+
+        window.addEventListener('load', function () {
+            var y = sessionStorage.getItem('scrollY');
+            if (y !== null) {
+                window.scrollTo(0, y);
+            }
+        });
+    </script>
 
 </asp:Content>
