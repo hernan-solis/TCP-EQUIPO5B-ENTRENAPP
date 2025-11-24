@@ -141,7 +141,7 @@ namespace Business
                 datos.setearParametro("@usuarioId", rutina.Alumno.Id);
                 datos.setearParametro("@profesorId", rutina.Profesor.Id);
                 datos.setearParametro("@titulo", rutina.Titulo);
-                datos.setearParametro("@descrpcion", rutina.Descripcion);
+                datos.setearParametro("@descripcion", rutina.Descripcion);
 
                 datos.ejecutarAccion();
 

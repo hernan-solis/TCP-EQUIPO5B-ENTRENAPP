@@ -327,9 +327,32 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             int idAlu = (int)ViewState["idAlu"];
             int idProfe = (int)ViewState["idProfe"];
 
+            // Trato de traer la rutina del alumno, solo para saber que existe en la DB
+            // Si no existe, primero le vamos a crear una rutina vacia al alumno
+
+            RutinaNegocio rutinaNegocio = new RutinaNegocio();
+            Rutina rutinaCheck = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlu);
+
+            if (rutinaCheck.Alumno == null) {
+
+
+
+                Rutina nuevaRutina = new Rutina();
+
+                nuevaRutina.Alumno = new Alumno();
+                nuevaRutina.Alumno.Id = idAlu;
+                nuevaRutina.Profesor = new Profesor();
+                nuevaRutina.Profesor.Id = idProfe;
+                nuevaRutina.Titulo = "Nueva Rutina";
+                nuevaRutina.Descripcion = "Agregar Descripcion";
+
+
+                rutinaNegocio.Agregar(nuevaRutina);
+
+            }
+
             // Agrega Dia Nuevo Directamente (usa JavaScript en el frontend para confirmar)
             DiaNegocio diaNegocio = new DiaNegocio();
-            RutinaNegocio rutinaNegocio = new RutinaNegocio();
 
             Dia diaNuevo = new Dia();
 
