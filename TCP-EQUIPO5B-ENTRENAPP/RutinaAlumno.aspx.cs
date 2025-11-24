@@ -73,7 +73,10 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             DivTituloDia.InnerText = diaSeleccionado.NombreDia;
 
             // SETEO EL TITULO CON EL NOMBRE DEL ALUMNO
-            HTresNombreAlumno.InnerText = "Rutina de: " + alumno.Apellido + " " + alumno.Nombre;
+            HTresNombreAlumno.InnerText = alumno.Apellido + " " + alumno.Nombre;
+
+            // SETEO EL TITULO CON EL NOMBRE DE LA RUTINA
+            HTresNombreRutina.InnerText = "Rutina: " + rutina.Titulo;
 
 
 

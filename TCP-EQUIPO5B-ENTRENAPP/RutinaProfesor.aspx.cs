@@ -79,9 +79,10 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
 
             // SETEO EL TITULO CON EL NOMBRE DEL ALUMNO
-            HTresNombreAlumno.InnerText = "Gestion de rutina Alumno: " + alumno.Apellido + " " + alumno.Nombre;
+            HTresNombreAlumno.InnerText = "Alumno: " + alumno.Apellido + " " + alumno.Nombre;
 
-
+            // SETEO EL TITULO CON EL NOMBRE DE LA RUTINA
+            HTresNombreRutina.InnerText = "Rutina: " + rutina.Titulo;
 
 
 
