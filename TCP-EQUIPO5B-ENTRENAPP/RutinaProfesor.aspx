@@ -47,7 +47,7 @@
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Basic example">
                                                             <button type="button" class="btn btn-primary">✍</button>
-                                                            <button type="button" class="btn btn-primary">🗑</button>
+                                                            <asp:Button ID="BtnEliminar" runat="server" Text="🗑" type="button" class="btn btn-primary" CommandName="IdEjerSeleccionado" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnEliminar_Command" OnClientClick="return confirm('¿Está seguro que desea eliminar el ejercicio seleccionado?');" />
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -174,7 +174,7 @@
                                     </tbody>
                                 </table>
                                 <div class="text-left">
-                                    <asp:Button ID="BtnAgregarEjercicioAsignado" Text="Asignar Nuevo Ejercicio" runat="server" class="btn btn-primary" role="button" CommandName="VerDia" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnAgregarEjercicioAsignado_Command" />
+                                    <asp:Button ID="BtnAgregarEjercicioAsignado" Text="Asignar Nuevo Ejercicio" runat="server" class="btn btn-primary" role="button" CommandName="VerDia" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnAgregarEjercicioAsignado_Command" OnClientClick="return confirm('¿Está seguro que desea guardar el ejercicio asignado?');"/>
                                 </div>
                             </div>
 

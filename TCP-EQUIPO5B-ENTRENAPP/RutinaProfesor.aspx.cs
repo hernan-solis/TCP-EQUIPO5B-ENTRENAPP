@@ -6,7 +6,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Windows.Forms;
 using static System.Collections.Specialized.BitVector32;
 
 namespace TCP_EQUIPO5B_ENTRENAPP
@@ -47,6 +46,14 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 // En postbacks, levantar de ViewState
                 int idProfe = (int)ViewState["idProfe"];
                 int idAlu = (int)ViewState["idAlu"];
+            }
+
+            // Mostrar mensajes de éxito
+            if (!IsPostBack && Session["MensajeExito"] != null)
+            {
+                string mensaje = Session["MensajeExito"].ToString();
+                ClientScript.RegisterStartupScript(this.GetType(), "success", $"alert('{mensaje}');", true);
+                Session.Remove("MensajeExito");
             }
 
             // OBTENGO EL OBJETO ALUMNO Y PROFE Y LA RUTINA DEL ALUMNO PARA USARLOS COMO PREFIERA.
@@ -134,16 +141,16 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             EjercicioAsignado ejercicioAsignado = new EjercicioAsignado();
 
             // Obtener el botón y el repeater item de forma directa
-            System.Web.UI.WebControls.Button boton = (System.Web.UI.WebControls.Button)sender;
-            System.Web.UI.Control contenedor = boton.NamingContainer;
+            Button boton = (Button)sender;
+            Control contenedor = boton.NamingContainer;
 
             // Obtener otros valores directamente de los controles
-            System.Web.UI.WebControls.TextBox tbxSeries = (System.Web.UI.WebControls.TextBox)contenedor.FindControl("tbxSeries");
-            System.Web.UI.WebControls.TextBox tbxRepeticiones = (System.Web.UI.WebControls.TextBox)contenedor.FindControl("tbxRepeticiones");
-            System.Web.UI.WebControls.TextBox tbxDescanso = (System.Web.UI.WebControls.TextBox)contenedor.FindControl("tbxDescanso");
-            System.Web.UI.WebControls.TextBox tbxPeso = (System.Web.UI.WebControls.TextBox)contenedor.FindControl("tbxPeso");
-            System.Web.UI.WebControls.TextBox tbxObservaciones = (System.Web.UI.WebControls.TextBox)contenedor.FindControl("tbxObservaciones");
-            System.Web.UI.WebControls.TextBox tbxUrl = (System.Web.UI.WebControls.TextBox)contenedor.FindControl("tbxUrl");
+            TextBox tbxSeries = (TextBox)contenedor.FindControl("tbxSeries");
+            TextBox tbxRepeticiones = (TextBox)contenedor.FindControl("tbxRepeticiones");
+            TextBox tbxDescanso = (TextBox)contenedor.FindControl("tbxDescanso");
+            TextBox tbxPeso = (TextBox)contenedor.FindControl("tbxPeso");
+            TextBox tbxObservaciones = (TextBox)contenedor.FindControl("tbxObservaciones");
+            TextBox tbxUrl = (TextBox)contenedor.FindControl("tbxUrl");
 
             DropDownList ddlEjercicios = (DropDownList)contenedor.FindControl("DdlEjercicios");
 
@@ -192,32 +199,43 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             EjercicioBaseNegocio ejercicioBaseNegocio = new EjercicioBaseNegocio();
             ejercicioAsignado.EjercicioBase = ejercicioBaseNegocio.ObtenerPorId(int.Parse(ddlEjercicios.SelectedValue));
 
-            // PREGUNTO AL USUARIO Y SI ESTA OK LO SUBO A LA DB (TENGO QUE TENER EL USING System.Windows.Forms;
-
-            DialogResult resultado = MessageBox.Show(
-             "¿Está seguro que desea guardar el ejercicio asignado?",
-             "Confirmar Guardado",
-              MessageBoxButtons.YesNo,
-             MessageBoxIcon.Question
-);
             EjercicioAsignadoNegocio ejercicioAsignadoNegocio = new EjercicioAsignadoNegocio();
 
-            if (resultado == DialogResult.Yes)
-            {
-                MessageBox.Show("Ejercicio guardado correctamente");
+            // PREGUNTO AL USUARIO Y SI ESTA OK CON JS Y AGREGO;
+            ejercicioAsignadoNegocio.Agregar(ejercicioAsignado, idDia);
 
-                ejercicioAsignadoNegocio.Agregar(ejercicioAsignado, idDia);
-
-                
-            }
-            else
-            {
-                MessageBox.Show("Operación cancelada por el usuario");
-            }
+            // Guardar mensaje de éxito en Session para mostrar después del redirect
+            Session["MensajeExito"] = "Ejercicio guardado correctamente";
 
             // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
             Response.Redirect($"/RutinaProfesor.aspx?diaId={idDia}&idAlu={idAlu}&idProfe={idProfe}");
 
+        }
+
+        protected void BtnEliminar_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "IdEjerSeleccionado")
+            {
+                // PRIMERO SETEO Y PREPARO LOS ID PARA MANDAR A LA SIGUIENTE PAGINA
+
+                //Recupero el argument
+                int idEjercicioAsignadoSeleccionado = int.Parse(e.CommandArgument.ToString());
+
+                //Recupero los IDs desde el ViewState
+                int idAlu = (int)ViewState["idAlu"];
+                int idProfe = (int)ViewState["idProfe"];
+
+                EjercicioAsignadoNegocio ejercicioAsignadoNegocio = new EjercicioAsignadoNegocio();
+                // Eliminar directamente (usa JavaScript en el frontend para confirmar)
+                ejercicioAsignadoNegocio.Eliminar(idEjercicioAsignadoSeleccionado);
+
+                // Guardar mensaje de éxito en Session
+                Session["MensajeExito"] = "Ejercicio eliminado correctamente";
+
+
+                // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
+                Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
+            }
         }
     }
 }

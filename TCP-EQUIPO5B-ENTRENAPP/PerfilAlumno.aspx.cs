@@ -70,6 +70,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             if (e.CommandName == "VerDia")
             {
                 // PRIMERO SETEO Y PREPARO LOS ID PARA MANDAR A LA SIGUIENTE PAGINA
+
+                //recupero el argument
                 int idDia = int.Parse(e.CommandArgument.ToString());
 
                 int idAlu = alumnoId;   
