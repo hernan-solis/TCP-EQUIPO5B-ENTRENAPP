@@ -26,11 +26,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Contraseña</label>
-                <asp:TextBox ID="txtContrasena" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Repetir Contraseña</label>
-                <asp:TextBox ID="txtRepetirContraseña" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="txtContrasenia" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
             </div>
             <div class="mb-3">
                 <label class="form-label">Telefono</label>
@@ -38,7 +34,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Edad</label>
-                <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtEdad" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
 
         </div>
@@ -48,31 +44,32 @@
 
             <div class="mb-3">
                 <label class="form-label">Objetivos</label>
-                <asp:TextBox ID="TextBox2" CssClass="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtObjetivos" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
             <div class="mb-3">
                 <label class="form-label">Género</label>
-                <asp:TextBox ID="TextBox3" CssClass="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtGenero" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
             <div class="mb-3">
                 <label class="form-label">Días Disponibles</label>
-                <asp:TextBox ID="TextBox4" CssClass="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtDiasDisponibles" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
             <div class="mb-3">
-                <label class="form-label">Lesiónes</label>
-                <asp:TextBox ID="TextBox5" CssClass="form-control" runat="server"></asp:TextBox>
+                <label class="form-label">Lesiones</label>
+                <asp:TextBox ID="txtLesiones" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
             <div class="mb-3">
                 <label class="form-label">Condición Médica</label>
-                <asp:TextBox ID="TextBox6" CssClass="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtCondicionMedica" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
             <div class="mb-3">
                 <label class="form-label">Comentarios</label>
-                <asp:TextBox ID="TextBox7" CssClass="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtComentarios" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
         </div>
     </div>
     <section class="text-center">
-        <a href="/Login" class="btn btn-primary btn-lg text-uppercase" role="button">Registrarme </a>
+       
+        <asp:Button ID="btnRegistrarme" runat="server" class="btn btn-primary btn-lg text-uppercase" Text="Registrarme" OnClick ="BtnRegistrarme_Click"/>
     </section>
 </asp:Content>

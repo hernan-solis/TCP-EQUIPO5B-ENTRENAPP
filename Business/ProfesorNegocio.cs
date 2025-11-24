@@ -174,5 +174,31 @@ namespace Business
             }
         }
 
+        public int ObtenerProfesorConMenosAlumnos()
+        {
+            List<Profesor> listaProfesores = Listar();
+
+            //validacion para saber si hay profesores en la lista
+            if (listaProfesores == null || listaProfesores.Count == 0)
+            {
+                return -1;
+            }
+
+            Profesor profesorMenorAlumno = listaProfesores
+
+             // Ordena por el número de alumnos (de menor a mayor)
+            .OrderBy(prof => prof.Alumnos.Count)
+            //Captura el primero de la lista
+            .FirstOrDefault();
+
+            // Devuelve el ID del profesor encontrado
+            if (profesorMenorAlumno != null)
+            {
+                return profesorMenorAlumno.Id;
+            }
+
+            return -1;
+        }
+
     }
 }
