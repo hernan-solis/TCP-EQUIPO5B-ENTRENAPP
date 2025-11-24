@@ -69,13 +69,22 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 RepeaterEjerciciosAsignados.DataSource = diaSeleccionado.EjerciciosAsignados;
                 RepeaterEjerciciosAsignados.DataBind();
             }
-                
 
-            // SETEO PARA MOSTRAR EL NOMBRE DEL DIA
-            DivTituloDia.InnerText = diaSeleccionado.NombreDia;
 
-            // SETEO DE TITULOS
+            // SETEO PARA MOSTRAR EL NOMBRE DEL DIA Y LOS TITULOS
+
+            string completado = "";
+            if (diaSeleccionado.Completado)
+            {
+                completado = "✅ Completado";
+            }
+            else
+            {
+                completado = "⏳ Pendiente";
+            }
+            DivTituloDia.InnerText = diaSeleccionado.NombreDia + " - " + completado;
             HTresNombreAlumno.InnerText = alumno.Apellido + " " + alumno.Nombre;
+            HTresNombreProfe.InnerText = "Profesor: " + rutina.Profesor.Apellido + " " + rutina.Profesor.Apellido;
             HTresNombreRutina.InnerText = "Rutina: " + rutina.Titulo;
             HTresNombreRutinaDescrip.InnerText = "Descripción: " + rutina.Descripcion;
 

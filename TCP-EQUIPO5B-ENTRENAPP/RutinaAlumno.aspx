@@ -5,7 +5,8 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="text-center">
-                <h3 id="HTresNombreAlumno" runat="server"></h3>
+                <h1 id="HTresNombreAlumno" runat="server"></h1>
+                <h3 id="HTresNombreProfe" runat="server"></h3>
                 <h3 id="HTresNombreRutina" runat="server"></h3>
                 <h3 id="HTresNombreRutinaDescrip" runat="server"></h3>
                 <br>
@@ -64,5 +65,7 @@
             </div>
         </div>
     </div>
+
+    
 
 </asp:Content>

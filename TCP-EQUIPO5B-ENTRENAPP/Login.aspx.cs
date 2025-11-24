@@ -13,13 +13,6 @@ namespace TCP_EQUIPO5B_ENTRENAPP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // ProfesorNegocio profesorNegocio = new ProfesorNegocio();
-
-            // Profesor profesor = profesorNegocio.ObtenerProfesorPorId(2);
-
-           // RutinaNegocio rutinaNegocio = new RutinaNegocio();
-
-           // Rutina rutina = rutinaNegocio.ObtenerRutinaPorId(1);
 
             GestorNegocio gestorNegocio = new GestorNegocio();
 
