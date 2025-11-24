@@ -134,6 +134,28 @@ namespace Business
 
         }
 
+        public void CambiarNombre(int idDia, string nuevoNombreDia)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Día SET NombreDía = @NombreDia WHERE ID = @ID");
+                datos.setearParametro("@NombreDia", nuevoNombreDia);
+                datos.setearParametro("@ID", idDia);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
         public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();

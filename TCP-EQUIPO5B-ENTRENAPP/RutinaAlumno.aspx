@@ -21,10 +21,11 @@
                                     <th scope="col">EJERCICIOS</th>
                                     <th scope="col" class="text-center">SERIES</th>
                                     <th scope="col" class="text-center">REPES</th>
-                                    <th scope="col" class="text-center">DESCANSO(min)</th>
                                     <th scope="col" class="text-center">PESO(kg)</th>
+                                    <th scope="col" class="text-center">DESCANSO(min)</th>
                                     <th scope="col" class="text-center">OBSERVACIONES</th>
-                                    <th scope="col" class="text-center">VIDEO DEMOSTRATIVO </th>
+                                    <th scope="col" class="text-center">VIDEO TUTORIAL </th>
+                                    <th scope="col" class="text-center">LINK DRIVE</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,11 +35,14 @@
                                             <td><%# Eval("EjercicioBase.Nombre") %></td>
                                             <td class="text-center"><%# Eval("Series") %></td>
                                             <td class="text-center"><%# Eval("Repeticiones") %></td>
-                                            <td class="text-center"><%# Eval("TiempoEstimado") %></td>
                                             <td class="text-center"><%# Eval("Peso") %></td>
+                                            <td class="text-center"><%# Eval("TiempoEstimado") %></td>
                                             <td class="text-center"><%# Eval("Observaciones") %></td>
                                             <td class="text-center">
                                                 <a href='<%# Eval("EjercicioBase.Url") %>' target="_blank">Ver Video</a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href='<%# Eval("Url") %>' target="_blank">Ir al DRIVE</a>
                                             </td>
                                         </tr>
                                     </ItemTemplate>

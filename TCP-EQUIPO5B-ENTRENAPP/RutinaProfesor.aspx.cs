@@ -237,5 +237,56 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
             }
         }
+
+        protected void BtnEliminarDia_Command(object sender, CommandEventArgs e)
+        {
+
+
+
+            //Recupero los IDs desde el ViewState
+            int idAlu = (int)ViewState["idAlu"];
+            int idProfe = (int)ViewState["idProfe"];
+
+            // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
+            Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
+        }
+
+        protected void BtnEditarNombreDia_Command(object sender, CommandEventArgs e)
+        {
+
+            if (e.CommandName == "IdDiaEditar")
+            {
+                // PRIMERO SETEO Y PREPARO LOS ID PARA MANDAR A LA SIGUIENTE PAGINA
+
+                //Recupero el argument
+                int idDiaAEditar = int.Parse(e.CommandArgument.ToString());
+
+                //Recupero los IDs desde el ViewState
+                int idAlu = (int)ViewState["idAlu"];
+                int idProfe = (int)ViewState["idProfe"];
+
+                // Obtener el botón y el repeater item de forma directa
+                Button boton = (Button)sender;
+                Control contenedor = boton.NamingContainer;
+
+                // Obtener otros valores directamente de los controles
+                TextBox tbxNombreDia = (TextBox)contenedor.FindControl("TbxNombreDia");
+
+
+
+
+                // Edita directamente (usa JavaScript en el frontend para confirmar)
+                DiaNegocio diaNegocio = new DiaNegocio();
+                diaNegocio.CambiarNombre(idDiaAEditar, tbxNombreDia.Text);
+
+                // Guardar mensaje de éxito en Session
+                Session["MensajeExito"] = "Nombre Día Editado correctamente";
+
+
+                // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
+                Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
+            }
+
+        }
     }
 }

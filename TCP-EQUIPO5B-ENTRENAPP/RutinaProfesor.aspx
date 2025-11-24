@@ -15,7 +15,20 @@
                     <div class="col-auto col-lg-auto">
                         <div class="card border-secondary mb-3">
 
-                            <div class="card-header bg-light border-secondary fw-bold text-center"><%#Eval("NombreDia") %></div>
+                            <div class="card-header bg-light border-secondary fw-bold text-center">
+                                <%#Eval("NombreDia") %>
+                                <asp:Button ID="BtnEliminarDia" runat="server" Text="🗑" type="button" class="btn btn-primary" CommandName="IdDiaEliminar" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnEliminarDia_Command" OnClientClick="return confirm('¿Está seguro que desea Eliminar el Día seleccionado?');" />
+                                <div class="d-flex justify-content-center my-2">
+                                    <asp:TextBox ID="TbxNombreDia"
+                                        runat="server"
+                                        Text="Nuevo Nombre Dia"
+                                        CssClass="form-control form-control-sm text-center"
+                                        ToolTip="Nuevo Nombre Dia" />
+                                    <asp:Button ID="BtnEditarNombreDia" runat="server" Text="✍" class="btn btn-primary" CommandName="IdDiaEditar" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnEditarNombreDia_Command" OnClientClick="return confirm('¿Está seguro que desea Editar el Día seleccionado?');" />
+                                </div>
+
+
+                            </div>
 
                             <div class="card-body text-secondary">
 
@@ -28,7 +41,7 @@
                                             <th scope="col" class="text-center">DESCANSO (min)</th>
                                             <th scope="col" class="text-center">PESO (kg)</th>
                                             <th scope="col" class="text-center">OBSERVACIONES</th>
-                                            <th scope="col" class="text-center">VIDEO DEMOSTRATIVO </th>
+                                            <th scope="col" class="text-center">LINK DRIVE MULTIMEDIA ALUMNO</th>
                                             <th scope="col" class="text-center">Editar/Eliminar</th>
                                         </tr>
                                     </thead>
@@ -43,11 +56,11 @@
                                                     <td class="text-center"><%# Eval("TiempoEstimado") %></td>
                                                     <td class="text-center"><%# Eval("Peso") %></td>
                                                     <td class="text-center"><%# Eval("Observaciones") %></td>
-                                                    <td class="text-center"><%# Eval("EjercicioBase.Url") %></td>
+                                                    <td class="text-center"><%# Eval("Url") %></td>
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Basic example">
                                                             <button type="button" class="btn btn-primary">✍</button>
-                                                            <asp:Button ID="BtnEliminar" runat="server" Text="🗑" type="button" class="btn btn-primary" CommandName="IdEjerSeleccionado" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnEliminar_Command" OnClientClick="return confirm('¿Está seguro que desea eliminar el ejercicio seleccionado?');" />
+                                                            <asp:Button ID="BtnEliminar" runat="server" Text="🗑" type="button" class="btn btn-primary" CommandName="IdEjerSeleccionado" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnEliminar_Command" OnClientClick="return confirm('¿Está seguro que desea Eliminar el Ejercicio seleccionado?');" />
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -68,7 +81,7 @@
                                             <th scope="col" class="text-center">DESCANSO (min)</th>
                                             <th scope="col" class="text-center">PESO (kg)</th>
                                             <th scope="col" class="text-center">OBSERVACIONES</th>
-                                            <th scope="col" class="text-center">VIDEO DEMOSTRATIVO </th>
+                                            <th scope="col" class="text-center">LINK DRIVE ALU</th>
                                         </tr>
                                         <tr>
                                             <td>
@@ -162,19 +175,18 @@
                                                     TextMode="MultiLine"
                                                     Rows="1" />
                                             </td>
-
                                             <td>
                                                 <asp:TextBox ID="tbxUrl"
                                                     runat="server"
                                                     Text=""
                                                     CssClass="form-control form-control-sm text-center"
-                                                    ToolTip="Url Link de Ejercicio" />
+                                                    ToolTip="Url Link para que el alumno suba el video" />
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="text-left">
-                                    <asp:Button ID="BtnAgregarEjercicioAsignado" Text="Asignar Nuevo Ejercicio" runat="server" class="btn btn-primary" role="button" CommandName="VerDia" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnAgregarEjercicioAsignado_Command" OnClientClick="return confirm('¿Está seguro que desea guardar el ejercicio asignado?');"/>
+                                    <asp:Button ID="BtnAgregarEjercicioAsignado" Text="Asignar Nuevo Ejercicio" runat="server" class="btn btn-primary" role="button" CommandName="VerDia" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnAgregarEjercicioAsignado_Command" OnClientClick="return confirm('¿Está seguro que desea Guardar el Nuevo ejercicio asignado?');" />
                                 </div>
                             </div>
 
