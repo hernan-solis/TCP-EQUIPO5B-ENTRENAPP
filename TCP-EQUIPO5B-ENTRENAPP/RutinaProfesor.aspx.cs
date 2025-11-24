@@ -288,5 +288,34 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             }
 
         }
+
+        protected void BtnAgregarDia_Click(object sender, EventArgs e)
+        {
+
+            //Recupero los IDs desde el ViewState
+            int idAlu = (int)ViewState["idAlu"];
+            int idProfe = (int)ViewState["idProfe"];
+
+            // Agrega Dia Nuevo Directamente (usa JavaScript en el frontend para confirmar)
+            DiaNegocio diaNegocio = new DiaNegocio();
+            RutinaNegocio rutinaNegocio = new RutinaNegocio();
+
+            Dia diaNuevo = new Dia();
+
+            diaNuevo.RutinaId = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlu).Id;
+            diaNuevo.Completado = false;
+            diaNuevo.NombreDia = "Nuevo Día";
+
+
+            diaNegocio.Agregar(diaNuevo);
+
+            // Guardar mensaje de éxito en Session
+            Session["MensajeExito"] = "Dia Nuevo Agregado correctamente";
+
+
+            // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
+            Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
+
+        }
     }
 }

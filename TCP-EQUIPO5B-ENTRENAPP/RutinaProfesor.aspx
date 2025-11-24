@@ -6,6 +6,7 @@
 
     </div>
 
+    <asp:Button ID="BtnAgregarDia" runat="server" Text="➕ Nuego Dia" class="btn btn-primary" OnClick="BtnAgregarDia_Click" OnClientClick="return confirm('¿Está seguro que desea Agregar Dia Nuevo?');"/>
 
     <asp:Repeater ID="RepeaterDiaAlu" runat="server" OnItemDataBound="RepeaterDiaAlu_ItemDataBound">
         <ItemTemplate>
@@ -14,14 +15,14 @@
 
                     <div class="col-auto col-lg-auto">
                         <div class="card border-secondary mb-3">
-
+                            
                             <div class="card-header bg-light border-secondary fw-bold text-center">
                                 <%#Eval("NombreDia") %>
                                 <asp:Button ID="BtnEliminarDia" runat="server" Text="🗑" type="button" class="btn btn-primary" CommandName="IdDiaEliminar" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnEliminarDia_Command" OnClientClick="return confirm('¿Está seguro que desea Eliminar el Día seleccionado?');" />
                                 <div class="d-flex justify-content-center my-2">
                                     <asp:TextBox ID="TbxNombreDia"
                                         runat="server"
-                                        Text="Nuevo Nombre Dia"
+                                        Text="Aqui Nombre Nuevo + Lapicito -->"
                                         CssClass="form-control form-control-sm text-center"
                                         ToolTip="Nuevo Nombre Dia" />
                                     <asp:Button ID="BtnEditarNombreDia" runat="server" Text="✍" class="btn btn-primary" CommandName="IdDiaEditar" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnEditarNombreDia_Command" OnClientClick="return confirm('¿Está seguro que desea Editar el Día seleccionado?');" />
