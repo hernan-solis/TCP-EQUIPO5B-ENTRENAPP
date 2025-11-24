@@ -79,15 +79,102 @@
                                             <ItemTemplate>
                                                 <tr>
                                                     <td><%# Eval("EjercicioBase.Nombre") %></td>
-                                                    <td class="text-center"><%# Eval("Series") %></td>
-                                                    <td class="text-center"><%# Eval("Repeticiones") %></td>
-                                                    <td class="text-center"><%# Eval("TiempoEstimado") %></td>
-                                                    <td class="text-center"><%# Eval("Peso") %></td>
-                                                    <td class="text-center"><%# Eval("Observaciones") %></td>
-                                                    <td class="text-center"><%# Eval("Url") %></td>
+                                                    <td>
+                                                        <asp:TextBox ID="tbxSeriesRep"
+                                                            runat="server"
+                                                            Text='<%# Eval("Series") %>'
+                                                            placeholder='<%# Eval("Series") %>'
+                                                            CssClass="form-control form-control-sm text-center"
+                                                            ToolTip="Número de series" />
+                                                        <asp:RegularExpressionValidator
+                                                            ID="revSeriesRep"
+                                                            runat="server"
+                                                            ControlToValidate="tbxSeriesRep"
+                                                            ValidationExpression="^\d+$"
+                                                            ErrorMessage="Solo números"
+                                                            Display="Dynamic"
+                                                            CssClass="text-danger small"
+                                                            ForeColor="Red"
+                                                            SetFocusOnError="True">
+                                                        </asp:RegularExpressionValidator>
+                                                    </td>
+                                                    <td>
+                                                        <asp:TextBox ID="tbxRepeticionesRep"
+                                                            runat="server"
+                                                            Text='<%# Eval("Repeticiones") %>'
+                                                            placeholder='<%# Eval("Repeticiones") %>'
+                                                            CssClass="form-control form-control-sm text-center"
+                                                            ToolTip="Número de series" />
+                                                        <asp:RegularExpressionValidator
+                                                            ID="revRepeticionesRep"
+                                                            runat="server"
+                                                            ControlToValidate="tbxRepeticionesRep"
+                                                            ValidationExpression="^\d+$"
+                                                            ErrorMessage="Solo números"
+                                                            Display="Dynamic"
+                                                            CssClass="text-danger small"
+                                                            ForeColor="Red"
+                                                            SetFocusOnError="True">
+                                                        </asp:RegularExpressionValidator>
+                                                    </td>
+                                                    <td>
+                                                        <asp:TextBox ID="tbxTiempoEstimadoRep"
+                                                            runat="server"
+                                                            Text='<%# Eval("TiempoEstimado") %>'
+                                                            placeholder='<%# Eval("TiempoEstimado") %>'
+                                                            CssClass="form-control form-control-sm text-center"
+                                                            ToolTip="Número de series" />
+                                                        <asp:RegularExpressionValidator
+                                                            ID="revTiempoEstimadoRep"
+                                                            runat="server"
+                                                            ControlToValidate="tbxTiempoEstimadoRep"
+                                                            ValidationExpression="^\d+$"
+                                                            ErrorMessage="Solo números"
+                                                            Display="Dynamic"
+                                                            CssClass="text-danger small"
+                                                            ForeColor="Red"
+                                                            SetFocusOnError="True">
+                                                        </asp:RegularExpressionValidator>
+                                                    </td>
+                                                    <td>
+                                                        <asp:TextBox ID="tbxPesoRep"
+                                                            runat="server"
+                                                            Text='<%# Eval("Peso") %>'
+                                                            placeholder='<%# Eval("Peso") %>'
+                                                            CssClass="form-control form-control-sm text-center"
+                                                            ToolTip="Número de series" />
+                                                        <asp:RegularExpressionValidator
+                                                            ID="revPesoRep"
+                                                            runat="server"
+                                                            ControlToValidate="tbxPesoRep"
+                                                            ValidationExpression="^\d+$"
+                                                            ErrorMessage="Solo números"
+                                                            Display="Dynamic"
+                                                            CssClass="text-danger small"
+                                                            ForeColor="Red"
+                                                            SetFocusOnError="True">
+                                                        </asp:RegularExpressionValidator>
+                                                    </td>
+                                                    <td>
+                                                        <asp:TextBox ID="tbxObservacionesRep"
+                                                            runat="server"
+                                                            Text=<%# Eval("Observaciones") %>
+                                                            placeholder=<%# Eval("Observaciones") %>
+                                                            CssClass="form-control form-control-sm"
+                                                            TextMode="MultiLine"
+                                                            Rows="1" />
+                                                    </td>
+                                                    <td>
+                                                        <asp:TextBox ID="tbxUrlRep"
+                                                            runat="server"
+                                                            Text=<%# Eval("Url") %>
+                                                            placeholder=<%# Eval("Url") %>
+                                                            CssClass="form-control form-control-sm text-center"
+                                                            ToolTip="Url Link para que el alumno suba el video" />
+                                                    </td>
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                                            <button type="button" class="btn btn-primary">✍</button>
+                                                            <asp:Button ID="BtnEditar" runat="server" Text="✍" type="button" class="btn btn-primary" CommandName="IdEjerSeleccionadoAEditar" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnEditar_Command" OnClientClick="return confirm('¿Está seguro que desea Editar el Ejercicio seleccionado?');" />
                                                             <asp:Button ID="BtnEliminar" runat="server" Text="🗑" type="button" class="btn btn-primary" CommandName="IdEjerSeleccionado" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnEliminar_Command" OnClientClick="return confirm('¿Está seguro que desea Eliminar el Ejercicio seleccionado?');" />
                                                         </div>
                                                     </td>

@@ -497,5 +497,91 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
 
         }
+
+        protected void BtnEditar_Command(object sender, CommandEventArgs e)
+        {
+            // Recuperar el ID del día desde el CommandArgument
+            int idEjercicioAEditar = int.Parse(e.CommandArgument.ToString());
+
+            // Recuperar los otros IDs desde el ViewState
+            int idAlu = (int)ViewState["idAlu"];
+            int idProfe = (int)ViewState["idProfe"];
+
+            // Busco el ejercicio asignado a editar
+
+            EjercicioAsignadoNegocio ejercicioAsignadoNegocio = new EjercicioAsignadoNegocio();
+
+            EjercicioAsignado ejercicioAsignado = ejercicioAsignadoNegocio.BuscarPorId(idEjercicioAEditar);
+
+
+
+
+            // Obtener el botón y el repeater item de forma directa
+            Button boton = (Button)sender;
+            Control contenedor = boton.NamingContainer;
+
+            // Obtener otros valores directamente de los controles
+            TextBox tbxSeriesRep = (TextBox)contenedor.FindControl("tbxSeriesRep");
+            TextBox tbxRepeticionesRep = (TextBox)contenedor.FindControl("tbxRepeticionesRep");
+            TextBox tbxDescansoRep = (TextBox)contenedor.FindControl("tbxTiempoEstimadoRep");
+            TextBox tbxPesoRep = (TextBox)contenedor.FindControl("tbxPesoRep");
+            TextBox tbxObservacionesRep = (TextBox)contenedor.FindControl("tbxObservacionesRep");
+            TextBox tbxUrlRep = (TextBox)contenedor.FindControl("tbxUrlRep");
+
+            // ASIGNO LOS VALORES AL OBJETO EJERCICIO ASIGNADO
+
+            if (tbxSeriesRep.Text != "")
+            {
+                ejercicioAsignado.Series = int.Parse(tbxSeriesRep.Text);
+            }
+            else
+            {
+                ejercicioAsignado.Series = 0;
+            }
+
+            if (tbxRepeticionesRep.Text != "")
+            {
+                ejercicioAsignado.Repeticiones = int.Parse(tbxRepeticionesRep.Text);
+            }
+            else
+            {
+                ejercicioAsignado.Repeticiones = 0;
+            }
+
+            if (tbxDescansoRep.Text != "")
+            {
+                ejercicioAsignado.TiempoEstimado = int.Parse(tbxDescansoRep.Text);
+            }
+            else
+            {
+                ejercicioAsignado.TiempoEstimado = 0;
+            }
+
+            if (tbxPesoRep.Text != "")
+            {
+                ejercicioAsignado.Peso = decimal.Parse(tbxPesoRep.Text);
+            }
+            else
+            {
+                ejercicioAsignado.Peso = 0;
+            }
+
+            ejercicioAsignado.Observaciones = tbxObservacionesRep.Text;
+            ejercicioAsignado.Url = tbxUrlRep.Text;
+
+
+            // PREGUNTO AL USUARIO Y SI ESTA OK CON JS Y AGREGO;
+            ejercicioAsignadoNegocio.ModificarSinEjercicioBase(ejercicioAsignado);
+
+            // Guardar mensaje de éxito en Session para mostrar después del redirect
+            Session["MensajeExito"] = "Ejercicio editado correctamente";
+
+            // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
+            Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
+
+      
+
+
+        }
     }
 }
