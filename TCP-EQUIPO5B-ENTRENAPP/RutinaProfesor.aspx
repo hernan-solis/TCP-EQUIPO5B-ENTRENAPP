@@ -147,8 +147,8 @@
                                                             ID="revPesoRep"
                                                             runat="server"
                                                             ControlToValidate="tbxPesoRep"
-                                                            ValidationExpression="^\d+$"
-                                                            ErrorMessage="Solo números"
+                                                            ValidationExpression="^\d+([,]\d{1,2})?$"
+                                                            ErrorMessage="Solo números: 0 o 0,50"
                                                             Display="Dynamic"
                                                             CssClass="text-danger small"
                                                             ForeColor="Red"
@@ -158,8 +158,8 @@
                                                     <td>
                                                         <asp:TextBox ID="tbxObservacionesRep"
                                                             runat="server"
-                                                            Text=<%# Eval("Observaciones") %>
-                                                            placeholder=<%# Eval("Observaciones") %>
+                                                            Text='<%# Eval("Observaciones") %>'
+                                                            placeholder='<%# Eval("Observaciones") %>'
                                                             CssClass="form-control form-control-sm"
                                                             TextMode="MultiLine"
                                                             Rows="1" />
@@ -167,8 +167,8 @@
                                                     <td>
                                                         <asp:TextBox ID="tbxUrlRep"
                                                             runat="server"
-                                                            Text=<%# Eval("Url") %>
-                                                            placeholder=<%# Eval("Url") %>
+                                                            Text='<%# Eval("Url") %>'
+                                                            placeholder='<%# Eval("Url") %>'
                                                             CssClass="form-control form-control-sm text-center"
                                                             ToolTip="Url Link para que el alumno suba el video" />
                                                     </td>
@@ -273,8 +273,8 @@
                                                     ID="RevPeso"
                                                     runat="server"
                                                     ControlToValidate="tbxPeso"
-                                                    ValidationExpression="^\d+$"
-                                                    ErrorMessage="Solo números"
+                                                    ValidationExpression="^\d+([,]\d{1,2})?$"
+                                                    ErrorMessage="Solo números: 0 o 0,50"
                                                     Display="Dynamic"
                                                     CssClass="text-danger small"
                                                     ForeColor="Red"
