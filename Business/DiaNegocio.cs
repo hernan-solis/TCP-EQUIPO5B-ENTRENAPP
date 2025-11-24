@@ -156,18 +156,17 @@ namespace Business
 
         }
 
+        // ELIMINA FISICAMENTE DIA Y EJERCICIOS ASIGNADOS ASOCIADOS
         public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("DELETE FROM EjercicioAsignado WHERE DíaID = @ID");
+                
+                datos.setearConsulta("DELETE FROM EjercicioAsignado WHERE DíaID = @ID; DELETE FROM Día WHERE ID = @ID");
                 datos.setearParametro("@ID", id);
                 datos.ejecutarAccion();
 
-                datos.setearConsulta("DELETE FROM Día WHERE ID = @ID");
-                datos.setearParametro("@ID", id);
-                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {

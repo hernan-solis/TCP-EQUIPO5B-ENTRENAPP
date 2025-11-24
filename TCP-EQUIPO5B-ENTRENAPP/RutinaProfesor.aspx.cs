@@ -261,15 +261,25 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
         protected void BtnEliminarDia_Command(object sender, CommandEventArgs e)
         {
+            if (e.CommandName == "IdDiaEliminar")
+            {
+                // PRIMERO SETEO Y PREPARO LOS ID PARA MANDAR A LA SIGUIENTE PAGINA
 
+                //Recupero el argument
+                int idDiaAEliminar = int.Parse(e.CommandArgument.ToString());
 
+                //Recupero los IDs desde el ViewState
+                int idAlu = (int)ViewState["idAlu"];
+                int idProfe = (int)ViewState["idProfe"];
 
-            //Recupero los IDs desde el ViewState
-            int idAlu = (int)ViewState["idAlu"];
-            int idProfe = (int)ViewState["idProfe"];
+                DiaNegocio diaNegocio = new DiaNegocio();
 
-            // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
-            Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
+                // ELIMINA EL DIA Y LOS EJERCICIOS ASIGNADOS RELACIONADOS A ESE DIA
+                diaNegocio.Eliminar(idDiaAEliminar);
+
+                // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
+                Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
+            }
         }
 
         protected void BtnEditarNombreDia_Command(object sender, CommandEventArgs e)

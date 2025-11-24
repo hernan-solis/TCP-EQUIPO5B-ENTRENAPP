@@ -177,6 +177,28 @@ namespace Business
 
         }
 
+        public void EliminarPorDiaId(int idDia)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("DELETE FROM EjercicioAsignado WHERE DíaID = @idDia");
+                datos.setearParametro("@idDia", idDia);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+        
+
 
     }
 }
