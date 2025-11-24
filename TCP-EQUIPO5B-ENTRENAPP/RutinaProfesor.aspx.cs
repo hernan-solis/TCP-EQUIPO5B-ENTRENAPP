@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 using static System.Collections.Specialized.BitVector32;
 
 namespace TCP_EQUIPO5B_ENTRENAPP
@@ -62,20 +63,20 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             // SETEO EL REPEATER - OJO CON LOS POSTBACKS
             if (!IsPostBack)
             {
-                
+
 
                 RepeaterDiaAlu.DataSource = rutina.Dia;
                 RepeaterDiaAlu.DataBind();
 
             }
-                
-       
+
+
             // SETEO EL TITULO CON EL NOMBRE DEL ALUMNO
             HTresNombreAlumno.InnerText = "Gestion de rutina Alumno: " + alumno.Apellido + " " + alumno.Nombre;
 
-            
 
-           
+
+
 
 
 
@@ -128,7 +129,91 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             int idAlu = (int)ViewState["idAlu"];
             int idProfe = (int)ViewState["idProfe"];
 
+            // Creo el EjercicioAsignado para asignarle los valores
 
+            EjercicioAsignado ejercicioAsignado = new EjercicioAsignado();
+
+            // Obtener el botón y el repeater item de forma directa
+            System.Web.UI.WebControls.Button boton = (System.Web.UI.WebControls.Button)sender;
+            System.Web.UI.Control contenedor = boton.NamingContainer;
+
+            // Obtener otros valores directamente de los controles
+            System.Web.UI.WebControls.TextBox tbxSeries = (System.Web.UI.WebControls.TextBox)contenedor.FindControl("tbxSeries");
+            System.Web.UI.WebControls.TextBox tbxRepeticiones = (System.Web.UI.WebControls.TextBox)contenedor.FindControl("tbxRepeticiones");
+            System.Web.UI.WebControls.TextBox tbxDescanso = (System.Web.UI.WebControls.TextBox)contenedor.FindControl("tbxDescanso");
+            System.Web.UI.WebControls.TextBox tbxPeso = (System.Web.UI.WebControls.TextBox)contenedor.FindControl("tbxPeso");
+            System.Web.UI.WebControls.TextBox tbxObservaciones = (System.Web.UI.WebControls.TextBox)contenedor.FindControl("tbxObservaciones");
+            System.Web.UI.WebControls.TextBox tbxUrl = (System.Web.UI.WebControls.TextBox)contenedor.FindControl("tbxUrl");
+
+            DropDownList ddlEjercicios = (DropDownList)contenedor.FindControl("DdlEjercicios");
+
+
+
+            // ASIGNO LOS VALORES AL OBJETO EJERCICIO ASIGNADO
+            if (tbxSeries.Text != "")
+            {
+                ejercicioAsignado.Series = int.Parse(tbxSeries.Text);
+            }
+            else
+            {
+                ejercicioAsignado.Series = 0;
+            }
+
+            if (tbxRepeticiones.Text != "")
+            {
+                ejercicioAsignado.Repeticiones = int.Parse(tbxRepeticiones.Text);
+            }
+            else
+            {
+                ejercicioAsignado.Repeticiones = 0;
+            }
+
+            if (tbxDescanso.Text != "")
+            {
+                ejercicioAsignado.TiempoEstimado = int.Parse(tbxDescanso.Text);
+            }
+            else
+            {
+                ejercicioAsignado.TiempoEstimado = 0;
+            }
+
+            if (tbxPeso.Text != "")
+            {
+                ejercicioAsignado.Peso = decimal.Parse(tbxPeso.Text);
+            }
+            else
+            {
+                ejercicioAsignado.Peso = 0;
+            }
+            ejercicioAsignado.Observaciones = tbxObservaciones.Text;
+            ejercicioAsignado.Url = tbxUrl.Text;
+
+            // OBTENGO EL EJERCICIO BASE SELECCIONADO EN EL DROPDOWN
+            EjercicioBaseNegocio ejercicioBaseNegocio = new EjercicioBaseNegocio();
+            ejercicioAsignado.EjercicioBase = ejercicioBaseNegocio.ObtenerPorId(int.Parse(ddlEjercicios.SelectedValue));
+
+            // PREGUNTO AL USUARIO Y SI ESTA OK LO SUBO A LA DB (TENGO QUE TENER EL USING System.Windows.Forms;
+
+            DialogResult resultado = MessageBox.Show(
+             "¿Está seguro que desea guardar el ejercicio asignado?",
+             "Confirmar Guardado",
+              MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question
+);
+            EjercicioAsignadoNegocio ejercicioAsignadoNegocio = new EjercicioAsignadoNegocio();
+
+            if (resultado == DialogResult.Yes)
+            {
+                MessageBox.Show("Ejercicio guardado correctamente");
+
+                ejercicioAsignadoNegocio.Agregar(ejercicioAsignado, idDia);
+
+                
+            }
+            else
+            {
+                MessageBox.Show("Operación cancelada por el usuario");
+            }
 
             // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
             Response.Redirect($"/RutinaProfesor.aspx?diaId={idDia}&idAlu={idAlu}&idProfe={idProfe}");

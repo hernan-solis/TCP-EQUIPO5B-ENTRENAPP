@@ -155,7 +155,7 @@
                                             </td>
 
                                             <td>
-                                                <asp:TextBox ID="txtObservaciones"
+                                                <asp:TextBox ID="tbxObservaciones"
                                                     runat="server"
                                                     Text=""
                                                     CssClass="form-control form-control-sm"
@@ -164,7 +164,7 @@
                                             </td>
 
                                             <td>
-                                                <asp:TextBox ID="txtUrl"
+                                                <asp:TextBox ID="tbxUrl"
                                                     runat="server"
                                                     Text=""
                                                     CssClass="form-control form-control-sm text-center"
