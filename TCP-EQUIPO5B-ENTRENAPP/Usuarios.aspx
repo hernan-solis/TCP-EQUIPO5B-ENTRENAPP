@@ -17,7 +17,20 @@
                 <asp:RequiredFieldValidator
                     ID="rfvNombre"
                     runat="server"
-                    ControlToValidate="txtNombre" ErrorMessage="El nombre es obligatorio." Text="Campo obligatorio *" ForeColor="Red" Display="Dynamic" />
+                    ControlToValidate="txtNombre"
+                    ErrorMessage="Campo obligatorio"
+                    Text="Campo obligatorio *"
+                    ForeColor="Red"
+                    Display="Dynamic" />
+                <asp:RegularExpressionValidator
+                    ID="revNombre"
+                    runat="server"
+                    ControlToValidate="txtNombre"
+                    ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,}$"
+                    ErrorMessage="* El nombre solo puede contener letras y debe tener al menos 3 caracteres."
+                    Text="* El nombre solo puede contener letras y debe tener al menos 3 caracteres."
+                    ForeColor="Red"
+                    Display="Dynamic" />
             </div>
 
             <div class="mb-3">
@@ -29,6 +42,15 @@
                     ControlToValidate="txtApellido"
                     ErrorMessage="Campo obligatorio"
                     Text="Campo obligatorio *"
+                    ForeColor="Red"
+                    Display="Dynamic" />
+                <asp:RegularExpressionValidator
+                    ID="revApellido"
+                    runat="server"
+                    ControlToValidate="txtNombre"
+                    ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,}$"
+                    ErrorMessage="* El apellido solo puede contener letras y debe tener al menos 3 caracteres."
+                    Text="* El apellido solo puede contener letras y debe tener al menos 3 caracteres."
                     ForeColor="Red"
                     Display="Dynamic" />
             </div>
@@ -45,7 +67,7 @@
                     CssClass="text-danger small"
                     ForeColor="Red"
                     SetFocusOnError="True">
-            </asp:RegularExpressionValidator>
+                </asp:RegularExpressionValidator>
                 <asp:RequiredFieldValidator
                     ID="rfvEmail"
                     runat="server"
@@ -74,13 +96,13 @@
                     ID="revTelefono"
                     runat="server"
                     ControlToValidate="txtTelefono"
-                    ValidationExpression="^\d+$"
-                    ErrorMessage="Solo números"
+                    ValidationExpression="^\d{10,}$"
+                    ErrorMessage="Debe ingresar solo números, con un mínimo de 10 dígitos."
                     Display="Dynamic"
                     CssClass="text-danger small"
                     ForeColor="Red"
                     SetFocusOnError="True">
-            </asp:RegularExpressionValidator>
+                </asp:RegularExpressionValidator>
                 <asp:RequiredFieldValidator
                     ID="rfvTelefono"
                     runat="server"
@@ -103,7 +125,7 @@
                     CssClass="text-danger small"
                     ForeColor="Red"
                     SetFocusOnError="True">
-            </asp:RegularExpressionValidator>
+                </asp:RegularExpressionValidator>
                 <asp:RequiredFieldValidator
                     ID="rfvEdad"
                     runat="server"
