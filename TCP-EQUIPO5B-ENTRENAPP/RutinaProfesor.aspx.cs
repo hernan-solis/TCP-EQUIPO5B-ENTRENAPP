@@ -94,11 +94,10 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             }
 
 
-            // SETEO EL TITULO CON EL NOMBRE DEL ALUMNO
+            // SETEO LOS TITULOS
             HTresNombreAlumno.InnerText = "Alumno: " + alumno.Apellido + " " + alumno.Nombre;
-
-            // SETEO EL TITULO CON EL NOMBRE DE LA RUTINA
             HTresNombreRutina.InnerText = "Rutina: " + rutina.Titulo;
+            HTresNombreRutinaDescrip.InnerText = "Descripción: " + rutina.Descripcion;
 
 
             // Recuperar Scroll desde cookie
@@ -385,6 +384,9 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             base.Render(writer);
         }
 
+        protected void BtnEditarNombreRutina_Command(object sender, CommandEventArgs e)
+        {
 
+        }
     }
 }

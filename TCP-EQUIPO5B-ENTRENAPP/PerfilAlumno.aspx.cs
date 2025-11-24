@@ -38,11 +38,10 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 RepeaterDia.DataBind(); // vinculo los datos al Repeater
             }
 
-            // SETEO EL TITULO CON EL NOMBRE DEL ALUMNO
+            // SETEO DE TITULOS
             HTresNombreAlumno.InnerText = alumno.Apellido + " " + alumno.Nombre;
-
-            // SETEO EL TITULO CON EL NOMBRE DE LA RUTINA
             HTresNombreRutina.InnerText = "Rutina: " + rutina.Titulo;
+            HTresNombreRutinaDescrip.InnerText = "Descripción: " + rutina.Descripcion;
 
 
         }

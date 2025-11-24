@@ -74,11 +74,10 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             // SETEO PARA MOSTRAR EL NOMBRE DEL DIA
             DivTituloDia.InnerText = diaSeleccionado.NombreDia;
 
-            // SETEO EL TITULO CON EL NOMBRE DEL ALUMNO
+            // SETEO DE TITULOS
             HTresNombreAlumno.InnerText = alumno.Apellido + " " + alumno.Nombre;
-
-            // SETEO EL TITULO CON EL NOMBRE DE LA RUTINA
             HTresNombreRutina.InnerText = "Rutina: " + rutina.Titulo;
+            HTresNombreRutinaDescrip.InnerText = "Descripción: " + rutina.Descripcion;
 
 
 

@@ -7,6 +7,7 @@
             <div class="text-center">
                 <h3 id="HTresNombreAlumno" runat="server"></h3>
                 <h3 id="HTresNombreRutina" runat="server"></h3>
+                <h3 id="HTresNombreRutinaDescrip" runat="server"></h3>
                 <br>
             </div>
             <div class="col-auto col-lg-auto">

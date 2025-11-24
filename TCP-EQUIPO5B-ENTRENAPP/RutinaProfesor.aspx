@@ -1,11 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RutinaProfesor.aspx.cs" Inherits="TCP_EQUIPO5B_ENTRENAPP.RutinaProfesor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    
-    
+
+
 
     <div class="text-center">
+
         <h3 id="HTresNombreRutina" runat="server"></h3>
+        <div class="d-flex justify-content-center my-2">
+            <asp:TextBox ID="TbxNombreRutina"
+                runat="server"
+                placeholder="Aqui Nombre Nuevo + Lapicito -->"
+                Text=""
+                CssClass="form-control form-control-sm text-center"
+                ToolTip="Nuevo Nombre Rutina" />
+            <asp:Button ID="BtnEditarNombreRutina" runat="server" Text="✍" class="btn btn-primary" CommandName="IdRutinaEditar" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnEditarNombreRutina_Command" OnClientClick="return confirm('¿Está seguro que desea Editar el Nombre de la Rutina?');" />
+        </div>
+
+        
+
+
+        <h3 id="HTresNombreRutinaDescrip" runat="server"></h3>
         <h3 id="HTresNombreAlumno" runat="server"></h3>
     </div>
 
@@ -25,7 +40,8 @@
                                 <div class="d-flex justify-content-center my-2">
                                     <asp:TextBox ID="TbxNombreDia"
                                         runat="server"
-                                        Text="Aqui Nombre Nuevo + Lapicito -->"
+                                        placeholder="Aqui Nombre Nuevo + Lapicito -->"
+                                        Text=""
                                         CssClass="form-control form-control-sm text-center"
                                         ToolTip="Nuevo Nombre Dia" />
                                     <asp:Button ID="BtnEditarNombreDia" runat="server" Text="✍" class="btn btn-primary" CommandName="IdDiaEditar" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnEditarNombreDia_Command" OnClientClick="return confirm('¿Está seguro que desea Editar el Día seleccionado?');" />
