@@ -6,6 +6,8 @@
 
     <div class="text-center">
 
+        <h3 id="HTresNombreAlumno" runat="server"></h3>
+
         <h3 id="HTresNombreRutina" runat="server"></h3>
         <div class="d-flex justify-content-center my-2">
             <asp:TextBox ID="TbxNombreRutina"
@@ -14,14 +16,20 @@
                 Text=""
                 CssClass="form-control form-control-sm text-center"
                 ToolTip="Nuevo Nombre Rutina" />
-            <asp:Button ID="BtnEditarNombreRutina" runat="server" Text="✍" class="btn btn-primary" CommandName="IdRutinaEditar" CommandArgument='<%#Eval("Id")%>' OnCommand="BtnEditarNombreRutina_Command" OnClientClick="return confirm('¿Está seguro que desea Editar el Nombre de la Rutina?');" />
+            <asp:Button ID="BtnEditarNombreRutina" runat="server" Text="✍" class="btn btn-primary" OnClick="BtnEditarNombreRutina_Click" OnClientClick="return confirm('¿Está seguro que desea Editar el Nombre de la Rutina?');" />
         </div>
 
-        
+        <h3 id="HTresDescripRutina" runat="server"></h3>
+        <div class="d-flex justify-content-center my-2">
+            <asp:TextBox ID="TbxDescripcionRutina"
+                runat="server"
+                placeholder="Aqui Descripcion Nueva + Lapicito -->"
+                Text=""
+                CssClass="form-control form-control-sm text-center"
+                ToolTip="Nuevo Descripcion Rutina" />
+            <asp:Button ID="BtnEditarDescripcionRutina" runat="server" Text="✍" class="btn btn-primary" OnClick="BtnEditarDescripcionRutina_Click" OnClientClick="return confirm('¿Está seguro que desea Editar la Descripcion de la Rutina?');" />
+        </div>
 
-
-        <h3 id="HTresNombreRutinaDescrip" runat="server"></h3>
-        <h3 id="HTresNombreAlumno" runat="server"></h3>
     </div>
 
     <asp:Button ID="BtnAgregarDia" runat="server" Text="➕ Nuego Dia" class="btn btn-primary" OnClick="BtnAgregarDia_Click" OnClientClick="return confirm('¿Está seguro que desea Agregar Dia Nuevo?');" />

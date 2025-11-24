@@ -15,6 +15,15 @@ namespace TCP_EQUIPO5B_ENTRENAPP
     {
 
         /// <summary>
+        /// HTresNombreAlumno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HTresNombreAlumno;
+
+        /// <summary>
         /// HTresNombreRutina control.
         /// </summary>
         /// <remarks>
@@ -42,22 +51,31 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         protected global::System.Web.UI.WebControls.Button BtnEditarNombreRutina;
 
         /// <summary>
-        /// HTresNombreRutinaDescrip control.
+        /// HTresDescripRutina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HTresNombreRutinaDescrip;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HTresDescripRutina;
 
         /// <summary>
-        /// HTresNombreAlumno control.
+        /// TbxDescripcionRutina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HTresNombreAlumno;
+        protected global::System.Web.UI.WebControls.TextBox TbxDescripcionRutina;
+
+        /// <summary>
+        /// BtnEditarDescripcionRutina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnEditarDescripcionRutina;
 
         /// <summary>
         /// BtnAgregarDia control.

@@ -211,6 +211,54 @@ namespace Business
         }
 
 
+        public void CambiarNombre(int idRutina, string nuevoNombre)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Rutinas SET Título = @titulo WHERE ID = @id;");
+                datos.setearParametro("@titulo", nuevoNombre);
+                datos.setearParametro("@id", idRutina);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void CambiarDescripcion(int idRutina, string nuevaDescripcion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Rutinas SET Descripción = @descripcion WHERE ID = @id;");
+                datos.setearParametro("@descripcion", nuevaDescripcion);
+                datos.setearParametro("@id", idRutina);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
     }
 

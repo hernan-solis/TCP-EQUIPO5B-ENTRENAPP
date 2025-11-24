@@ -97,7 +97,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             // SETEO LOS TITULOS
             HTresNombreAlumno.InnerText = "Alumno: " + alumno.Apellido + " " + alumno.Nombre;
             HTresNombreRutina.InnerText = "Rutina: " + rutina.Titulo;
-            HTresNombreRutinaDescrip.InnerText = "Descripción: " + rutina.Descripcion;
+            HTresDescripRutina.InnerText = "Descripción: " + rutina.Descripcion;
 
 
             // Recuperar Scroll desde cookie
@@ -384,8 +384,71 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             base.Render(writer);
         }
 
-        protected void BtnEditarNombreRutina_Command(object sender, CommandEventArgs e)
+  
+        protected void BtnEditarNombreRutina_Click(object sender, EventArgs e)
         {
+         
+            // PRIMERO SETEO Y PREPARO LOS ID PARA MANDAR A LA SIGUIENTE PAGINA
+
+            //Recupero los IDs desde el ViewState
+            int idAlu = (int)ViewState["idAlu"];
+            int idProfe = (int)ViewState["idProfe"];
+
+            // Recupero la rutina del alumno para obtener su ID
+            RutinaNegocio rutinaNegocio = new RutinaNegocio();
+            Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlu);
+
+            // Obtener el botón y controlador de objetos de forma directa para recuperarlos
+            Button boton = (Button)sender;
+            Control contenedor = boton.NamingContainer;
+
+            // Obtener otros valores directamente de los controles
+            TextBox tbxNombreRutina = (TextBox)contenedor.FindControl("TbxNombreRutina");
+
+
+            // Edita directamente (usa JavaScript en el frontend para confirmar)
+
+            rutinaNegocio.CambiarNombre(rutina.Id, tbxNombreRutina.Text);
+
+            // Guardar mensaje de éxito en Session
+            Session["MensajeExito"] = "Nombre Rutina Editado correctamente";
+
+
+            // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
+            Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
+            
+        }
+
+        protected void BtnEditarDescripcionRutina_Click(object sender, EventArgs e)
+        {
+            // PRIMERO SETEO Y PREPARO LOS ID PARA MANDAR A LA SIGUIENTE PAGINA
+
+            //Recupero los IDs desde el ViewState
+            int idAlu = (int)ViewState["idAlu"];
+            int idProfe = (int)ViewState["idProfe"];
+
+            // Recupero la rutina del alumno para obtener su ID
+            RutinaNegocio rutinaNegocio = new RutinaNegocio();
+            Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlu);
+
+            // Obtener el botón y controlador de objetos de forma directa para recuperarlos
+            Button boton = (Button)sender;
+            Control contenedor = boton.NamingContainer;
+
+            // Obtener otros valores directamente de los controles
+            TextBox tbxDescripcionRutina = (TextBox)contenedor.FindControl("TbxDescripcionRutina");
+
+
+            // Edita directamente (usa JavaScript en el frontend para confirmar)
+
+            rutinaNegocio.CambiarDescripcion(rutina.Id, tbxDescripcionRutina.Text);
+
+            // Guardar mensaje de éxito en Session
+            Session["MensajeExito"] = "Nombre Rutina Editado correctamente";
+
+
+            // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
+            Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
 
         }
     }
