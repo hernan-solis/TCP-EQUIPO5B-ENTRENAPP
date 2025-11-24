@@ -10,12 +10,12 @@ namespace Models
     {
         public int Id { get; set; }
 
-        public Rutina Rutina { get; set; }
+        public int RutinaId { get; set; }
         public DateTime FechaRegistro { get; set; }
+
+
         public EjercicioAsignado EjercicioAsignado { get; set; }
 
-
-        ///
 
         //public int Id { get; set; }
 
