@@ -96,7 +96,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             // SETEO LOS TITULOS
             HTresNombreAlumno.InnerText = "Alumno: " + alumno.Apellido + " " + alumno.Nombre;
-            HTresNombreRutina.InnerText = "Rutina: " + rutina.Titulo;
+            HTresNombreRutina.InnerText = "Rutina Titulo: " + rutina.Titulo;
             HTresDescripRutina.InnerText = "Descripción: " + rutina.Descripcion;
 
 
@@ -396,6 +396,28 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             // Recupero la rutina del alumno para obtener su ID
             RutinaNegocio rutinaNegocio = new RutinaNegocio();
+
+            // Trato de traer la rutina del alumno, solo para saber que existe en la DB
+            // Si no existe, primero le vamos a crear una rutina vacia al alumno
+            Rutina rutinaCheck = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlu);
+            if (rutinaCheck.Alumno == null)
+            {
+
+                Rutina nuevaRutina = new Rutina();
+
+                nuevaRutina.Alumno = new Alumno();
+                nuevaRutina.Alumno.Id = idAlu;
+                nuevaRutina.Profesor = new Profesor();
+                nuevaRutina.Profesor.Id = idProfe;
+                nuevaRutina.Titulo = "Nueva Rutina";
+                nuevaRutina.Descripcion = "Agregar Descripcion";
+
+
+                rutinaNegocio.Agregar(nuevaRutina);
+
+            }
+
+            // CUPERO LA RUTINA YA ASEGURANDOME QUE EXISTA
             Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlu);
 
             // Obtener el botón y controlador de objetos de forma directa para recuperarlos
@@ -429,6 +451,30 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             // Recupero la rutina del alumno para obtener su ID
             RutinaNegocio rutinaNegocio = new RutinaNegocio();
+            
+            // Trato de traer la rutina del alumno, solo para saber que existe en la DB
+            // Si no existe, primero le vamos a crear una rutina vacia al alumno
+            Rutina rutinaCheck = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlu);
+            if (rutinaCheck.Alumno == null)
+            {
+
+
+
+                Rutina nuevaRutina = new Rutina();
+
+                nuevaRutina.Alumno = new Alumno();
+                nuevaRutina.Alumno.Id = idAlu;
+                nuevaRutina.Profesor = new Profesor();
+                nuevaRutina.Profesor.Id = idProfe;
+                nuevaRutina.Titulo = "Nueva Rutina";
+                nuevaRutina.Descripcion = "Agregar Descripcion";
+
+
+                rutinaNegocio.Agregar(nuevaRutina);
+
+            }
+
+            // CUPERO LA RUTINA YA ASEGURANDOME QUE EXISTA
             Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlu);
 
             // Obtener el botón y controlador de objetos de forma directa para recuperarlos
