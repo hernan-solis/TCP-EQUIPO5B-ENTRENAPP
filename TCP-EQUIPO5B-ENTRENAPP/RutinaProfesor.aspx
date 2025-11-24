@@ -72,44 +72,86 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <asp:DropDownList 
-                                                    ID="DdlEjercicios" 
+                                                <asp:DropDownList
+                                                    ID="DdlEjercicios"
                                                     runat="server">
-                                                    
-
                                                 </asp:DropDownList>
                                             </td>
 
                                             <td>
-                                                <asp:TextBox ID="txtSeries"
+                                                <asp:TextBox ID="tbxSeries"
                                                     runat="server"
                                                     Text=""
                                                     CssClass="form-control form-control-sm text-center"
                                                     ToolTip="Número de series" />
+                                                <asp:RegularExpressionValidator
+                                                    ID="revSeries"
+                                                    runat="server"
+                                                    ControlToValidate="tbxSeries"
+                                                    ValidationExpression="^\d+$"
+                                                    ErrorMessage="Solo números"
+                                                    Display="Dynamic"
+                                                    CssClass="text-danger small"
+                                                    ForeColor="Red"
+                                                    SetFocusOnError="True">
+                                                </asp:RegularExpressionValidator>
                                             </td>
 
                                             <td>
-                                                <asp:TextBox ID="txtRepeticiones"
+                                                <asp:TextBox ID="tbxRepeticiones"
                                                     runat="server"
                                                     Text=""
                                                     CssClass="form-control form-control-sm text-center"
                                                     ToolTip="Número de repeticiones" />
+                                                <asp:RegularExpressionValidator
+                                                    ID="RevRepeticiones"
+                                                    runat="server"
+                                                    ControlToValidate="tbxRepeticiones"
+                                                    ValidationExpression="^\d+$"
+                                                    ErrorMessage="Solo números"
+                                                    Display="Dynamic"
+                                                    CssClass="text-danger small"
+                                                    ForeColor="Red"
+                                                    SetFocusOnError="True">
+                                                </asp:RegularExpressionValidator>
                                             </td>
 
                                             <td>
-                                                <asp:TextBox ID="txtDescanso"
+                                                <asp:TextBox ID="tbxDescanso"
                                                     runat="server"
                                                     Text=""
                                                     CssClass="form-control form-control-sm text-center"
                                                     ToolTip="Descanso en minutos" />
+                                                <asp:RegularExpressionValidator
+                                                    ID="RevDescanso"
+                                                    runat="server"
+                                                    ControlToValidate="tbxDescanso"
+                                                    ValidationExpression="^\d+$"
+                                                    ErrorMessage="Solo números"
+                                                    Display="Dynamic"
+                                                    CssClass="text-danger small"
+                                                    ForeColor="Red"
+                                                    SetFocusOnError="True">
+                                                </asp:RegularExpressionValidator>
                                             </td>
 
                                             <td>
-                                                <asp:TextBox ID="txtPeso"
+                                                <asp:TextBox ID="tbxPeso"
                                                     runat="server"
                                                     Text=""
                                                     CssClass="form-control form-control-sm text-center"
                                                     ToolTip="Peso utilizado en kilogramos" />
+                                                <asp:RegularExpressionValidator
+                                                    ID="RevPeso"
+                                                    runat="server"
+                                                    ControlToValidate="tbxPeso"
+                                                    ValidationExpression="^\d+$"
+                                                    ErrorMessage="Solo números"
+                                                    Display="Dynamic"
+                                                    CssClass="text-danger small"
+                                                    ForeColor="Red"
+                                                    SetFocusOnError="True">
+                                                </asp:RegularExpressionValidator>
                                             </td>
 
                                             <td>
