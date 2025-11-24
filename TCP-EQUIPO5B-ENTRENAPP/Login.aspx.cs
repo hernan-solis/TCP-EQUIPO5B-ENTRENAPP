@@ -36,10 +36,6 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             UsuarioNegocio negocio = new UsuarioNegocio();
             Usuario usuario = new Usuario();
 
-            // CHEQUEAR EL TEMA DEL LOGIN
-
-            
-
             int idUsuario = negocio.Loguear(EmailLogin.Text, ConstraseniaLogin.Text);
 
             usuario = negocio.ObtenerUsuarioPorId(idUsuario);
@@ -48,20 +44,24 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             if (idUsuario > 0)
             {
-                if (rol == "Profesor")
+                switch (rol)
                 {
-                    Response.Redirect("~/PerfilProfesor.aspx");
-
+                    case "Profesor":
+                        Response.Redirect("~/PerfilProfesor.aspx");
+                        break;
+                    case "Alumno":
+                        Response.Redirect("~/PerfilAlumno.aspx");
+                        break;
+                    case "Gestor":
+                        Response.Redirect("~/Gestor.aspx");
+                        break;
+                    default:                       
+                        Response.Redirect("~/Default.aspx");
+                        break;
                 }
-                else if (rol == "Alumno")
-                {
-                    Response.Redirect("~/PerfilAlumno.aspx");
-
-                }
-
             }
 
-            
+
         }
     }
 }
