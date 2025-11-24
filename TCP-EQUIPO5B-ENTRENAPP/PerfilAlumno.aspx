@@ -14,7 +14,10 @@
             <ItemTemplate>
                 <div class="col-md-4">
                     <div class="card border-secondary  mb-3" style="max-width: 18rem;">
-                        <div class="card-header bg-light  border-secondary fw-bold "><%#Eval("NombreDia")%></div>
+                        <div class="card-header bg-light  border-secondary fw-bold ">
+                            <%#Eval("NombreDia")%> -
+                            <label><%# GetTextoCompletado(Convert.ToBoolean(Eval("Completado"))) %></label>
+                        </div>
                         <div class="card-body text-secondary">
                             <%--<h5 class="card-title">EJERCICIOS</h5>--%>
                             <asp:Repeater ID="RepeaterEjerAsig" runat="server">
@@ -30,6 +33,13 @@
                         </div>
                     </div>
                 </div>
+
+                <script runat="server">
+                    public string GetTextoCompletado(bool estaCompletado)
+                    {
+                        return estaCompletado ? "✅ Completado" : "⏳ Pendiente";
+                    }
+                </script>
             </ItemTemplate>
         </asp:Repeater>
 

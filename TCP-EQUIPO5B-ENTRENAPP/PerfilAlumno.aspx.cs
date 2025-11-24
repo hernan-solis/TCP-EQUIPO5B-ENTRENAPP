@@ -44,7 +44,6 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             HTresNombreRutina.InnerText = "Rutina: " + rutina.Titulo;
             HTresNombreRutinaDescrip.InnerText = "Descripción: " + rutina.Descripcion;
 
-
         }
 
         // FUNCION QUE SE EJECUTA CADA VEZ QUE SE VINCULA UN ITEM EN EL REPEATER DE DIAS
