@@ -12,6 +12,9 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 {
     public partial class RutinaAlumno : System.Web.UI.Page
     {
+        // VARIABLES DE CLASE - accesibles en TODO el Page
+        private int idDia;
+        private int idAlu;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -25,44 +28,20 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('{msg}');", true);
             }
 
-
-
             // PRIMERO RECUPERO LOS ID PASADOS POR PARAMETRO EN LA URL
 
             if (!IsPostBack)
             {
-                // Recuperar parámetros
-                string idDiaUrl = Request.QueryString["idDia"];
-                string idAluUrl = Request.QueryString["idAlu"];
 
-                // PEQUEÑO CONTROL DE ERRORES
-                if (idDiaUrl == null || idAluUrl == null)
-                {
-                    Response.Write("Error: faltan parámetros en la URL");
-                    return;
-                }
+                idDia = Session["IdDia"] != null ? (int)Session["IdDia"] : int.Parse(Request.QueryString["idDia"]);
+                idAlu = Session["IdUsuario"] != null ? (int)Session["IdUsuario"] : int.Parse(Request.QueryString["idAlu"]);
 
-                int idDia = int.Parse(idDiaUrl);
-                int idAlu = int.Parse(idAluUrl);
-
-
-
-                //Se rompe si siempre llamas a la misma página con los mismos parámetros
-                //Solucion: guardar en ViewState
-                // Guardar en ViewState para siguientes postbacks //
-                // VIEWSTATE ES UN MECANISMO PARA RECORDAD VALORES ENTRE POSTBACKS
-
-                ViewState["idDia"] = idDia;
-                ViewState["idAlu"] = idAlu;
-
-                
-               
             }
             else
             {
-                // En postbacks, levantar de ViewState
-                int idDia = (int)ViewState["idDia"];
-                int idAlu = (int)ViewState["idAlu"];
+                idDia = Session["IdDia"] != null ? (int)Session["IdDia"] : int.Parse(Request.QueryString["idDia"]);
+                idAlu = Session["IdUsuario"] != null ? (int)Session["IdUsuario"] : int.Parse(Request.QueryString["idAlu"]);
+     
             }
 
             // OBTENGO EL OBJETO ALUMNO Y RUTINA PARA USARLOS COMO PREFIERA.
@@ -70,8 +49,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             AlumnoNegocio alumnoNegocio = new AlumnoNegocio();
             RutinaNegocio rutinaNegocio = new RutinaNegocio();
 
-            Alumno alumno = alumnoNegocio.ObtenerPorId((int)ViewState["idAlu"]);
-            Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno((int)ViewState["idAlu"]);
+            Alumno alumno = alumnoNegocio.ObtenerPorId(idAlu);
+            Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlu);
 
             
 
@@ -80,7 +59,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             //Una lambda es una función sin nombre, escrita en una línea, usando la flecha
             //FIND ES UNA FUNCION DE LOS OBJETOS LISTA
 
-            Dia diaSeleccionado = rutina.Dia.Find(d => d.Id == (int)ViewState["idDia"]);
+            Dia diaSeleccionado = rutina.Dia.Find(d => d.Id == idDia);
 
           
 
@@ -120,24 +99,24 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
         protected void BtnDiaCompletado_Click(object sender, EventArgs e)
         {
-            // RECUPERO DATOS DE VIEWSTATE PARA TRABAJAR
-            int idDia = (int)ViewState["idDia"];
-            int idAlu = (int)ViewState["idAlu"];
+            // RECUPERO DATOS DE SESSION O URL
+            int idDia = Session["IdDia"] != null ? (int)Session["IdDia"] : int.Parse(Request.QueryString["idDia"]);
+            int idAlu = Session["IdUsuario"] != null ? (int)Session["IdUsuario"] : int.Parse(Request.QueryString["idAlu"]);
 
             // OBTENGO EL OBJETO ALUMNO Y RUTINA PARA USARLOS COMO PREFIERA.
 
             AlumnoNegocio alumnoNegocio = new AlumnoNegocio();
             RutinaNegocio rutinaNegocio = new RutinaNegocio();
 
-            Alumno alumno = alumnoNegocio.ObtenerPorId((int)ViewState["idAlu"]);
-            Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno((int)ViewState["idAlu"]);
+            Alumno alumno = alumnoNegocio.ObtenerPorId(idAlu);
+            Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlu);
 
             //EXPRESION LAMBDA PARA ENCONTRAR EL DIA SELECCIONADO SEGUN EL ID TRAIDO POR PARAMETRO
             //LO USA EL PROFE EN UNO DE SUS VIDEOS
             //Una lambda es una función sin nombre, escrita en una línea, usando la flecha
             //FIND ES UNA FUNCION DE LOS OBJETOS LISTA
 
-            Dia diaACompletar = rutina.Dia.Find(d => d.Id == (int)ViewState["idDia"]);
+            Dia diaACompletar = rutina.Dia.Find(d => d.Id == idDia);
 
             // Identifica qué botón específico fue presionado de la lista.
             Button boton = (Button)sender;
@@ -190,6 +169,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
         
             // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
+            
             Response.Redirect($"/RutinaAlumno.aspx?idDia={idDia}&idAlu={idAlu}");
         }
     }
