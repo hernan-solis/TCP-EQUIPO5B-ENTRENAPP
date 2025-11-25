@@ -14,15 +14,10 @@ namespace TCP_EQUIPO5B_ENTRENAPP
     public partial class PerfilAlumno : System.Web.UI.Page
     {
 
-        // TENGO QUE TENER PREVIAMENTE EL ID DEL ALUMNO O USUARIO O EL OBJETO ALUMNO
-        // O EL DATO TENERLO EN LA SESSION
-        // EN ESTE CASO DIGAMOS QUE TENGO EL ID DEL ALUMNO
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             //Recupero id alumno de la url o puedo desde la session
-            int alumnoId = Session ["idUsuario"] != null ? (int)Session["idUsuario"] : int.Parse(Request.QueryString["idAlu"]);
+            int alumnoId = Session ["IdUsuario"] != null ? (int)Session["IdUsuario"] : int.Parse(Request.QueryString["idAlu"]);
 
 
 
@@ -108,10 +103,11 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 //recupero el argument
                 int idDia = int.Parse(e.CommandArgument.ToString());
 
-                int alumnoId = Session["idUsuario"] != null ? (int)Session["idUsuario"] : int.Parse(Request.QueryString["idAlu"]);
-                int idAlu = alumnoId;   
+                int alumnoId = Session["IdUsuario"] != null ? (int)Session["IdUsuario"] : int.Parse(Request.QueryString["idAlu"]);
+                int idAlu = alumnoId;
 
-                // Redirigir con el Id del día y el id del alumno
+                // Redirigir con el Id del día y el id del alumno y guardo en session el dia
+                Session["IdDia"] = idDia;
                 Response.Redirect("/RutinaAlumno.aspx?idDia=" + idDia + "&idAlu="+ idAlu);
             }
         }
