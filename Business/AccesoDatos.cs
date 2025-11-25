@@ -25,7 +25,8 @@ namespace Business
           //conexion = new SqlConnection ("server=(localdb)\\MSSQLLocalDB; database=ENTRENAPP; integrated security=true");
 
            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=ENTRENAPP; integrated security=true");
-            comando = new SqlCommand();
+           comando = new SqlCommand();
+           comando.Connection = conexion;
         }
 
         public void setearConsulta(string consulta)
@@ -61,6 +62,10 @@ namespace Business
             {
                 throw ex;
             }
+            finally
+            {
+                conexion.Close();
+            }
         }
 
         public void setearParametro(string nombre, object valor)
@@ -73,6 +78,11 @@ namespace Business
             if (lector != null)
                 lector.Close();
             conexion.Close();
+        }
+
+        public void limpiarParametros()
+        {
+            comando.Parameters.Clear();
         }
 
     }

@@ -52,20 +52,105 @@
                                 </asp:Repeater>
                             </tbody>
                         </table>
-                    </div>
-
-                    <div class="card-footer bg-light border-secondary">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Realizado</label>
+                        <div class="card-footer bg-light border-secondary">
                         </div>
+                        <div id="DivAluRealizado" runat="server" class="card-header bg-light border-secondary fw-bold text-center">Realizado por Alumno:</div>
+                        <table class="table table-sm text-secondary mb-0 align-middle">
+                            <thead>
+                                <tr>
+                                    <th scope="col">EJERCICIOS</th>
+                                    <th scope="col" class="text-center">SERIES</th>
+                                    <th scope="col" class="text-center">REPES</th>
+                                    <th scope="col" class="text-center">PESO(kg)</th>
+                                    <th scope="col" class="text-center">COMENTARIOS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <asp:Repeater ID="RepeaterEjerAlu" runat="server">
+                                    <ItemTemplate>
+                                        <tr>
+                                            <td><%# Eval("EjercicioBase.Nombre") %></td>
+                                            <td>
+                                                <asp:TextBox ID="tbxSeriesRep"
+                                                    runat="server"
+                                                    Text='<%# Eval("Series") %>'
+                                                    placeholder="Completar"
+                                                    CssClass="form-control form-control-sm text-center"
+                                                    ToolTip="Número de series" />
+                                                <asp:RegularExpressionValidator
+                                                    ID="revSeriesRep"
+                                                    runat="server"
+                                                    ControlToValidate="tbxSeriesRep"
+                                                    ValidationExpression="^\d+$"
+                                                    ErrorMessage="Solo números"
+                                                    Display="Dynamic"
+                                                    CssClass="text-danger small"
+                                                    ForeColor="Red"
+                                                    SetFocusOnError="True">
+                                                </asp:RegularExpressionValidator>
+                                            </td>
+                                            <td>
+                                                <asp:TextBox ID="tbxRepeticionesRep"
+                                                    runat="server"
+                                                    Text='<%# Eval("Repeticiones") %>'
+                                                    placeholder="Completar"
+                                                    CssClass="form-control form-control-sm text-center"
+                                                    ToolTip="Número de series" />
+                                                <asp:RegularExpressionValidator
+                                                    ID="revRepeticionesRep"
+                                                    runat="server"
+                                                    ControlToValidate="tbxRepeticionesRep"
+                                                    ValidationExpression="^\d+$"
+                                                    ErrorMessage="Solo números"
+                                                    Display="Dynamic"
+                                                    CssClass="text-danger small"
+                                                    ForeColor="Red"
+                                                    SetFocusOnError="True">
+                                                </asp:RegularExpressionValidator>
+                                            </td>
+                                            <td>
+                                                <asp:TextBox ID="tbxPesoRep"
+                                                    runat="server"
+                                                    Text='<%# Eval("Peso") %>'
+                                                    placeholder="Completar"
+                                                    CssClass="form-control form-control-sm text-center"
+                                                    ToolTip="Número de series" />
+                                                <asp:RegularExpressionValidator
+                                                    ID="revPesoRep"
+                                                    runat="server"
+                                                    ControlToValidate="tbxPesoRep"
+                                                    ValidationExpression="^\d+([,]\d{1,2})?$"
+                                                    ErrorMessage="Solo números: 0 o 0,50"
+                                                    Display="Dynamic"
+                                                    CssClass="text-danger small"
+                                                    ForeColor="Red"
+                                                    SetFocusOnError="True">
+                                                </asp:RegularExpressionValidator>
+                                            </td>
+                                            <td>
+                                                <asp:TextBox ID="tbxObservacionesRep"
+                                                    runat="server"
+                                                    Text=""
+                                                    CssClass="form-control form-control-sm"
+                                                    TextMode="MultiLine"
+                                                    Rows="1" />
+                                            </td>
+                                        </tr>
+                                        <asp:HiddenField ID="hfIdEjerAlu" runat="server" Value='<%# Eval("Id") %>' />
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </tbody>
+                        </table>
                     </div>
 
+                </div>
+                <div class="text-center">
+                    <asp:Button ID="BtnDiaCompletado" runat="server" Text="✅ COMPLETAR DÍA" class="btn btn-primary" OnClick="BtnDiaCompletado_Click" OnClientClick="return confirm('¿Está seguro que desea Guardar el Dia Completado?');" />
                 </div>
             </div>
         </div>
     </div>
 
-    
+
 
 </asp:Content>
