@@ -186,16 +186,22 @@ namespace Business
         public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
+            EjercicioAsignadoNegocio ejercicioAsignadoNegocio = new EjercicioAsignadoNegocio();
             try
             {
-                //falta la eliminacion de ejercicio asignado
-
-                datos.setearConsulta("DELETE FROM Día WHERE RutinaID = @ID");
-                datos.setearParametro("@ID", id);
+                //primero eliminamos ejercicios asignados 
+                datos.setearConsulta("DELETE FROM EjercicioAsignado WHERE DíaID IN (SELECT ID FROM Día WHERE RutinaID = @ID)");
+                datos.setearParametro("@ID", id); // Usamos el ID de la Rutina
                 datos.ejecutarAccion();
 
-                datos.setearConsulta("DELETE FROM Rutinas WHERE id = @id");
-                datos.setearParametro("@id", id);
+                //luego eliminamos los dias
+                datos.setearConsulta("DELETE FROM Día WHERE RutinaID = @IDRutina");
+                datos.setearParametro("@IDRutina", id);
+                datos.ejecutarAccion();
+
+                //y por ultimo eliminamos la rutina
+                datos.setearConsulta("DELETE FROM Rutinas WHERE id = @idRut");
+                datos.setearParametro("@idRut", id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
