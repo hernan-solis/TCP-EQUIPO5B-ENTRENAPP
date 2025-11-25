@@ -12,6 +12,9 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 {
     public partial class RutinaProfesor : System.Web.UI.Page
     {
+        // VARIABLES DE CLASE - accesibles en TODO el Page
+        private int idProfe;
+        private int idAlu;
         protected void Page_Load(object sender, EventArgs e)
         {
             //  Restaura scroll si existe
@@ -23,41 +26,22 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             }
 
 
-            // PRIMERO RECUPERO LOS ID PASADOS POR PARAMETRO EN LA URL
+            // PRIMERO RECUPERO LOS ID PASADOS POR PARAMETRO EN LA URL O SESSION
 
 
             if (!IsPostBack)
             {
                 // Recuperar parámetros
-                string idAluUrl = Request.QueryString["idAlu"];
-                string idProfeUrl = Request.QueryString["idProfe"];
-
-
-                // PEQUEÑO CONTROL DE ERRORES
-                if (idProfeUrl == null || idAluUrl == null)
-                {
-                    Response.Write("Error: faltan parámetros en la URL");
-                    return;
-                }
-
-                int idProfe = int.Parse(idProfeUrl);
-                int idAlu = int.Parse(idAluUrl);
-
-                //Se rompe si siempre llamas a la misma página con los mismos parámetros
-                //Solucion: guardar en ViewState
-                // Guardar en ViewState para siguientes postbacks //
-                // VIEWSTATE ES UN MECANISMO PARA RECORDAD VALORES ENTRE POSTBACKS
-
-                ViewState["idProfe"] = idProfe;
-                ViewState["idAlu"] = idAlu;
-
+                idProfe = Session["IdUsuario"] != null ? (int)Session["IdUsuario"] : int.Parse(Request.QueryString["idProfe"]);
+                idAlu = Session["IdAlu"] != null ? (int)Session["IdAlu"] : int.Parse(Request.QueryString["idAlu"]);
+                
                
             }
             else
             {
-                // En postbacks, levantar de ViewState
-                int idProfe = (int)ViewState["idProfe"];
-                int idAlu = (int)ViewState["idAlu"];
+                // En postbacks tambien, por si no viaja un parametro
+                idProfe = Session["IdUsuario"] != null ? (int)Session["IdUsuario"] : int.Parse(Request.QueryString["idProfe"]);
+                idAlu = Session["IdAlu"] != null ? (int)Session["IdAlu"] : int.Parse(Request.QueryString["idAlu"]);
 
 
 
@@ -79,8 +63,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             RutinaNegocio rutinaNegocio = new RutinaNegocio();
 
 
-            Alumno alumno = alumnoNegocio.ObtenerPorId((int)ViewState["idAlu"]);
-            Profesor profesor = profesorNegocio.ObtenerProfesorPorId((int)ViewState["idProfe"]);
+            Alumno alumno = alumnoNegocio.ObtenerPorId(idAlu);
+            Profesor profesor = profesorNegocio.ObtenerProfesorPorId(idProfe);
             Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno(alumno.Id);
 
             // SETEO EL REPEATER - OJO CON LOS POSTBACKS
@@ -151,10 +135,6 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         {
             // Recuperar el ID del día desde el CommandArgument
             int idDia = int.Parse(e.CommandArgument.ToString());
-
-            // Recuperar los otros IDs desde el ViewState
-            int idAlu = (int)ViewState["idAlu"];
-            int idProfe = (int)ViewState["idProfe"];
 
             // Creo el EjercicioAsignado para asignarle los valores
 
@@ -239,22 +219,18 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         {
             if (e.CommandName == "IdEjerSeleccionado")
             {
-                // PRIMERO SETEO Y PREPARO LOS ID PARA MANDAR A LA SIGUIENTE PAGINA
-
                 //Recupero el argument
                 int idEjercicioAsignadoSeleccionado = int.Parse(e.CommandArgument.ToString());
 
-                //Recupero los IDs desde el ViewState
-                int idAlu = (int)ViewState["idAlu"];
-                int idProfe = (int)ViewState["idProfe"];
-
+               
                 EjercicioAsignadoNegocio ejercicioAsignadoNegocio = new EjercicioAsignadoNegocio();
+
                 // Eliminar directamente (usa JavaScript en el frontend para confirmar)
                 ejercicioAsignadoNegocio.Eliminar(idEjercicioAsignadoSeleccionado);
 
+
                 // Guardar mensaje de éxito en Session
                 Session["MensajeExito"] = "Ejercicio eliminado correctamente";
-
 
                 // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
                 Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
@@ -270,14 +246,11 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 //Recupero el argument
                 int idDiaAEliminar = int.Parse(e.CommandArgument.ToString());
 
-                //Recupero los IDs desde el ViewState
-                int idAlu = (int)ViewState["idAlu"];
-                int idProfe = (int)ViewState["idProfe"];
+                            DiaNegocio diaNegocio = new DiaNegocio();
 
-                DiaNegocio diaNegocio = new DiaNegocio();
-
-                // ELIMINA EL DIA Y LOS EJERCICIOS ASIGNADOS RELACIONADOS A ESE DIA
+                // ELIMINA EL DIA Y LOS EJERCICIOS ASIGNADOS RELACIONADOS A ESE DIA CONFIRMA CON JS
                 diaNegocio.Eliminar(idDiaAEliminar);
+
 
                 // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
                 Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
@@ -294,10 +267,6 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 //Recupero el argument
                 int idDiaAEditar = int.Parse(e.CommandArgument.ToString());
 
-                //Recupero los IDs desde el ViewState
-                int idAlu = (int)ViewState["idAlu"];
-                int idProfe = (int)ViewState["idProfe"];
-
                 // Identifica qué botón específico fue presionado de la lista.
                 Button boton = (Button)sender;
 
@@ -307,8 +276,6 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
                 // Obtener otros valores directamente de los controles
                 TextBox tbxNombreDia = (TextBox)contenedor.FindControl("TbxNombreDia");
-
-
 
 
                 // Edita directamente (usa JavaScript en el frontend para confirmar)
@@ -327,10 +294,6 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
         protected void BtnAgregarDia_Click(object sender, EventArgs e)
         {
-
-            //Recupero los IDs desde el ViewState
-            int idAlu = (int)ViewState["idAlu"];
-            int idProfe = (int)ViewState["idProfe"];
 
             // Trato de traer la rutina del alumno, solo para saber que existe en la DB
             // Si no existe, primero le vamos a crear una rutina vacia al alumno
@@ -393,14 +356,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
   
         protected void BtnEditarNombreRutina_Click(object sender, EventArgs e)
         {
-         
-            // PRIMERO SETEO Y PREPARO LOS ID PARA MANDAR A LA SIGUIENTE PAGINA
 
-            //Recupero los IDs desde el ViewState
-            int idAlu = (int)ViewState["idAlu"];
-            int idProfe = (int)ViewState["idProfe"];
-
-            // Recupero la rutina del alumno para obtener su ID
+       
             RutinaNegocio rutinaNegocio = new RutinaNegocio();
 
             // Trato de traer la rutina del alumno, solo para saber que existe en la DB
@@ -452,11 +409,6 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
         protected void BtnEditarDescripcionRutina_Click(object sender, EventArgs e)
         {
-            // PRIMERO SETEO Y PREPARO LOS ID PARA MANDAR A LA SIGUIENTE PAGINA
-
-            //Recupero los IDs desde el ViewState
-            int idAlu = (int)ViewState["idAlu"];
-            int idProfe = (int)ViewState["idProfe"];
 
             // Recupero la rutina del alumno para obtener su ID
             RutinaNegocio rutinaNegocio = new RutinaNegocio();
@@ -515,10 +467,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             // Recuperar el ID del día desde el CommandArgument
             int idEjercicioAEditar = int.Parse(e.CommandArgument.ToString());
 
-            // Recuperar los otros IDs desde el ViewState
-            int idAlu = (int)ViewState["idAlu"];
-            int idProfe = (int)ViewState["idProfe"];
-
+            
             // Busco el ejercicio asignado a editar
 
             EjercicioAsignadoNegocio ejercicioAsignadoNegocio = new EjercicioAsignadoNegocio();
@@ -591,7 +540,6 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             // Guardar mensaje de éxito en Session para mostrar después del redirect
             Session["MensajeExito"] = "Ejercicio editado correctamente";
 
-            
 
             // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
             Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
