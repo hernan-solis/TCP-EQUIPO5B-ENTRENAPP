@@ -259,6 +259,25 @@ namespace Business
             }
         }
 
+        public void ReiniciarCompletadoSemanal(Rutina rutina) { 
+            AccesoDatos datos = new AccesoDatos();  
+            try
+            {
+                datos.setearConsulta("UPDATE Día SET Completado = 0 WHERE RutinaID = @rutinaId;");
+                datos.setearParametro("@rutinaId", rutina.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
 
     }
 

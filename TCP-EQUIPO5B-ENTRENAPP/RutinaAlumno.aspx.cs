@@ -15,6 +15,18 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            // MOSTRAR MENSAJE DE EXITO SI EXISTE
+            if (Session["MensajeExito"] != null)
+            {
+                string msg = Session["MensajeExito"].ToString();
+                Session["MensajeExito"] = null; // limpiar para que no reaparezca
+
+                // Mostrarlo con JavaScript
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('{msg}');", true);
+            }
+
+
+
             // PRIMERO RECUPERO LOS ID PASADOS POR PARAMETRO EN LA URL
 
             if (!IsPostBack)
@@ -42,6 +54,9 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
                 ViewState["idDia"] = idDia;
                 ViewState["idAlu"] = idAlu;
+
+                
+               
             }
             else
             {
@@ -57,6 +72,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             Alumno alumno = alumnoNegocio.ObtenerPorId((int)ViewState["idAlu"]);
             Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno((int)ViewState["idAlu"]);
+
+            
 
             //EXPRESION LAMBDA PARA ENCONTRAR EL DIA SELECCIONADO SEGUN EL ID TRAIDO POR PARAMETRO
             //LO USA EL PROFE EN UNO DE SUS VIDEOS

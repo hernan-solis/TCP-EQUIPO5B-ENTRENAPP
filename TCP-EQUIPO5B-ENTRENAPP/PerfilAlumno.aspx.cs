@@ -13,6 +13,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 {
     public partial class PerfilAlumno : System.Web.UI.Page
     {
+
         // TENGO QUE TENER PREVIAMENTE EL ID DEL ALUMNO O USUARIO O EL OBJETO ALUMNO
         // O EL DATO TENERLO EN LA SESSION
         // EN ESTE CASO DIGAMOS QUE TENGO EL ID DEL ALUMNO
@@ -20,6 +21,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         int alumnoId = 3; // Reemplazar con el ID real del alumno  - TRABAJA COMO UNA CONSTANTE
         protected void Page_Load(object sender, EventArgs e)
         {
+
             
 
             AlumnoNegocio alumnoNegocio = new AlumnoNegocio();
@@ -30,12 +32,42 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno(alumnoId); // obtengo la rutina del alumno
 
+            // MOSTRAR ALERTA SI VIENE DE UN REDIRECT
+            if (Session["MensajeSemana"] != null)
+            {
+                string msg = Session["MensajeSemana"].ToString();
+
+                ClientScript.RegisterStartupScript(
+                    this.GetType(),
+                    "AlertaSemana",
+                    $"alert('{msg}');",
+                    true
+                );
+
+                // limpiar la session para no repetir el mensaje
+                Session["MensajeSemana"] = null;
+            }
+
             // Solo si no es postback, cargo el Repeater de dias, sino se rompe.
             if (!IsPostBack) {
 
                 RepeaterDia.DataSource = rutina.Dia; // asigno la lista de dias de la rutina al Repeater
 
                 RepeaterDia.DataBind(); // vinculo los datos al Repeater
+
+                
+            }
+
+            // ALERTA SI LA SEMANA ESTA COMPLETA Y REINICIO LOS COMPLETADOS
+            if (rutina.Dia.All(d => d.Completado))
+            {
+                rutinaNegocio.ReiniciarCompletadoSemanal(rutina);  // reinicio en servidor
+
+                // guardo mensaje en Session
+                Session["MensajeSemana"] = "¡Semana completa! 🎉 Se reinició la rutina semanal.";
+
+                // redirijo normalmente
+                Response.Redirect("/PerfilAlumno.aspx?idAlu=" + alumnoId);
             }
 
             // SETEO DE TITULOS
