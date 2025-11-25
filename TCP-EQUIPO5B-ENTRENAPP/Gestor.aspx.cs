@@ -199,6 +199,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         }
 
         //VALIDA FORMATO FECHA Y QUE SEA UNA FECHA QUE EXISTA
+        
         protected void cvFechaFinSuscripcion_ServerValidate(object source, ServerValidateEventArgs args)
         {
             // El formato que queremos validar: Año (4 dígitos) / Mes (2 dígitos) / Día (2 dígitos)
@@ -217,7 +218,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             // Si la conversión es exitosa y el formato es el correcto:
             if (esFechaValida)
-            {                
+            {
                 args.IsValid = true; // Indica que la validación fue exitosa
             }
             else
@@ -225,7 +226,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 args.IsValid = false; // Indica que la validación falló
             }
         }
-
+        
         ////
 
         protected void BtnEditarAlumno_Command(object sender, CommandEventArgs e)
@@ -255,7 +256,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             DropDownList ddlStatusAlumno = (DropDownList)contenedor.FindControl("ddlStatusAlumno");
 
             // ASIGNO LOS VALORES AL OBJETO PROFESOR
-            
+
 
             alumno.Nombre = tbxNombreAlumno.Text;
             alumno.Apellido = tbxApellidoAlumno.Text;
@@ -301,30 +302,30 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
             Response.Redirect($"/Gestor");
-            
+
         }
 
         protected void BtnEliminarAlumno_Command(object sender, CommandEventArgs e)
         {
-            /*
-            if (e.CommandName == "IdProfesor")
+
+            if (e.CommandName == "IdAlumnoEliminar")
             {
                 //Recupero el argument
-                int idProfe = int.Parse(e.CommandArgument.ToString());
+                int idAlumno = int.Parse(e.CommandArgument.ToString());
 
-                ProfesorNegocio profesor = new ProfesorNegocio();
+                AlumnoNegocio alumno = new AlumnoNegocio();
 
                 // Eliminar directamente (usa JavaScript en el frontend para confirmar)
-                profesor.Eliminar(idProfe);
+                alumno.Eliminar(idAlumno);
 
                 // Guardar mensaje de éxito en Session
-                Session["MensajeExito"] = "Profesor eliminado correctamente";
+                Session["MensajeExito"] = "Alumno eliminado correctamente";
 
 
                 // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
                 Response.Redirect($"/Gestor");
-            */
+
+            }
         }
     }
 }
-

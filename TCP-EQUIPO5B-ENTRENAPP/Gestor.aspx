@@ -255,7 +255,7 @@
     </table>
 
     <br />
-    <br />  
+    <br />
 
 
     <div class="text-center" aria-labelledby="gettingStartedTitle">
@@ -339,6 +339,7 @@
                                 ForeColor="Red"
                                 SetFocusOnError="True"
                                 OnServerValidate="cvFechaFinSuscripcion_ServerValidate" />
+
 
                         </td>
                         <td>

@@ -190,18 +190,18 @@ namespace Business
             try
             {
                 //primero eliminamos ejercicios asignados 
-                datos.setearConsulta("DELETE FROM EjerciciosAsignados WHERE DiaID IN (SELECT ID FROM Día WHERE RutinaID = @ID)");
+                datos.setearConsulta("DELETE FROM EjercicioAsignado WHERE DíaID IN (SELECT ID FROM Día WHERE RutinaID = @ID)");
                 datos.setearParametro("@ID", id); // Usamos el ID de la Rutina
                 datos.ejecutarAccion();
 
                 //luego eliminamos los dias
-                datos.setearConsulta("DELETE FROM Día WHERE RutinaID = @ID");
-                datos.setearParametro("@ID", id);
+                datos.setearConsulta("DELETE FROM Día WHERE RutinaID = @IDRutina");
+                datos.setearParametro("@IDRutina", id);
                 datos.ejecutarAccion();
 
                 //y por ultimo eliminamos la rutina
-                datos.setearConsulta("DELETE FROM Rutinas WHERE id = @id");
-                datos.setearParametro("@id", id);
+                datos.setearConsulta("DELETE FROM Rutinas WHERE id = @idRut");
+                datos.setearParametro("@idRut", id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
