@@ -160,8 +160,11 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             EjercicioAsignado ejercicioAsignado = new EjercicioAsignado();
 
-            // Obtener el botón y el repeater item de forma directa
+            // Identifica qué botón específico fue presionado de la lista.
             Button boton = (Button)sender;
+
+            // Encuentra la fila completa(GridViewRow o RepeaterItem) que contiene ese botón
+            // o lo buscado con find.
             Control contenedor = boton.NamingContainer;
 
             // Obtener otros valores directamente de los controles
@@ -295,8 +298,11 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 int idAlu = (int)ViewState["idAlu"];
                 int idProfe = (int)ViewState["idProfe"];
 
-                // Obtener el botón y el repeater item de forma directa
+                // Identifica qué botón específico fue presionado de la lista.
                 Button boton = (Button)sender;
+
+                // Encuentra la fila completa(GridViewRow o RepeaterItem) que contiene ese botón
+                // o lo buscado con find.
                 Control contenedor = boton.NamingContainer;
 
                 // Obtener otros valores directamente de los controles
@@ -420,8 +426,11 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             // CUPERO LA RUTINA YA ASEGURANDOME QUE EXISTA
             Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlu);
 
-            // Obtener el botón y controlador de objetos de forma directa para recuperarlos
+            // Identifica qué botón específico fue presionado de la lista.
             Button boton = (Button)sender;
+
+            // Encuentra la fila completa(GridViewRow o RepeaterItem) que contiene ese botón
+            // o lo buscado con find.
             Control contenedor = boton.NamingContainer;
 
             // Obtener otros valores directamente de los controles
@@ -477,8 +486,11 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             // CUPERO LA RUTINA YA ASEGURANDOME QUE EXISTA
             Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlu);
 
-            // Obtener el botón y controlador de objetos de forma directa para recuperarlos
+            // Identifica qué botón específico fue presionado de la lista.
             Button boton = (Button)sender;
+
+            // Encuentra la fila completa(GridViewRow o RepeaterItem) que contiene ese botón
+            // o lo buscado con find.
             Control contenedor = boton.NamingContainer;
 
             // Obtener otros valores directamente de los controles
@@ -516,8 +528,11 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
 
 
-            // Obtener el botón y el repeater item de forma directa
+            // Identifica qué botón específico fue presionado de la lista.
             Button boton = (Button)sender;
+
+            // Encuentra la fila completa(GridViewRow o RepeaterItem) que contiene ese botón
+            // o lo buscado con find.
             Control contenedor = boton.NamingContainer;
 
             // Obtener otros valores directamente de los controles

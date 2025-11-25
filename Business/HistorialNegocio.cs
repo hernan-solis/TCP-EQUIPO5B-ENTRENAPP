@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    internal class HistorialNegocio
+    public class HistorialNegocio
     {
-        void AgregarDiaCompletado(Dia diaCompletado)
+        public void AgregarDiaCompletado(Dia diaCompletado)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -18,16 +18,19 @@ namespace Business
             {
                 foreach (var ejercicio in diaCompletado.EjerciciosAsignados) {
 
-                    datos.setearConsulta("INSERT INTO Historial (RutinaID, FechaRegistro, EjercicioBaseID, Series, Repeticiones, Peso, Observaciones) VALUES (@RutinaID, @FechaRegistro, @EjercicioBaseID, @Series, @Repeticiones, @Peso, @Observaciones)");
-                    datos.setearParametro("@RutinaId", diaCompletado.RutinaId);
-                    datos.setearParametro("@FechaRegistro", DateTime.Now);
-                    datos.setearParametro("@EjercicioBaseID", ejercicio.EjercicioBase.Id);
-                    datos.setearParametro("@Series", ejercicio.Series);
-                    datos.setearParametro("@Repeticiones", ejercicio.Repeticiones);
-                    datos.setearParametro("@Peso", ejercicio.Peso);
-                    datos.setearParametro("@Observaciones", ejercicio.Observaciones);
+                    datos.limpiarParametros();
 
-                    datos.ejecutarAccion();
+                    datos.setearConsulta("INSERT INTO Historial (RutinaID, FechaRegistro, EjercicioBaseID, Series, Repeticiones, Peso, Observaciones) VALUES (@RutinaID, @FechaRegistro, @EjercicioBaseID, @Series, @Repeticiones, @Peso, @Observaciones)");
+                        datos.setearParametro("@RutinaId", diaCompletado.RutinaId);
+                        datos.setearParametro("@FechaRegistro", DateTime.Now);
+                        datos.setearParametro("@EjercicioBaseID", ejercicio.EjercicioBase.Id);
+                        datos.setearParametro("@Series", ejercicio.Series);
+                        datos.setearParametro("@Repeticiones", ejercicio.Repeticiones);
+                        datos.setearParametro("@Peso", ejercicio.Peso);
+                        datos.setearParametro("@Observaciones", ejercicio.Observaciones);
+
+                        datos.ejecutarAccion();
+   
                 }
 
             }
@@ -42,7 +45,6 @@ namespace Business
             }
 
         }
-
 
     }
 }
