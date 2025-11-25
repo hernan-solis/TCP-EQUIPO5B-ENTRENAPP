@@ -187,10 +187,9 @@ namespace Business
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("SELECT ID FROM Usuarios WHERE Email = @email AND Contraseña = @contrasenia AND (Rol = 'Gestor' OR FechaFinSuscripción >= @fechaActual)");
+                datos.setearConsulta("SELECT ID FROM Usuarios WHERE (Email = @email AND Contraseña = @contrasenia AND FechaFinSuscripción >= GETDATE()) OR (Email = @email AND Contraseña = @contrasenia AND Rol = 'Gestor') OR (Email = @email AND Contraseña = @contrasenia AND Rol = 'Profesor')");
                 datos.setearParametro("@email", email);
                 datos.setearParametro("@contrasenia", contrasenia);
-                datos.setearParametro("@fechaActual", DateTime.Now);
 
                 datos.ejecutarLectura();
 

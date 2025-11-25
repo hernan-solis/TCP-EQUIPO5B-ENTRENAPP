@@ -29,10 +29,10 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             UsuarioNegocio negocio = new UsuarioNegocio();
             Usuario usuario = new Usuario();
 
-            int idUsuario = negocio.Loguear(EmailLogin.Text, ConstraseniaLogin.Text);
+            int idUsuario = negocio.Loguear(tbxEmailLogin.Text, tbxConstraseniaLogin.Text);
 
             usuario = negocio.ObtenerUsuarioPorId(idUsuario);
-
+                
             string rol = usuario.Rol;
 
             if (idUsuario > 0)

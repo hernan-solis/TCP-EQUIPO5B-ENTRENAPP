@@ -18,13 +18,13 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         // O EL DATO TENERLO EN LA SESSION
         // EN ESTE CASO DIGAMOS QUE TENGO EL ID DEL ALUMNO
 
-        int alumnoId = 3; // Reemplazar con el ID real del alumno  - TRABAJA COMO UNA CONSTANTE
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Recupero id alumno de la url o puedo desde la session
+            int alumnoId = int.Parse(Request.QueryString["idAlu"]);
 
-            //Oculto items del NavBar
 
-            
 
             AlumnoNegocio alumnoNegocio = new AlumnoNegocio();
                 
@@ -108,6 +108,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 //recupero el argument
                 int idDia = int.Parse(e.CommandArgument.ToString());
 
+                int alumnoId = int.Parse(Request.QueryString["idAlu"]);
                 int idAlu = alumnoId;   
 
                 // Redirigir con el Id del día y el id del alumno
