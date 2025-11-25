@@ -591,6 +591,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             // Guardar mensaje de éxito en Session para mostrar después del redirect
             Session["MensajeExito"] = "Ejercicio editado correctamente";
 
+            
+
             // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
             Response.Redirect($"/RutinaProfesor.aspx?idAlu={idAlu}&idProfe={idProfe}");
 

@@ -28,10 +28,17 @@ namespace Business
                         datos.setearParametro("@Repeticiones", ejercicio.Repeticiones);
                         datos.setearParametro("@Peso", ejercicio.Peso);
                         datos.setearParametro("@Observaciones", ejercicio.Observaciones);
+                        
 
                         datos.ejecutarAccion();
-   
                 }
+
+                datos.limpiarParametros();
+
+                datos.setearConsulta("UPDATE Día Set Completado = 1 where ID = @ID");
+                datos.setearParametro("@ID", diaCompletado.Id);
+
+                datos.ejecutarAccion();
 
             }
             catch (Exception ex)

@@ -65,6 +65,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             Dia diaSeleccionado = rutina.Dia.Find(d => d.Id == (int)ViewState["idDia"]);
 
+          
+
             // SETEO EL REPEATER CON LOS EJERCICIOS ASIGNADOS AL DIA SELECCIONADO
             if (!IsPostBack)
             {
@@ -75,15 +77,14 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 RepeaterEjerAlu.DataBind();
             }
 
-
-
-
-            // SETEO PARA MOSTRAR EL NOMBRE DEL DIA Y LOS TITULOS
+            // SETEO PARA MOSTRAR EL NOMBRE DEL DIA Y LOS TITULOS - TAMBIEN VISIBILIDAD DEL BTN
 
             string completado = "";
             if (diaSeleccionado.Completado)
             {
                 completado = "✅ Completado";
+                BtnDiaCompletado.Enabled = false;
+                BtnDiaCompletado.Text = "COMPLETADO";
             }
             else
             {
@@ -141,41 +142,6 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             // RECORRO EL REPEATER CON EL HIDDE FIELD PARA ASIGNAR LOS VALORES DE CADA EJERCICIO ASIGNADO
 
-
-            //List<EjercicioAsignado> lista = new List<EjercicioAsignado>();
-
-            /*
-
-            foreach (RepeaterItem item in RepeaterEjerAlu.Items)
-            {
-                // Recuperar el ID desde el HiddenField
-                HiddenField hfId = (HiddenField)item.FindControl("hfIdEjercicioAsignado");
-
-                // Recuperar los TextBox de esa fila
-                TextBox tbxSeries = (TextBox)item.FindControl("tbxSeriesRep");
-                TextBox tbxReps = (TextBox)item.FindControl("tbxRepeticionesRep");
-                TextBox tbxPeso = (TextBox)item.FindControl("tbxPesoRep");
-                TextBox tbxObs = (TextBox)item.FindControl("tbxObservacionesRep");
-
-
-                EjercicioAsignado ejercicioCompletado = new EjercicioAsignado();
-                ejercicioCompletado.Id = int.Parse(hfId.Value);
-                ejercicioCompletado.Series = int.Parse(tbxSeries.Text);
-                ejercicioCompletado.Repeticiones = int.Parse(tbxReps.Text);
-
-                // Si tu peso usa coma, usar Replace o TryParse con cultura
-                ejercicioCompletado.Peso = decimal.Parse(tbxPeso.Text);
-                                        
-                ejercicioCompletado.Observaciones = tbxObs.Text;
-
-                lista.Add(ejercicioCompletado);
-
-            }
-
-            diaCompletado.EjerciciosAsignados = lista;
-
-            */
-
             int indice = 0;
             foreach (RepeaterItem item in RepeaterEjerAlu.Items)
             {
@@ -197,12 +163,17 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             }
 
 
-
             // LLAMO AL NEGOCIO PARA CARGAR HISTORIAL - CONFIRMACION ES POR JS
 
             HistorialNegocio historialNegocio = new HistorialNegocio(); 
             historialNegocio.AgregarDiaCompletado(diaCompletado);
 
+            // Guardar mensaje de éxito en Session para mostrar después del redirect
+            Session["MensajeExito"] = "Dia Completado! Seguí así.. ";
+
+        
+            // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
+            Response.Redirect($"/RutinaAlumno.aspx?idDia={idDia}&idAlu={idAlu}");
         }
     }
 }
