@@ -64,7 +64,9 @@
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item" id="liLogin" runat="server"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
-                        <li class="nav-item" id="liCerrarSesion" runat="server"><a class="nav-link" runat="server" href="~/Login">Cerrar sesión</a></li>
+                        <li class="nav-item" id="liCerrarSesion" runat="server">
+                            <a class="nav-link" runat="server" href="~/" onserverclick="LbtnCerrarSesion_Click">Cerrar sesión</a>                           
+                        </li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contacto</a></li>
                     </ul>
                 </div>

@@ -62,5 +62,16 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 liLogin.Visible = true;              // Mostrar login
             }
         }
+
+
+        protected void LbtnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            // Limpiar toda la sesión
+            Session.Clear();        // Limpia todos los valores
+            Session.Abandon();      // Abandona la sesión
+
+            // Redirigir al login o home
+            Response.Redirect("~/");
+        }
     }
 }
