@@ -186,14 +186,20 @@ namespace Business
         public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
+            EjercicioAsignadoNegocio ejercicioAsignadoNegocio = new EjercicioAsignadoNegocio();
             try
             {
-                //falta la eliminacion de ejercicio asignado
+                //primero eliminamos ejercicios asignados 
+                datos.setearConsulta("DELETE FROM EjerciciosAsignados WHERE DiaID IN (SELECT ID FROM Día WHERE RutinaID = @ID)");
+                datos.setearParametro("@ID", id); // Usamos el ID de la Rutina
+                datos.ejecutarAccion();
 
+                //luego eliminamos los dias
                 datos.setearConsulta("DELETE FROM Día WHERE RutinaID = @ID");
                 datos.setearParametro("@ID", id);
                 datos.ejecutarAccion();
 
+                //y por ultimo eliminamos la rutina
                 datos.setearConsulta("DELETE FROM Rutinas WHERE id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
