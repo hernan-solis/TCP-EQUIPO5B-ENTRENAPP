@@ -1,7 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Gestor.aspx.cs" Inherits="TCP_EQUIPO5B_ENTRENAPP.Gestor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h3>PROFESORES</h3>
+
+    <div>
+        <h4>PROFESORES</h4>
+    </div>
+
     <table class="table table-sm text-secondary mb-0 align-middle">
         <thead>
             <tr>
@@ -27,6 +31,7 @@
                                 CssClass="form-control form-control-sm"
                                 TextMode="MultiLine"
                                 Rows="1" />
+
                         </td>
                         <td>
                             <asp:TextBox ID="tbxApellido"
@@ -36,6 +41,7 @@
                                 CssClass="form-control form-control-sm"
                                 TextMode="MultiLine"
                                 Rows="1" />
+
                         </td>
                         <td>
                             <asp:TextBox ID="tbxEmail"
@@ -45,6 +51,18 @@
                                 CssClass="form-control form-control-sm"
                                 TextMode="MultiLine"
                                 Rows="1" />
+                            <asp:RegularExpressionValidator
+                                ID="revEmail"
+                                runat="server"
+                                ControlToValidate="tbxEmail"
+                                ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                                ErrorMessage="El formato del email es incorrecto (ej: usuario@dominio.com)"
+                                Display="Dynamic"
+                                CssClass="text-danger small"
+                                ForeColor="Red"
+                                SetFocusOnError="True">
+                            </asp:RegularExpressionValidator>
+
                         </td>
                         <td>
                             <asp:TextBox ID="tbxTelefono"
@@ -54,6 +72,18 @@
                                 CssClass="form-control form-control-sm"
                                 TextMode="MultiLine"
                                 Rows="1" />
+                            <asp:RegularExpressionValidator
+                                ID="revTelefono"
+                                runat="server"
+                                ControlToValidate="tbxTelefono"
+                                ValidationExpression="^\d+$"
+                                ErrorMessage="Solo números"
+                                Display="Dynamic"
+                                CssClass="text-danger small"
+                                ForeColor="Red"
+                                SetFocusOnError="True">
+                            </asp:RegularExpressionValidator>
+
                         </td>
                         <td>
                             <asp:TextBox ID="tbxEdad"
@@ -73,26 +103,21 @@
                                 ForeColor="Red"
                                 SetFocusOnError="True">
                             </asp:RegularExpressionValidator>
+
                         </td>
 
                         <td>
-                            <asp:TextBox ID="tbxStatus"
-                                runat="server"
-                                Text='<%# Eval("Status") %>'
-                                placeholder='<%# Eval("Status") %>'
+
+                            <asp:DropDownList
+                                ID="ddlStatus"
                                 CssClass="form-control form-control-sm text-center"
-                                ToolTip="Status" />
-                            <asp:RegularExpressionValidator
-                                ID="RegularExpressionValidator1"
                                 runat="server"
-                                ControlToValidate="tbxStatus"
-                                ValidationExpression="^[01]$"
-                                ErrorMessage="Solo se permite ingresar 1 o 0"
-                                Display="Dynamic"
-                                CssClass="text-danger small"
-                                ForeColor="Red"
-                                SetFocusOnError="True">
-                            </asp:RegularExpressionValidator>
+                                SelectedValue='<%# Eval("Status").ToString() %>'>
+
+                                <asp:ListItem Text="True" Value="True" />
+                                <asp:ListItem Text="False" Value="False" />
+                            </asp:DropDownList>
+
                         </td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
@@ -102,13 +127,149 @@
                             </div>
                         </td>
                     </tr>
-
-
                 </tbody>
             </ItemTemplate>
 
         </asp:Repeater>
 
+
     </table>
+
+    <div>
+        <h4>Agregar profesor</h4>
+    </div>
+
+
+    <table class="table table-sm text-secondary mb-0 align-middle">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">NOMBRE</th>
+                <th scope="col" class="text-center">APELLIDO</th>
+                <th scope="col" class="text-center">EMAIL</th>
+                <th scope="col" class="text-center">TELEFONO</th>
+                <th scope="col" class="text-center">EDAD</th>
+                <th scope="col" class="text-center">STATUS</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            <tr>
+                <td>
+                    <asp:TextBox ID="tbxNombreAgregar"
+                        runat="server"
+                        Text=""
+                        CssClass="form-control form-control-sm"
+                        TextMode="MultiLine"
+                        Rows="1" />
+
+                </td>
+                <td>
+                    <asp:TextBox ID="tbxApellidoAgregar"
+                        runat="server"
+                        Text=""
+                        CssClass="form-control form-control-sm"
+                        TextMode="MultiLine"
+                        Rows="1" />
+
+                </td>
+                <td>
+                    <asp:TextBox ID="tbxEmailAgregar"
+                        runat="server"
+                        Text=""
+                        CssClass="form-control form-control-sm"
+                        TextMode="MultiLine"
+                        Rows="1" />
+                    <asp:RegularExpressionValidator
+                        ID="revEmail"
+                        runat="server"
+                        ControlToValidate="tbxEmailAgregar"
+                        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                        ErrorMessage="El formato del email es incorrecto (ej: usuario@dominio.com)"
+                        Display="Dynamic"
+                        CssClass="text-danger small"
+                        ForeColor="Red"
+                        SetFocusOnError="True">
+                            </asp:RegularExpressionValidator>
+
+                </td>
+                <td>
+                    <asp:TextBox ID="tbxTelefonoAgregar"
+                        runat="server"
+                        Text=""
+                        CssClass="form-control form-control-sm"
+                        TextMode="MultiLine"
+                        Rows="1" />
+                    <asp:RegularExpressionValidator
+                        ID="revTelefono"
+                        runat="server"
+                        ControlToValidate="tbxTelefonoAgregar"
+                        ValidationExpression="^\d+$"
+                        ErrorMessage="Solo números"
+                        Display="Dynamic"
+                        CssClass="text-danger small"
+                        ForeColor="Red"
+                        SetFocusOnError="True">
+                    </asp:RegularExpressionValidator>
+
+                </td>
+                <td>
+                    <asp:TextBox ID="tbxEdadAgregar"
+                        runat="server"
+                        Text=""
+                        CssClass="form-control form-control-sm text-center"
+                        ToolTip="Edad" />
+                    <asp:RegularExpressionValidator
+                        ID="revEdad"
+                        runat="server"
+                        ControlToValidate="tbxEdadAgregar"
+                        ValidationExpression="^\d+$"
+                        ErrorMessage="Solo números"
+                        Display="Dynamic"
+                        CssClass="text-danger small"
+                        ForeColor="Red"
+                        SetFocusOnError="True">
+                    </asp:RegularExpressionValidator>
+
+                </td>
+
+                <td>
+
+                    <asp:DropDownList
+                        ID="ddlStatusAgregar"
+                        CssClass="form-control form-control-sm text-center"
+                        runat="server">
+
+                        <asp:ListItem Text="True" Value="True" />
+                        <asp:ListItem Text="False" Value="False" />
+                    </asp:DropDownList>
+
+                </td>
+            </tr>
+
+
+
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <asp:Button ID="Button1" runat="server" Text="➕ Nuevo Profesor" class="btn btn-primary" CommandName="NuevoProfesor" OnCommand="BtnAgregarProfesor_Command" OnClientClick="return confirm('¿Está seguro que desea Agregar Profesor Nuevo?');" />
+
+                </div>
+            </td>
+        </tbody>
+    </table>
+
+
+    <script>
+        window.addEventListener('beforeunload', function () {
+            sessionStorage.setItem('scrollY', window.scrollY);
+        });
+
+        window.addEventListener('load', function () {
+            var y = sessionStorage.getItem('scrollY');
+            if (y !== null) {
+                window.scrollTo(0, y);
+            }
+        });
+    </script>
 
 </asp:Content>

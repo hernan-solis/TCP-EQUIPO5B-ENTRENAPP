@@ -93,6 +93,39 @@ namespace Business
             }
         }
 
+        public void Agregar(Profesor nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"
+                INSERT INTO Usuarios 
+                     (Nombre, Apellido, Email, Contraseña, Rol, Teléfono, Edad, Status)
+                    VALUES 
+                     (@Nombre, @Apellido, @Email, @Contraseña, @Rol, @Teléfono, @Edad, @Status) ");
+
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+                datos.setearParametro("@Apellido", nuevo.Apellido);
+                datos.setearParametro("@Email", nuevo.Email);
+                datos.setearParametro("@Contraseña", nuevo.Contrasenia);
+                datos.setearParametro("@Rol", nuevo.Rol);
+                datos.setearParametro("@Teléfono", nuevo.Telefono);
+                datos.setearParametro("@Edad", nuevo.Edad);
+                datos.setearParametro("@Status", nuevo.Status);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void Modificar(Profesor profesor)
         {
             AccesoDatos datos = new AccesoDatos();
