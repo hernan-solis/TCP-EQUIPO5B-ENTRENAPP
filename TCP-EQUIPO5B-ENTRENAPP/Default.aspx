@@ -6,9 +6,10 @@
         <section class="row" aria-labelledby="aspnetTitle">
             <figure class="text-center mt-5">
                 <blockquote class="blockquote">
-                    <h1>ENTRENAPP</h1>
+                    <h1 class="display-1 fw-bold text-primary">ENTRENAPP</h1>
                 </blockquote>
-                <figcaption class="blockquote-footer">Entrenamiento Personal. Resultados Reales. Creado Solo Para Vos.</figcaption>
+                <figcaption class="blockquote-footer fs-5 text-secondary">Entrenamiento Personal. Resultados Reales. Creado Solo Para Vos.
+                </figcaption>
             </figure>
         </section>
 
