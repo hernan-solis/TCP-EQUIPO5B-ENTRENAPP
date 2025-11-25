@@ -4,6 +4,16 @@
 
 <html lang="en">
 <head runat="server">
+    <style>
+        .card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important;
+            }
+    </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Entrenapp</title>
@@ -50,7 +60,7 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Usuarios">Alta</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/PerfilAlumno">Mi Perfil Alu</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/PerfilProfesor">Mi Perfil Profe</a></li>
-                        
+
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
@@ -64,7 +74,7 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer> 
+            <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - Entrenapp Application</p>
             </footer>
         </div>
