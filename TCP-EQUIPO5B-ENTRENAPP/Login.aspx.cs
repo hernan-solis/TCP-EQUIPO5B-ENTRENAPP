@@ -37,16 +37,22 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             if (idUsuario > 0)
             {
+                //  GUARDO EN SESSION
+                Session["IdUsuario"] = idUsuario;
+                Session["TipoUsuario"] = rol;
+
                 switch (rol)
                 {
                     case "Profesor":
-                        Response.Redirect("~/PerfilProfesor.aspx");
+                        {
+                            Response.Redirect("~/PerfilProfesor.aspx?idProfe="+idUsuario);
+                        }
                         break;
                     case "Alumno":
-                        Response.Redirect("~/PerfilAlumno.aspx");
+                        Response.Redirect("~/PerfilAlumno.aspx?idAlu="+idUsuario);
                         break;
                     case "Gestor":
-                        Response.Redirect("~/Gestor.aspx");
+                        Response.Redirect("~/Gestor.aspx?idGestor="+idUsuario);
                         break;
                     default:                       
                         Response.Redirect("~/Default.aspx");

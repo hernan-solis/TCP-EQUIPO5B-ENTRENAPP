@@ -22,6 +22,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            //Oculto items del NavBar
+
             
 
             AlumnoNegocio alumnoNegocio = new AlumnoNegocio();
@@ -54,8 +56,6 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 RepeaterDia.DataSource = rutina.Dia; // asigno la lista de dias de la rutina al Repeater
 
                 RepeaterDia.DataBind(); // vinculo los datos al Repeater
-
-                
             }
 
             // ALERTA SI LA SEMANA ESTA COMPLETA Y REINICIO LOS COMPLETADOS

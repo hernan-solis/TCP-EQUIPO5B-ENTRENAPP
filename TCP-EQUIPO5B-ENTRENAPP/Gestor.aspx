@@ -190,7 +190,7 @@
                         CssClass="text-danger small"
                         ForeColor="Red"
                         SetFocusOnError="True">
-                            </asp:RegularExpressionValidator>
+                    </asp:RegularExpressionValidator>
 
                 </td>
                 <td>
@@ -245,16 +245,14 @@
                     </asp:DropDownList>
 
                 </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <asp:Button ID="Button1" runat="server" Text="➕ Nuevo Profesor" class="btn btn-primary" CommandName="NuevoProfesor" OnCommand="BtnAgregarProfesor_Command" OnClientClick="return confirm('¿Está seguro que desea Agregar Profesor Nuevo?');" />
+
+                    </div>
+                </td>
             </tr>
 
-
-
-            <td>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <asp:Button ID="Button1" runat="server" Text="➕ Nuevo Profesor" class="btn btn-primary" CommandName="NuevoProfesor" OnCommand="BtnAgregarProfesor_Command" OnClientClick="return confirm('¿Está seguro que desea Agregar Profesor Nuevo?');" />
-
-                </div>
-            </td>
         </tbody>
     </table>
 
