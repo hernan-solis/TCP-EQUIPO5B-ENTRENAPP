@@ -302,7 +302,11 @@ namespace Business
         //ELIMINACION FISICA, CUIDADO
         public void Eliminar(int id)
         {
+            RutinaNegocio rutinaNegocio = new RutinaNegocio();
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno(id);
+            int idRutina = rutina.Id;
+            rutinaNegocio.Eliminar(idRutina);
             usuarioNegocio.Eliminar(id);
         }
 
