@@ -12,10 +12,13 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 {
     public partial class PerfilProfesor : System.Web.UI.Page
     {
-        //SE DEBE TENER EL IDPROFE O EL OBJETO PROF O DE LA SESSION CUANDO SE LOGUEA
-        int idProfesor = 1; // EN ESTE CASO LO DEJO COMO SI FUERA UAN CONSTANSTE - HAY QUE ARREGLARLO
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            // OBTENGO EL IDPROFE DE LA URL O DE LA SESSION CUANDO SE LOGUEA
+
+            int idProfesor = Session["idUsuario"] != null ? (int)Session["idUsuario"] : int.Parse(Request.QueryString["idProfe"]);
+
             AlumnoNegocio alumnoNegocio = new AlumnoNegocio();
 
             // OBTENGO LA LISTA DE ALUMNOS ACTIVOS DEL PROFESOR
@@ -32,6 +35,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             {
                 rptAlumnos.DataSource = listaAlumnos;
                 rptAlumnos.DataBind();
+
             }
                 
         }
@@ -42,6 +46,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             // PRIMERO SETEO Y PREPARO LOS ID PARA MANDAR A LA SIGUIENTE PAGINA
             int idAlu = int.Parse(e.CommandArgument.ToString());
 
+            int idProfesor = Session["idUsuario"] != null ? (int)Session["idUsuario"] : int.Parse(Request.QueryString["idProfe"]);
             int idProfe = idProfesor;
 
             // Redirigir con el Id del día y el id del alumno

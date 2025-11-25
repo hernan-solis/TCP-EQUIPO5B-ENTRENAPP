@@ -31,8 +31,11 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             int idUsuario = negocio.Loguear(tbxEmailLogin.Text, tbxConstraseniaLogin.Text);
 
+            //SI TRAE CERO NO EXISTE O TIENE VENCIDO, Y SE ROMPE, HAY QUE ARREGLAR
+
             usuario = negocio.ObtenerUsuarioPorId(idUsuario);
-                
+            
+              
             string rol = usuario.Rol;
 
             if (idUsuario > 0)

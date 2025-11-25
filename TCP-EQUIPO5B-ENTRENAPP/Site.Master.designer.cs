@@ -15,6 +15,15 @@ namespace TCP_EQUIPO5B_ENTRENAPP
     {
 
         /// <summary>
+        /// liAlta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liAlta;
+
+        /// <summary>
         /// liPerfilAlumno control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liPerfilProfe;
+
+        /// <summary>
+        /// liGestor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liGestor;
 
         /// <summary>
         /// liLogin control.

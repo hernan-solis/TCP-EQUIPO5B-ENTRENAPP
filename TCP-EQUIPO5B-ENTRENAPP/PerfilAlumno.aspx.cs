@@ -22,7 +22,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         protected void Page_Load(object sender, EventArgs e)
         {
             //Recupero id alumno de la url o puedo desde la session
-            int alumnoId = int.Parse(Request.QueryString["idAlu"]);
+            int alumnoId = Session ["idUsuario"] != null ? (int)Session["idUsuario"] : int.Parse(Request.QueryString["idAlu"]);
 
 
 
@@ -108,7 +108,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 //recupero el argument
                 int idDia = int.Parse(e.CommandArgument.ToString());
 
-                int alumnoId = int.Parse(Request.QueryString["idAlu"]);
+                int alumnoId = Session["idUsuario"] != null ? (int)Session["idUsuario"] : int.Parse(Request.QueryString["idAlu"]);
                 int idAlu = alumnoId;   
 
                 // Redirigir con el Id del día y el id del alumno

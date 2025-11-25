@@ -28,29 +28,38 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 {
                     liPerfilProfe.Visible = false;      // Ocultar perfil profesor
                     liLogin.Visible = false;            // Ocultar login
+                    liAlta.Visible = false;             // Ocultar alta
+                    liGestor.Visible = false;            // Ocultar gestor
                     liCerrarSesion.Visible = true;      // Mostrar cerrar sesión
+                    
                 }
                 else if (tipoUsuario == "Profesor")
                 {
                     liPerfilAlumno.Visible = false;     // Ocultar perfil alumno  
                     liLogin.Visible = false;            // Ocultar login
+                    liAlta.Visible = false;              // Ocultar alta
+                    liGestor.Visible = false;            // Ocultar gestor
                     liCerrarSesion.Visible = true;      // Mostrar cerrar sesión
+                    
                 }
                 else if (tipoUsuario == "Gestor")
                 {
                     liPerfilAlumno.Visible = false;     // Ocultar perfil alumno  
                     liPerfilProfe.Visible = false;      // Ocultar perfil profesor
                     liLogin.Visible = false;            // Ocultar login
+                    liAlta.Visible = false;              // Ocultar alta
+                    liGestor.Visible = true;              // Mostrar gestor
                     liCerrarSesion.Visible = true;      // Mostrar cerrar sesión
                 }
             }
             else
             {
                 // ESTE ELSE SE EJECUTA CUANDO NO HAY SESIÓN
-                liPerfilAlumno.Visible = false;
-                liPerfilProfe.Visible = false;
-                liCerrarSesion.Visible = false;
-                liLogin.Visible = true;                 // Mostrar login
+                liPerfilAlumno.Visible = false;         // Ocultar perfil Alu
+                liPerfilProfe.Visible = false;        // Ocultar perfil Profe  
+                liCerrarSesion.Visible = false;       // Ocultar Cerrar Sesion  
+                liGestor.Visible = false;            // Ocultar gestor
+                liLogin.Visible = true;              // Mostrar login
             }
         }
     }
