@@ -230,15 +230,15 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
         protected void BtnEditarAlumno_Command(object sender, CommandEventArgs e)
         {
-            /*
-            // Recuperar el ID del profesor desde el CommandArgument
-            int idProfesor = int.Parse(e.CommandArgument.ToString());
+
+            // Recuperar el ID del Alumno desde el CommandArgument
+            int idAlumno = int.Parse(e.CommandArgument.ToString());
 
 
 
-            // Busco el profesor a editar
-            ProfesorNegocio profesorNegocio = new ProfesorNegocio();
-            Profesor profesor = profesorNegocio.ObtenerProfesorPorId(idProfesor);
+            // Busco el Alumno a editar
+            AlumnoNegocio alumnoNegocio = new AlumnoNegocio();
+            Alumno alumno = alumnoNegocio.ObtenerPorId(idAlumno);
 
 
             // Obtener el botón y el repeater item de forma directa
@@ -246,51 +246,62 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             Control contenedor = boton.NamingContainer;
 
             // Obtener otros valores directamente de los controles
-            TextBox tbxNombre = (TextBox)contenedor.FindControl("tbxNombre");
-            TextBox tbxApellido = (TextBox)contenedor.FindControl("tbxApellido");
-            TextBox tbxEmail = (TextBox)contenedor.FindControl("tbxEmail");
-            TextBox tbxTelefono = (TextBox)contenedor.FindControl("tbxTelefono");
-            TextBox tbxEdad = (TextBox)contenedor.FindControl("tbxEdad");
-            DropDownList ddlStatus = (DropDownList)contenedor.FindControl("ddlStatus");
+            TextBox tbxNombreAlumno = (TextBox)contenedor.FindControl("tbxNombreAlumno");
+            TextBox tbxApellidoAlumno = (TextBox)contenedor.FindControl("tbxApellidoAlumno");
+            TextBox tbxEmailAlumno = (TextBox)contenedor.FindControl("tbxEmailAlumno");
+            TextBox tbxFechaFinSuscripcion = (TextBox)contenedor.FindControl("tbxFechaFinSuscripcion");
+            TextBox tbxTelefonoAlumno = (TextBox)contenedor.FindControl("tbxTelefonoAlumno");
+            TextBox tbxEdadAlumno = (TextBox)contenedor.FindControl("tbxEdadAlumno");
+            DropDownList ddlStatusAlumno = (DropDownList)contenedor.FindControl("ddlStatusAlumno");
 
             // ASIGNO LOS VALORES AL OBJETO PROFESOR
+            
 
+            alumno.Nombre = tbxNombreAlumno.Text;
+            alumno.Apellido = tbxApellidoAlumno.Text;
+            alumno.Email = tbxEmailAlumno.Text;
 
-            profesor.Nombre = tbxNombre.Text;
-            profesor.Apellido = tbxApellido.Text;
-            profesor.Email = tbxEmail.Text;
-            profesor.Telefono = tbxTelefono.Text;
-
-
-            if (tbxEdad.Text != "")
+            if (tbxFechaFinSuscripcion.Text != "")
             {
-                profesor.Edad = int.Parse(tbxEdad.Text);
+                alumno.FechaFinSuscripcion = DateTime.Parse(tbxFechaFinSuscripcion.Text);
             }
             else
             {
-                profesor.Edad = 0;
+                alumno.FechaFinSuscripcion = DateTime.MinValue; // Asigna 01/01/0001
             }
 
-            if (ddlStatus.SelectedValue != "")
+            alumno.Telefono = tbxTelefonoAlumno.Text;
+
+
+            if (tbxEdadAlumno.Text != "")
             {
-                profesor.Status = bool.Parse(ddlStatus.SelectedValue);
+                alumno.Edad = int.Parse(tbxEdadAlumno.Text);
             }
             else
             {
-                profesor.Status = true;
+                alumno.Edad = 0;
+            }
+
+            if (ddlStatusAlumno.SelectedValue != "")
+            {
+                alumno.Status = bool.Parse(ddlStatusAlumno.SelectedValue);
+            }
+            else
+            {
+                alumno.Status = true;
             }
 
 
             // PREGUNTO AL USUARIO Y SI ESTA OK CON JS Y AGREGO;
-            profesorNegocio.Modificar(profesor);
+            alumnoNegocio.Modificar(alumno);
 
 
             // Guardar mensaje de éxito en Session para mostrar después del redirect
-            Session["MensajeExito"] = "Profesor editado correctamente";
+            Session["MensajeExito"] = "Alumno editado correctamente";
 
             // REDIRIJO A LA MISMA PAGINA MANTENIENDO LOS DATOS PARA REFRESCAR LA PAGINA CON LOS DATOS NUEVOS
             Response.Redirect($"/Gestor");
-            */
+            
         }
 
         protected void BtnEliminarAlumno_Command(object sender, CommandEventArgs e)
