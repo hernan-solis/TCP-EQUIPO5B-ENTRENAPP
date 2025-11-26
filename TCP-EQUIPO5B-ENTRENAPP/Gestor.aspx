@@ -205,7 +205,7 @@
                     <asp:RequiredFieldValidator
                         ID="rfvTelefono"
                         runat="server"
-                        ControlToValidate="tbxTelefono"
+                        ControlToValidate="tbxTelefonoAgregar"
                         ErrorMessage="Campo obligatorio"
                         Text="Campo obligatorio *"
                         ForeColor="Red"
