@@ -16,18 +16,12 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             //Ocultar el label de error al cargar la pagina
             lblMensajeError.Visible = false;
 
-            //Muestro el lblError si la sesion tiene algo luego del Postback
+            //Muestro el lblError si la URL tiene algo luego del Postback
 
             if (Request.QueryString["error"]!=null) {
                 lblMensajeError.Text = Request.QueryString["error"];
                 lblMensajeError.Visible = true;
             }
-            
-            GestorNegocio gestorNegocio = new GestorNegocio();
-
-            var gestores = gestorNegocio.Listar();
-
-           
 
         }
 
@@ -36,9 +30,11 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             UsuarioNegocio negocio = new UsuarioNegocio();
             Usuario usuario = new Usuario();
 
+            // VALIDO QUE EXISTA MAIL Y CONTRASEÑA, SINO REDIRECCIONO A LOGIN CON MENSAJE
+            // LOGUEAR DEVUELVE EL ID DEL USUARIO SI EXISTE, SINO CERO
             int idUsuario = negocio.Loguear(tbxEmailLogin.Text, tbxConstraseniaLogin.Text);
 
-            //SI TRAE CERO NO EXISTE O TIENE VENCIDO
+            //SI TRAE CERO NO EXISTE
 
             usuario = negocio.ObtenerUsuarioPorId(idUsuario);
 
@@ -56,7 +52,21 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 {
                     case "Profesor":
                         {
-                            Response.Redirect("~/PerfilProfesor.aspx?idProfe=" + idUsuario);
+
+                            ProfesorNegocio profesorNegocio = new ProfesorNegocio();
+                            Profesor profesor = profesorNegocio.ObtenerProfesorPorId(idUsuario);
+
+                            if (profesor.Status == false)
+                            {
+                                Response.Redirect("~/Login.aspx?error=Usuario Inactivo, contacte al administrador");
+                            }
+                            else {
+                                Response.Redirect("~/PerfilProfesor.aspx?idProfe=" + idUsuario);
+                            }
+                                
+
+                            
+
                         }
                         break;
                     case "Alumno":
