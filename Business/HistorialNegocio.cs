@@ -71,14 +71,16 @@ namespace Business
                 while (datos.Lector.Read())
                 {
                     Historial aux = new Historial();
+                    EjercicioBaseNegocio ejercicioBaseNegocio = new EjercicioBaseNegocio();
 
                     aux.Id = (int)datos.Lector["ID"];
                     aux.RutinaId = (int)datos.Lector["RutinaID"];
                     aux.FechaRegistro = (DateTime)datos.Lector["FechaRegistro"];
-                    aux.EjercicioBase = (EjercicioBase)datos.Lector["EjercicioBaseID"];
+                    int idEjercicioBase = (int)datos.Lector["EjercicioBaseID"];
+                    aux.EjercicioBase = ejercicioBaseNegocio.ObtenerPorId(idEjercicioBase);
                     aux.Series = (int)datos.Lector["Series"];
                     aux.Repeticiones = (int)datos.Lector["Repeticiones"];
-                    aux.Peso = (int)datos.Lector["Peso"];
+                    aux.Peso = (decimal)datos.Lector["Peso"];
                     aux.Observaciones = (string)datos.Lector["Observaciones"];
 
 
