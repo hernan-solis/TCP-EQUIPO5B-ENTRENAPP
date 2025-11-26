@@ -29,7 +29,6 @@
                                 Text='<%# Eval("Nombre") %>'
                                 placeholder='<%# Eval("Nombre") %>'
                                 CssClass="form-control form-control-sm"
-                                TextMode="MultiLine"
                                 Rows="1" />
 
                         </td>
@@ -39,7 +38,6 @@
                                 Text='<%# Eval("Apellido") %>'
                                 placeholder='<%# Eval("Apellido") %>'
                                 CssClass="form-control form-control-sm"
-                                TextMode="MultiLine"
                                 Rows="1" />
 
                         </td>
@@ -70,7 +68,6 @@
                                 Text='<%# Eval("Telefono") %>'
                                 placeholder='<%# Eval("Telefono") %>'
                                 CssClass="form-control form-control-sm"
-                                TextMode="MultiLine"
                                 Rows="1" />
                             <asp:RegularExpressionValidator
                                 ID="revTelefono"
@@ -157,17 +154,14 @@
                     <asp:TextBox ID="tbxNombreAgregar"
                         runat="server"
                         Text=""
-                        CssClass="form-control form-control-sm"
-                        TextMode="MultiLine"
+                        CssClass="form-control form-control-sm"                        TextMode="MultiLine"
                         Rows="1" />
-
                 </td>
                 <td>
                     <asp:TextBox ID="tbxApellidoAgregar"
                         runat="server"
                         Text=""
                         CssClass="form-control form-control-sm"
-                        TextMode="MultiLine"
                         Rows="1" />
 
                 </td>
@@ -196,7 +190,6 @@
                         runat="server"
                         Text=""
                         CssClass="form-control form-control-sm"
-                        TextMode="MultiLine"
                         Rows="1" />
                     <asp:RegularExpressionValidator
                         ID="revTelefono"
