@@ -77,7 +77,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Entrenapp Application</p>
+                <p>&copy; <%: DateTime.Now.Year %> 5BTEAM - Entrenapp Application</p>
             </footer>
         </div>
     </form>
