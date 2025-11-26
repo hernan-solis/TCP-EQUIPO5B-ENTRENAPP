@@ -17,12 +17,12 @@
     <table class="table table-sm text-secondary mb-0 align-middle">
         <thead>
             <tr>
-                <th scope="col" class="text-center">FECHA</th>
-                <th scope="col" class="text-center">EJERCICIO</th>
-                <th scope="col" class="text-center">SERIES</th>
-                <th scope="col" class="text-center">REPETICIONES</th>
-                <th scope="col" class="text-center">PESO</th>
-                <th scope="col" class="text-center">OBSERVACIONES</th>
+                <th scope="col">FECHA</th>
+                <th scope="col" >EJERCICIO</th>
+                <th scope="col" >SERIES</th>
+                <th scope="col" >REPETICIONES</th>
+                <th scope="col" >PESO</th>
+                <th scope="col" >OBSERVACIONES</th>
             </tr>
         </thead>
         <asp:Repeater ID="rptHistorialAlumno" runat="server">
@@ -31,48 +31,46 @@
                 <tbody>
                     <tr>
                         <td>
-                            <asp:TextBox ID="tbxFechaRegistro"
+                            <asp:Label ID="lblFechaRegistro"
                                 runat="server"
                                 Text='<%# Eval("FechaRegistro", "{0:yyyy-MM-dd}") %>'
-                                CssClass="form-control form-control-sm"
-                                Rows="1" />
+                                CssClass="form-control-static" />
                         </td>
                         <td>
-                            <asp:TextBox ID="tbxEjercicioAsignado"
+                            <asp:Label ID="lblEjercicioAsignado"
                                 runat="server"
                                 Text='<%# Eval("EjercicioBase.Nombre") %>'
-                                CssClass="form-control form-control-sm text-center"
+                                CssClass="form-control-static text-center"
                                 ToolTip="EjercicioAsignado" />
-
                         </td>
+
                         <td>
-                            <asp:TextBox ID="tbxSeries"
+                            <asp:Label ID="lblSeries"
                                 runat="server"
                                 Text='<%# Eval("Series") %>'
-                                CssClass="form-control form-control-sm text-center"
+                                CssClass="form-control-static text-center"
                                 ToolTip="Series" />
                         </td>
                         <td>
-                            <asp:TextBox ID="tbxRepeticiones"
+                            <asp:Label ID="lblRepeticiones"
                                 runat="server"
                                 Text='<%# Eval("Repeticiones") %>'
-                                CssClass="form-control form-control-sm text-center"
+                                CssClass="form-control-static text-center"
                                 ToolTip="Repeticiones" />
                         </td>
                         <td>
-                            <asp:TextBox ID="tbxPeso"
+                            <asp:Label ID="lblPeso"
                                 runat="server"
                                 Text='<%# Eval("Peso") %>'
-                                CssClass="form-control form-control-sm text-center"
+                                CssClass="form-control-static text-center"
                                 ToolTip="Peso" />
                         </td>
                         <td>
-                            <asp:TextBox ID="tbxObservaciones"
+                            <asp:Label ID="lblObservaciones"
                                 runat="server"
                                 Text='<%# Eval("Observaciones") %>'
-                                CssClass="form-control form-control-sm"
-                                TextMode="MultiLine"
-                                Rows="1" />
+                                CssClass="form-control-static"
+                                ToolTip="Observaciones" />
                         </td>
                     </tr>
                 </tbody>
