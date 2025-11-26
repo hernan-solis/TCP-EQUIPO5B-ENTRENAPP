@@ -21,27 +21,68 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
         private void CargarHistorial()
         {
-            HistorialNegocio historialNegocio = new HistorialNegocio();
-            List<Historial> listaHistorial = historialNegocio.ListarPorIdRutina(1);
+            int idRutina = ObtenerIdRutinaDelAlumnoLogueado();
 
-            // Obtenenemos el valor del filtro
-            string filtroNombre = tbxFiltroEjercicio.Text.Trim();
-
-            // usar el filtro si se ingresó un valor
-            if (!string.IsNullOrEmpty(filtroNombre))
+            if (idRutina > 0)
             {
-              // Filtra por el nombre del ejercicio, ignorando mayúsculas/minúsculas y espacios
-                listaHistorial = listaHistorial.Where(x => x.EjercicioBase != null && x.EjercicioBase.Nombre.Trim().ToLower().Contains(filtroNombre.ToLower())).ToList();
+
+                HistorialNegocio historialNegocio = new HistorialNegocio();
+                List<Historial> listaHistorial = historialNegocio.ListarPorIdRutina(1);
+
+                // Obtenenemos el valor del filtro
+                string filtroNombre = tbxFiltroEjercicio.Text.Trim();
+
+                // usar el filtro si se ingresó un valor
+                if (!string.IsNullOrEmpty(filtroNombre))
+                {
+                    // Filtra por el nombre del ejercicio, ignorando mayúsculas/minúsculas y espacios
+                    listaHistorial = listaHistorial.Where(x => x.EjercicioBase != null && x.EjercicioBase.Nombre.Trim().ToLower().Contains(filtroNombre.ToLower())).ToList();
+                }
+
+                listaHistorial = listaHistorial.OrderByDescending(x => x.FechaRegistro).ToList();
+
+                rptHistorialAlumno.DataSource = listaHistorial;
+                rptHistorialAlumno.DataBind();
             }
-
-            listaHistorial = listaHistorial.OrderByDescending(x => x.FechaRegistro).ToList();
-
-            rptHistorialAlumno.DataSource = listaHistorial;
-            rptHistorialAlumno.DataBind();
+            else
+            {
+                rptHistorialAlumno.DataSource = null;
+                rptHistorialAlumno.DataBind();
+            }
         }
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
             CargarHistorial();
+        }
+
+        private int ObtenerIdRutinaDelAlumnoLogueado()
+        {
+            //OBTENER EL ID DEL ALUMNO DESDE LA SESIÓN
+            int idAlumno = 0;
+            if (Session["IdUsuario"] != null)
+            {
+                idAlumno = (int)Session["IdUsuario"];
+            }
+            // OBTENER LA RUTINA COMPLETA Y OBTENER EL ID
+            try
+            {
+                RutinaNegocio rutinaNegocio = new RutinaNegocio();
+
+                Rutina rutinaDelAlumno = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlumno);
+
+                if (rutinaDelAlumno != null)
+                {
+                    return rutinaDelAlumno.Id;
+                }
+                else
+                {
+                    throw new Exception("El alumno no tiene una rutina asignada.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
         }
     }
 }
