@@ -122,6 +122,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Gestor.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="HistorialAlumno.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="PerfilAlumno.aspx" />
     <Content Include="PerfilProfesor.aspx" />
@@ -215,6 +216,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HistorialAlumno.aspx.cs">
+      <DependentUpon>HistorialAlumno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HistorialAlumno.aspx.designer.cs">
+      <DependentUpon>HistorialAlumno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

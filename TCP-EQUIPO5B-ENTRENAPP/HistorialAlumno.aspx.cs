@@ -13,16 +13,35 @@ namespace TCP_EQUIPO5B_ENTRENAPP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                CargarHistorial();
+            }
+        }
+
+        private void CargarHistorial()
+        {
             HistorialNegocio historialNegocio = new HistorialNegocio();
             List<Historial> listaHistorial = historialNegocio.ListarPorIdRutina(1);
 
+            // Obtenenemos el valor del filtro
+            string filtroNombre = tbxFiltroEjercicio.Text.Trim();
+
+            // usar el filtro si se ingresó un valor
+            if (!string.IsNullOrEmpty(filtroNombre))
+            {
+              // Filtra por el nombre del ejercicio, ignorando mayúsculas/minúsculas y espacios
+                listaHistorial = listaHistorial.Where(x => x.EjercicioBase != null && x.EjercicioBase.Nombre.Trim().ToLower().Contains(filtroNombre.ToLower())).ToList();
+            }
+
             listaHistorial = listaHistorial.OrderByDescending(x => x.FechaRegistro).ToList();
 
-            if (!IsPostBack)
-            {
-                rptHistorialAlumno.DataSource = listaHistorial;
-                rptHistorialAlumno.DataBind();
-            }
+            rptHistorialAlumno.DataSource = listaHistorial;
+            rptHistorialAlumno.DataBind();
+        }
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            CargarHistorial();
         }
     }
 }

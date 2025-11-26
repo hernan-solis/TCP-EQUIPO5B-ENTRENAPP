@@ -4,6 +4,16 @@
     <div class="text-center" aria-labelledby="gettingStartedTitle">
         <h4>Historial</h4>
     </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <asp:TextBox ID="tbxFiltroEjercicio" runat="server" CssClass="form-control" placeholder="Filtrar por nombre de ejercicio"></asp:TextBox>
+        </div>
+        <div class="col-md-2">
+            <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-primary" OnClick="btnFiltrar_Click" />
+        </div>
+    </div>
+
     <table class="table table-sm text-secondary mb-0 align-middle">
         <thead>
             <tr>
