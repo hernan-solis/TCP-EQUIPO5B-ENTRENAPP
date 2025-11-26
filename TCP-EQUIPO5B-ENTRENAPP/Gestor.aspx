@@ -202,14 +202,7 @@
                         ForeColor="Red"
                         SetFocusOnError="True">
                     </asp:RegularExpressionValidator>
-                    <asp:RequiredFieldValidator
-                        ID="rfvTelefono"
-                        runat="server"
-                        ControlToValidate="tbxTelefonoAgregar"
-                        ErrorMessage="Campo obligatorio"
-                        Text="Campo obligatorio *"
-                        ForeColor="Red"
-                        Display="Dynamic" />
+                   
 
                 </td>
                 <td>
