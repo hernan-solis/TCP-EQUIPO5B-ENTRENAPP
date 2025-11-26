@@ -33,7 +33,7 @@
     </div>
 
     <asp:Button ID="BtnAgregarDia" runat="server" Text="✙ Nuevo Dia" class="btn btn-primary" OnClick="BtnAgregarDia_Click" OnClientClick="return confirm('¿Está seguro que desea Agregar Dia Nuevo?');" />
-
+    <asp:Button ID="BtnVerHistorial" runat="server" Text="🏋️‍ VER HISTORIAL ALUMNO" class="btn btn-primary" OnClick="BtnVerHistorial_Click"/>
     <asp:Repeater ID="RepeaterDiaAlu" runat="server" OnItemDataBound="RepeaterDiaAlu_ItemDataBound">
         <ItemTemplate>
             <div class="container mt-5">

@@ -21,13 +21,41 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
         private void CargarHistorial()
         {
-            int idRutina = ObtenerIdRutinaDelAlumnoLogueado();
+            int idRutina;
+            RutinaNegocio rutinaNegocio = new RutinaNegocio();
+            int idAlumno;
+
+
+            if (Session["IdAlu"] != null)
+            {
+                // SI LA SESSION VIENE DEL PROFE
+
+                idAlumno = (int)Session["IdAlu"];
+
+                Rutina rutinaDelAlumnoProvisoria = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlumno);
+
+                if (rutinaDelAlumnoProvisoria != null)
+                {
+                    idRutina = rutinaDelAlumnoProvisoria.Id;
+                }
+                else
+                {
+                    idRutina = 0;
+
+                }
+            }
+            else
+            {
+                // SI LA SESSION VIENE DEL ALUMNO
+                idRutina = ObtenerIdRutinaDelAlumnoLogueado();
+            }
+                
 
             if (idRutina > 0)
             {
 
                 HistorialNegocio historialNegocio = new HistorialNegocio();
-                List<Historial> listaHistorial = historialNegocio.ListarPorIdRutina(1);
+                List<Historial> listaHistorial = historialNegocio.ListarPorIdRutina(idRutina);
 
                 // Obtenenemos el valor del filtro
                 string filtroNombre = tbxFiltroEjercicio.Text.Trim();

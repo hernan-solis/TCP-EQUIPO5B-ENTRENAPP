@@ -87,6 +87,15 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         protected global::System.Web.UI.WebControls.Button BtnAgregarDia;
 
         /// <summary>
+        /// BtnVerHistorial control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnVerHistorial;
+
+        /// <summary>
         /// RepeaterDiaAlu control.
         /// </summary>
         /// <remarks>
