@@ -12,6 +12,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 {
     public partial class RutinaProfesor : System.Web.UI.Page
     {
+
         // VARIABLES DE CLASE - accesibles en TODO el Page
         private int idProfe;
         private int idAlu;
@@ -90,6 +91,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 Session["ScrollY"] = Request.Cookies["ScrollY"].Value;
             }
 
+
+            
 
 
         }
@@ -344,11 +347,11 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         protected override void Render(HtmlTextWriter writer)
         {
             string script = @"
-        window.addEventListener('beforeunload', function () {
-            var y = window.scrollY;
-            document.cookie = 'ScrollY=' + y;
-        });
-    ";
+             window.addEventListener('beforeunload', function () {
+               var y = window.scrollY;
+                document.cookie = 'ScrollY=' + y;
+             });
+            ";
             Page.ClientScript.RegisterStartupScript(this.GetType(), "SaveScroll", script, true);
             base.Render(writer);
         }
@@ -547,6 +550,16 @@ namespace TCP_EQUIPO5B_ENTRENAPP
       
 
 
+        }
+
+        protected void BtnVerHistorial_Click(object sender, EventArgs e)
+        {
+            // GUARDO EN SESSION EL ID ALUMNO PARA EL HISTORIAL
+
+            Session["IdAlu"] = idAlu;
+
+            // REDIRIJO A LA PAGINA DE HISTORIAL DEL ALUMNO
+            Response.Redirect("/HistorialAlumno.aspx");
         }
     }
 }
