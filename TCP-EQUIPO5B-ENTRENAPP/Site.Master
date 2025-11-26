@@ -62,6 +62,8 @@
                         <li class="nav-item" id="liPerfilProfe" runat="server"><a class="nav-link" runat="server" href="~/PerfilProfesor">Mi Perfil Profe</a></li>
                         <li class="nav-item" id="liGestor" runat="server"><a class="nav-link" runat="server" href="~/Gestor">Gestor</a></li>
                         <li class="nav-item" id="liHistorialAlumno" runat="server"><a class="nav-link" runat="server" href="~/HistorialAlumno">Mi Historial</a></li>
+                        <li class="nav-item" id="liCrearNuevoEjercicio" runat="server"><a class="nav-link" runat="server" href="~/CrearNuevoEjercicio">Crear Nuevo Ejercicio</a></li>
+
 
                     </ul>
                     <ul class="navbar-nav ms-auto">

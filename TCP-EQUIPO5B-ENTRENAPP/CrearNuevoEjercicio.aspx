@@ -10,14 +10,7 @@
         <div class="col-6">
             <label class="form-label">Nombre</label>
             <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server"></asp:TextBox>
-            <asp:RequiredFieldValidator
-                ID="rfvNombre"
-                runat="server"
-                ControlToValidate="txtNombre"
-                ErrorMessage="Campo obligatorio"
-                Text="Campo obligatorio *"
-                ForeColor="Red"
-                Display="Dynamic" />
+
             <asp:RegularExpressionValidator
                 ID="revNombre"
                 runat="server"

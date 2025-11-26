@@ -31,7 +31,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                     liAlta.Visible = false;             // Ocultar alta
                     liGestor.Visible = false;            // Ocultar gestor
                     liCerrarSesion.Visible = true;
-                    liHistorialAlumno.Visible = true;   //mostrar historial alumno                  
+                    liHistorialAlumno.Visible = true;
+                    liCrearNuevoEjercicio.Visible = false;// ocultar crear nuevo ejercicico                
                 }
                 else if (tipoUsuario == "Profesor")
                 {
@@ -40,7 +41,9 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                     liAlta.Visible = false;              // Ocultar alta
                     liGestor.Visible = false;            // Ocultar gestor
                     liCerrarSesion.Visible = true;      // Mostrar cerrar sesión
-                    liHistorialAlumno.Visible = false;    // Ocultar historial alumno
+                    liHistorialAlumno.Visible = false; // Ocultar historial alumno
+                    liCrearNuevoEjercicio.Visible = true;// mostrar crear nuevo ejercicico
+                                                        
                 }
                 else if (tipoUsuario == "Gestor")
                 {
@@ -50,7 +53,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                     liAlta.Visible = false;              // Ocultar alta
                     liGestor.Visible = true;              // Mostrar gestor
                     liCerrarSesion.Visible = true;      // Mostrar cerrar sesión
-                    liHistorialAlumno.Visible = false;    // Ocultar historial alumno
+                    liHistorialAlumno.Visible = false;
+                    liCrearNuevoEjercicio.Visible = true;// mostrar crear nuevo ejercicico
 
                 }
             }
@@ -63,7 +67,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 liGestor.Visible = false;            // Ocultar gestor
                 liLogin.Visible = true;              // Mostrar login
                 liHistorialAlumno.Visible = false;    // Ocultar historial alumno
-
+                liCrearNuevoEjercicio.Visible = false;// ocultar crear nuevo ejercicico 
             }
         }
 

@@ -154,7 +154,7 @@
                     <asp:TextBox ID="tbxNombreAgregar"
                         runat="server"
                         Text=""
-                        CssClass="form-control form-control-sm"                        TextMode="MultiLine"
+                        CssClass="form-control form-control-sm"
                         Rows="1" />
                 </td>
                 <td>
@@ -202,6 +202,14 @@
                         ForeColor="Red"
                         SetFocusOnError="True">
                     </asp:RegularExpressionValidator>
+                    <asp:RequiredFieldValidator
+                        ID="rfvTelefono"
+                        runat="server"
+                        ControlToValidate="tbxTelefono"
+                        ErrorMessage="Campo obligatorio"
+                        Text="Campo obligatorio *"
+                        ForeColor="Red"
+                        Display="Dynamic" />
 
                 </td>
                 <td>
