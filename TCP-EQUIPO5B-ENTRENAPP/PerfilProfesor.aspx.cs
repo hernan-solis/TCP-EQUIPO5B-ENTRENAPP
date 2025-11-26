@@ -17,7 +17,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         {
             // OBTENGO EL IDPROFE DE LA URL O DE LA SESSION CUANDO SE LOGUEA - OPERADOR TERNARIO
 
-            int idProfesor = Session["idUsuario"] != null ? (int)Session["idUsuario"] : int.Parse(Request.QueryString["idProfe"]);
+            int idProfesor = Session["IdUsuario"] != null ? (int)Session["IdUsuario"] : int.Parse(Request.QueryString["idProfe"]);
 
             AlumnoNegocio alumnoNegocio = new AlumnoNegocio();
 
@@ -46,9 +46,10 @@ namespace TCP_EQUIPO5B_ENTRENAPP
             // PRIMERO SETEO Y PREPARO LOS ID PARA MANDAR A LA SIGUIENTE PAGINA / RECUPER EL DATO DEL ARGUMENT
             int idAlu = int.Parse(e.CommandArgument.ToString());
 
-            int idProfesor = Session["idUsuario"] != null ? (int)Session["idUsuario"] : int.Parse(Request.QueryString["idProfe"]);
-            int idProfe = idProfesor;
+            int idProfe = Session["IdUsuario"] != null ? (int)Session["IdUsuario"] : int.Parse(Request.QueryString["idProfe"]);
 
+            //Guardo Tambien el id del alumno en la sesion por si se necesita despues
+            Session["IdAlu"] = idAlu;
             // Redirigir con el Id del día y el id del alumno igual sigue en la sesion
             Response.Redirect("/RutinaProfesor.aspx?idAlu=" + idAlu + "&idProfe=" + idProfe);
 

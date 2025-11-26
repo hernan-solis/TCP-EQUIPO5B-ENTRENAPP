@@ -180,14 +180,15 @@ namespace Business
             }
         }
 
-        // CHEAR EL TEMA DEL LOGIN, CAPAZ PODRIA HABER UN METODO QUE DEVUELVA USUARIO AL PONER CREDENCIALES PRIMERO
-        // Y LUEGO FIJARSE LA FECHA DEL SUJETO
+
+        // SI COINCIDEN EMAIL Y CONTRASEÑA, DEVUELVE EL ID DEL USUARIO, SINO DEVUELVE 0
+        // lUIEGO LA FECHA DE FIN DE SUSCRIPCIÓN LA VALIDAS EN EL LA LOGICA DEL PROGRAMA, NO ACA  
         public int Loguear(string email, string contrasenia)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("SELECT ID FROM Usuarios WHERE (Email = @email AND Contraseña = @contrasenia AND FechaFinSuscripción >= GETDATE()) OR (Email = @email AND Contraseña = @contrasenia AND Rol = 'Gestor') OR (Email = @email AND Contraseña = @contrasenia AND Rol = 'Profesor')");
+                datos.setearConsulta("SELECT ID FROM Usuarios WHERE (Email = @email AND Contraseña = @contrasenia AND Rol = 'Alumno') OR (Email = @email AND Contraseña = @contrasenia AND Rol = 'Gestor') OR (Email = @email AND Contraseña = @contrasenia AND Rol = 'Profesor')");
                 datos.setearParametro("@email", email);
                 datos.setearParametro("@contrasenia", contrasenia);
 

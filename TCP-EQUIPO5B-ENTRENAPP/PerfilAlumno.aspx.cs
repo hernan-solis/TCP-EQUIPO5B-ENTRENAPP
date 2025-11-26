@@ -17,17 +17,17 @@ namespace TCP_EQUIPO5B_ENTRENAPP
         protected void Page_Load(object sender, EventArgs e)
         {
             //Recupero id alumno de la url o puedo desde la session
-            int alumnoId = Session ["IdUsuario"] != null ? (int)Session["IdUsuario"] : int.Parse(Request.QueryString["idAlu"]);
+            int idAlu = Session ["IdUsuario"] != null ? (int)Session["IdUsuario"] : int.Parse(Request.QueryString["idAlu"]);
 
 
 
             AlumnoNegocio alumnoNegocio = new AlumnoNegocio();
                 
-            Alumno alumno = alumnoNegocio.ObtenerPorId(alumnoId);  // obtengo el objeto Alumno
+            Alumno alumno = alumnoNegocio.ObtenerPorId(idAlu);  // obtengo el objeto Alumno
 
             RutinaNegocio rutinaNegocio = new RutinaNegocio();
 
-            Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno(alumnoId); // obtengo la rutina del alumno
+            Rutina rutina = rutinaNegocio.ObtenerRutinaPorIdAlumno(idAlu); // obtengo la rutina del alumno
 
             // MOSTRAR ALERTA SI VIENE DE UN REDIRECT
             if (Session["MensajeSemana"] != null)
@@ -62,7 +62,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 Session["MensajeSemana"] = "¡Semana completa! 🎉 Se reinició la rutina semanal.";
 
                 // redirijo normalmente
-                Response.Redirect("/PerfilAlumno.aspx?idAlu=" + alumnoId);
+                Response.Redirect("/PerfilAlumno.aspx?idAlu=" + idAlu);
             }
 
             // SETEO DE TITULOS

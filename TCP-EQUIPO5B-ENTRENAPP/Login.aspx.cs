@@ -13,14 +13,21 @@ namespace TCP_EQUIPO5B_ENTRENAPP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Ocultar el label de error al cargar la pagina
+            lblMensajeError.Visible = false;
 
+            //Muestro el lblError si la sesion tiene algo luego del Postback
+
+            if (Request.QueryString["error"]!=null) {
+                lblMensajeError.Text = Request.QueryString["error"];
+                lblMensajeError.Visible = true;
+            }
+            
             GestorNegocio gestorNegocio = new GestorNegocio();
 
             var gestores = gestorNegocio.Listar();
 
-
-
-
+           
 
         }
 
@@ -31,16 +38,17 @@ namespace TCP_EQUIPO5B_ENTRENAPP
 
             int idUsuario = negocio.Loguear(tbxEmailLogin.Text, tbxConstraseniaLogin.Text);
 
-            //SI TRAE CERO NO EXISTE O TIENE VENCIDO, Y SE ROMPE, HAY QUE ARREGLAR
+            //SI TRAE CERO NO EXISTE O TIENE VENCIDO
 
             usuario = negocio.ObtenerUsuarioPorId(idUsuario);
-            
-              
-            string rol = usuario.Rol;
+
+
+            string rol;
 
             if (idUsuario > 0)
             {
-                //  GUARDO EN SESSION
+                //  GUARDO EN SESSION ID Y ROL, LUEGO TAMBIEN MANDO POR URL, AMBOS
+                rol = usuario.Rol;
                 Session["IdUsuario"] = idUsuario;
                 Session["TipoUsuario"] = rol;
 
@@ -48,19 +56,38 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 {
                     case "Profesor":
                         {
-                            Response.Redirect("~/PerfilProfesor.aspx?idProfe="+idUsuario);
+                            Response.Redirect("~/PerfilProfesor.aspx?idProfe=" + idUsuario);
                         }
                         break;
                     case "Alumno":
-                        Response.Redirect("~/PerfilAlumno.aspx?idAlu="+idUsuario);
+                        {
+                            AlumnoNegocio alumnoNegocio = new AlumnoNegocio();
+                            Alumno alumno = alumnoNegocio.ObtenerPorId(idUsuario);
+
+                            if (alumno.FechaFinSuscripcion > DateTime.Now)
+                            {
+                                Response.Redirect("~/PerfilAlumno.aspx?idAlu=" + idUsuario);
+                            }
+                            else {
+                                Response.Redirect("~/Login.aspx?error=Suscripcion Vencida !!");
+                            }
+                            
+                        }
+                        
                         break;
                     case "Gestor":
-                        Response.Redirect("~/Gestor.aspx?idGestor="+idUsuario);
+                        {
+                            Response.Redirect("~/Gestor.aspx?idGestor=" + idUsuario);
+                        }
+                        
                         break;
-                    default:                       
+                    default:
                         Response.Redirect("~/Default.aspx");
                         break;
                 }
+            }
+            else {
+                Response.Redirect("~/Login.aspx?error=Email o Contraseña incorrecto");
             }
 
 
