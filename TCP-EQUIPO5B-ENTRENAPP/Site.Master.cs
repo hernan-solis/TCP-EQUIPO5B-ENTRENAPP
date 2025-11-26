@@ -30,8 +30,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                     liLogin.Visible = false;            // Ocultar login
                     liAlta.Visible = false;             // Ocultar alta
                     liGestor.Visible = false;            // Ocultar gestor
-                    liCerrarSesion.Visible = true;      // Mostrar cerrar sesión
-                    
+                    liCerrarSesion.Visible = true;
+                    liHistorialAlumno.Visible = true;   //mostrar historial alumno                  
                 }
                 else if (tipoUsuario == "Profesor")
                 {
@@ -40,7 +40,7 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                     liAlta.Visible = false;              // Ocultar alta
                     liGestor.Visible = false;            // Ocultar gestor
                     liCerrarSesion.Visible = true;      // Mostrar cerrar sesión
-                    
+                    liHistorialAlumno.Visible = false;    // Ocultar historial alumno
                 }
                 else if (tipoUsuario == "Gestor")
                 {
@@ -50,6 +50,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                     liAlta.Visible = false;              // Ocultar alta
                     liGestor.Visible = true;              // Mostrar gestor
                     liCerrarSesion.Visible = true;      // Mostrar cerrar sesión
+                    liHistorialAlumno.Visible = false;    // Ocultar historial alumno
+
                 }
             }
             else
@@ -60,6 +62,8 @@ namespace TCP_EQUIPO5B_ENTRENAPP
                 liCerrarSesion.Visible = false;       // Ocultar Cerrar Sesion  
                 liGestor.Visible = false;            // Ocultar gestor
                 liLogin.Visible = true;              // Mostrar login
+                liHistorialAlumno.Visible = false;    // Ocultar historial alumno
+
             }
         }
 

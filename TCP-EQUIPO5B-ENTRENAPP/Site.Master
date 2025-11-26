@@ -61,11 +61,13 @@
                         <li class="nav-item" id="liPerfilAlumno" runat="server"><a class="nav-link" runat="server" href="~/PerfilAlumno">Mi Perfil Alu</a></li>
                         <li class="nav-item" id="liPerfilProfe" runat="server"><a class="nav-link" runat="server" href="~/PerfilProfesor">Mi Perfil Profe</a></li>
                         <li class="nav-item" id="liGestor" runat="server"><a class="nav-link" runat="server" href="~/Gestor">Gestor</a></li>
+                        <li class="nav-item" id="liHistorialAlumno" runat="server"><a class="nav-link" runat="server" href="~/HistorialAlumno">Mi Historial</a></li>
+
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item" id="liLogin" runat="server"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
                         <li class="nav-item" id="liCerrarSesion" runat="server">
-                            <a class="nav-link" runat="server" href="~/" onserverclick="LbtnCerrarSesion_Click">Cerrar sesión</a>                           
+                            <a class="nav-link" runat="server" href="~/" onserverclick="LbtnCerrarSesion_Click">Cerrar sesión</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contacto</a></li>
                     </ul>
