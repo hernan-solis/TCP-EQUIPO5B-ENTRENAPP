@@ -39,5 +39,46 @@
 
     </div>
 
+    <div class="text-center" aria-labelledby="gettingStartedTitle">
+        <h4>LISTA DE EJERCICIOS</h4>
+    </div>
+
+
+
+    <table class="table table-sm text-secondary mb-0 align-middle">
+        <thead>
+            <tr>
+                <th scope="col">NOMBRE</th>
+                <th scope="col">DESCRIPCION</th>
+            </tr>
+        </thead>
+        <asp:Repeater ID="rptListarEjercicios" runat="server">
+            <ItemTemplate>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            <asp:Label ID="lblNombre"
+                                runat="server"
+                                Text='<%# Eval("Nombre") %>'
+                                CssClass="form-control-static text-center"
+                                ToolTip="Series" />
+                        </td>
+                        <td>
+                            <asp:Label ID="lblDescripcion"
+                                runat="server"
+                                Text='<%# Eval("Descripcion") %>'
+                                CssClass="form-control-static text-center"
+                                ToolTip="Repeticiones" />
+                        </td>
+                    </tr>
+                </tbody>
+
+
+            </ItemTemplate>
+
+        </asp:Repeater>
+    </table>
+
 
 </asp:Content>

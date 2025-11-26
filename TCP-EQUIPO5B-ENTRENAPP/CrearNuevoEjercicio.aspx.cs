@@ -13,7 +13,15 @@ namespace TCP_EQUIPO5B_ENTRENAPP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            EjercicioBaseNegocio ejercicioBaseNegocio = new EjercicioBaseNegocio();
+            List<EjercicioBase> listaEjercicios = ejercicioBaseNegocio.Listar();
+            if (!IsPostBack)
+            {
 
+                rptListarEjercicios.DataSource = listaEjercicios;
+                rptListarEjercicios.DataBind();
+
+            }
         }
 
 
